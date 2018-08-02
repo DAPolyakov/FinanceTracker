@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import io.alekseimartoyas.financetracker.R
+import io.alekseimartoyas.financetracker.data.local.Account
 import io.alekseimartoyas.financetracker.presentation.modules.anothercurrency.view.AnotherCurrencyFragment
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.configurator.MainScreenConfigurator
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.presenter.IMainScreenFragmentInput
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.presenter.MainScreenPresenter
+import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.SpinnerManager.AccountSpinnerArrayAdapter
 import io.alekseimartoyas.tradetracker.Foundation.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main_screen.*
 
-class MainScreenFragment: BaseFragment<MainScreenPresenter>(),
+class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
         IMainScreenFragmentInput {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_main_screen, container, false)
@@ -24,9 +25,9 @@ class MainScreenFragment: BaseFragment<MainScreenPresenter>(),
 
         MainScreenConfigurator().buildModule(this)
         setAddAccountBtListener()
-        if (savedInstanceState == null) {  //To change fragment insertion
-            activity?.let {
-                it.supportFragmentManager
+        if (savedInstanceState == null) {
+            activity?.apply {
+                supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.anoth_curr_card,
                                 AnotherCurrencyFragment(),
@@ -38,8 +39,12 @@ class MainScreenFragment: BaseFragment<MainScreenPresenter>(),
 
     fun setAddAccountBtListener() {
         add_account_bt.setOnClickListener {
-//            presenter?.showAddAccount()
+            //            presenter?.showAddAccount()
         }
+    }
+
+    override fun showAccountsList(accounts: Array<Account>) {
+        spinner_accounts?.adapter = AccountSpinnerArrayAdapter(context!!, accounts)
     }
 
     override fun onStart() {

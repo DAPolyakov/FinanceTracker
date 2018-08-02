@@ -16,14 +16,6 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    signingConfigs {
-        config {
-            keyAlias 'LearningKeyFinanceTracking'
-            keyPassword 'wqred341513'
-            storeFile file('C:/workspace/KeyStore/FinanceTracker.jks')
-            storePassword 'wqred341513'
-        }
-    }
     buildTypes {
         release {
             minifyEnabled true
@@ -54,6 +46,7 @@ ext {
     supportTestRunnerVersion = '1.0.2'
     espressoVersion = '3.0.2'
     mockitoVersion = '2.20.1'
+    roomVersion = "1.1.1"
 }
 
 dependencies {
@@ -77,4 +70,7 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$supportTestRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
+
+    implementation "android.arch.persistence.room:runtime:$roomVersion"
+    kapt "android.arch.persistence.room:compiler:$roomVersion"
 }

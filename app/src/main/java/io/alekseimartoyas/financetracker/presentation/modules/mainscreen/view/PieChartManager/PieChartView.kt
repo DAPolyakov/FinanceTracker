@@ -8,7 +8,7 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import io.alekseimartoyas.financetracker.data.local.Transaction
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.presenter.IPieChartViewInput
 
-class PieChartView(chart: PieChart): IPieChartViewInput {
+class PieChartView(chart: PieChart) : IPieChartViewInput {
     private var chart: PieChart? = chart
     private lateinit var chartData: List<Transaction>
 
@@ -19,11 +19,13 @@ class PieChartView(chart: PieChart): IPieChartViewInput {
 
     private fun setup() {
         val pieData = hashMapOf<String, Float>()
-        for (item in chartData)
-            if (pieData[item.category] == null)
-                pieData[item.category] = item.quantity
-            else
-                pieData[item.category] = (pieData[item.category] ?: 0F) + item.quantity
+
+        // TODO
+//        for (item in chartData)
+//            if (pieData[item.category] == null)
+//                pieData[item.category] = item.quantity
+//            else
+//                pieData[item.category] = (pieData[item.category] ?: 0F) + item.quantity
 
         var pieEntries = mutableListOf<PieEntry>()
 
