@@ -14,6 +14,7 @@ class MainScreenConfigurator {
     fun buildModule(view: MainScreenFragment) {
         val presenter = MainScreenPresenter(view,
                 GetAccountsInteractor(App.graph.getDataSource()),
+                GetExchRateInteractor(App.graph.getExchRateProvider()),
                 view.activity as IMainActivityRouterInput,
                 PieChartView(view.pie_chart_view))
 

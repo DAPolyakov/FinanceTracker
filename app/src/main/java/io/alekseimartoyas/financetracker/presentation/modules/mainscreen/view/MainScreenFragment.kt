@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.data.local.Account
-import io.alekseimartoyas.financetracker.presentation.modules.anothercurrency.view.AnotherCurrencyFragment
+import io.alekseimartoyas.financetracker.domain.Currency
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.configurator.MainScreenConfigurator
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.presenter.IMainScreenFragmentInput
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.presenter.MainScreenPresenter
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.SpinnerManager.AccountSpinnerArrayAdapter
+import io.alekseimartoyas.financetracker.utils.toTargetCurrency
 import io.alekseimartoyas.tradetracker.Foundation.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main_screen.*
 
@@ -25,16 +27,16 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
 
         MainScreenConfigurator().buildModule(this)
         setAddAccountBtListener()
-        if (savedInstanceState == null) {
-            activity?.apply {
-                supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.anoth_curr_card,
-                                AnotherCurrencyFragment(),
-                                "visible_sub_fragment")
-                        .commit()
-            }
-        }
+    }
+
+    override fun setExchRate(data: String) {
+        chang_rate_usd.text = "$data ${resources.getString(R.string.RUB)}"
+    }
+
+
+    override fun showBalance(course: Double, account: Account) {
+        val s = account.currency.toTargetCurrency(Currency.USD, account.amount, course.toBigDecimal()).toString()
+        usd_curr_chang_text.text = s
     }
 
     fun setAddAccountBtListener() {
@@ -45,12 +47,21 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
 
     override fun showAccountsList(accounts: Array<Account>) {
         spinner_accounts?.adapter = AccountSpinnerArrayAdapter(context!!, accounts)
+
+        spinner_accounts?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                presenter?.changeCurrentAccount(spinner_accounts.selectedItem as Account)
+            }
+
+        }
     }
 
     override fun showBalance(account: Account) {
         main_currency.text = getString(account.currency.strId)
         main_quant_text.text = "${account.amount}"
-
     }
 
     override fun onStart() {

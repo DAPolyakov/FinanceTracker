@@ -21,7 +21,7 @@ abstract class BaseInteractor<ResulType, ParametrType>(
     fun execute(subscriber: (ResulType) -> Unit) {
         execute(null, subscriber)
     }
-
+    
     fun dispose() {
         disposable?.dispose()
     }

@@ -19,13 +19,13 @@ class PieChartView(chart: PieChart) : IPieChartViewInput {
 
     private fun setup() {
         val pieData = hashMapOf<String, Float>()
-        
-        // TODO
-//        for (item in chartData)
-//            if (pieData[item.category] == null)
-//                pieData[item.category] = item.quantity
-//            else
-//                pieData[item.category] = (pieData[item.category] ?: 0F) + item.quantity
+
+        for (item in chartData)
+            if (pieData[item.category.toString()] == null)
+                pieData[item.category.toString()] = item.quantity
+            else
+                pieData[item.category.toString()] = (pieData[item.category.toString()]
+                        ?: 0F) + item.quantity
 
         var pieEntries = mutableListOf<PieEntry>()
 
