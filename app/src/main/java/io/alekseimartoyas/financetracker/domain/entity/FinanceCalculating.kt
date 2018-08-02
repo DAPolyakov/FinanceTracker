@@ -1,10 +1,10 @@
 package io.alekseimartoyas.financetracker.domain.entity
 
+import io.alekseimartoyas.financetracker.data.local.Transaction
 import io.alekseimartoyas.financetracker.domain.Currency
 import io.alekseimartoyas.financetracker.domain.OperationType
-import io.alekseimartoyas.financetracker.data.local.Transaction
 
-class FinanceCalculating(val transactions: Array<Transaction>): FinanceCalculatingInput {
+class FinanceCalculating(val transactions: Array<Transaction>) : FinanceCalculatingInput {
 
     override fun calculateTransactionsSum(inCurrency: Currency): Float {
         var balance = 0F
@@ -19,10 +19,9 @@ class FinanceCalculating(val transactions: Array<Transaction>): FinanceCalculati
         return balance
     }
 
-    // может перенести в Transaction
     private fun toTargetCurrency(transaction: Transaction,
                                  target: Currency,
-                                 course: Float): Float = //где взять курс
+                                 course: Float): Float =
             if (transaction.currency == target) {
                 transaction.quantity
             } else {

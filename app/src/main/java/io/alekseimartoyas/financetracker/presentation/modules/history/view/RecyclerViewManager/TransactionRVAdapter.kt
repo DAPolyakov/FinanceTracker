@@ -32,7 +32,7 @@ class TransactionRVAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(),
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ViewHolder) {
-            holder.categoryText.text = transactionList[position].category
+            holder.categoryText.text = transactionList[position].category.toString()
             holder.currencyText.text = transactionList[position].currency.toString()
             holder.operationTypeText.text = transactionList[position].operationType.toString()
             holder.quantityCurrencyText.text = transactionList[position].quantity.toString()
