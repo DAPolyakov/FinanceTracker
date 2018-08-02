@@ -4,4 +4,5 @@ import io.alekseimartoyas.financetracker.data.local.Account
 
 interface IMainScreenFragmentInput {
     fun showAccountsList(accounts: Array<Account>)
+    fun showBalance(account: Account)
 }

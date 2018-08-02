@@ -29,6 +29,7 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
 
         getAccounts.execute {
             view?.showAccountsList(it)
+            view?.showBalance(it[0])
         }
     }
 

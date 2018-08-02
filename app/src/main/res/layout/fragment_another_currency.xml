@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     tools:context=".presentation.modules.anothercurrency.view.AnotherCurrencyFragment">
 
-    <Spinner
+    <TextView
         android:id="@+id/currency_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,13 +14,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:entries="@array/currency_spinner"
-        android:text="USD"
-        app:layout_constraintEnd_toStartOf="@+id/anoth_curr_chang_text2"
+        android:text="@string/USD"
+        app:layout_constraintEnd_toStartOf="@+id/usd_curr_chang_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/anoth_curr_chang_text2"
+        android:id="@+id/usd_curr_chang_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -28,12 +28,12 @@
         android:layout_marginTop="10dp"
         android:text="10000"
         android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/anoth_curr_perc_change_text2"
+        app:layout_constraintEnd_toStartOf="@+id/anoth_curr_perc_change_text"
         app:layout_constraintStart_toEndOf="@+id/currency_spinner"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/anoth_curr_perc_change_text2"
+        android:id="@+id/anoth_curr_perc_change_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -41,12 +41,13 @@
         android:layout_marginTop="10dp"
         android:text="+2000"
         android:textAlignment="viewEnd"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/anoth_curr_chang_text2"
+        app:layout_constraintStart_toEndOf="@+id/usd_curr_chang_text"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/chang_anoth_curr2"
+        android:id="@+id/chang_rate_usd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

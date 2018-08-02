@@ -47,6 +47,12 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
         spinner_accounts?.adapter = AccountSpinnerArrayAdapter(context!!, accounts)
     }
 
+    override fun showBalance(account: Account) {
+        main_currency.text = getString(account.currency.strId)
+        main_quant_text.text = "${account.amount}"
+
+    }
+
     override fun onStart() {
         super.onStart()
         presenter?.onStart()

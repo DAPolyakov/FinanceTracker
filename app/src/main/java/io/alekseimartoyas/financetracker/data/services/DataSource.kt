@@ -43,9 +43,9 @@ class DataSource : IDataSourceInput {
         transactions.add(Transaction(2, OperationType.ENLISTMENT, 10f, Currency.RUB, CategoryType.Category2, "15-04-2012"))
         transactions.add(Transaction(3, OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category3, "24-08-2014"))
 
-        fakeAccounts.add(Account("1", R.string.petr, Currency.RUB, transactions))
-        fakeAccounts.add(Account("2", R.string.maria, Currency.RUB, transactions))
-        fakeAccounts.add(Account("3", R.string.alex, Currency.USD, transactions))
+        fakeAccounts.add(Account("1", R.string.petr, Currency.RUB, 100.toBigDecimal(), transactions))
+        fakeAccounts.add(Account("2", R.string.maria, Currency.RUB, 200.toBigDecimal(), transactions))
+        fakeAccounts.add(Account("3", R.string.alex, Currency.USD, 300.toBigDecimal(), transactions))
     }
 
 }
