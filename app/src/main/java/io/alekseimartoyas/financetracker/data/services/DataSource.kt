@@ -50,20 +50,20 @@ class DataSource : IDataSourceInput {
 
     private fun createFakeAccounts() {
         val transactions = ArrayList<Transaction>()
-        transactions.add(Transaction(1, OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category1, "12-01-2010"))
-        transactions.add(Transaction(2, OperationType.ENLISTMENT, 10f, Currency.RUB, CategoryType.Category2, "15-04-2012"))
-        transactions.add(Transaction(3, OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category3, "24-08-2014"))
+        transactions.add(Transaction(OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category1, "12-01-2010", 1))
+        transactions.add(Transaction(OperationType.ENLISTMENT, 10f, Currency.RUB, CategoryType.Category2, "15-04-2012", 2))
+        transactions.add(Transaction(OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category3, "24-08-2014", 3))
 
         val transactions2 = ArrayList<Transaction>()
-        transactions2.add(Transaction(1, OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category1, "12-01-2010"))
-        transactions2.add(Transaction(3, OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category3, "24-08-2014"))
+        transactions2.add(Transaction(OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category1, "12-01-2010", 1))
+        transactions2.add(Transaction(OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category3, "24-08-2014", 3))
 
         val transactions3 = ArrayList<Transaction>()
-        transactions3.add(Transaction(2, OperationType.ENLISTMENT, 10f, Currency.RUB, CategoryType.Category2, "15-04-2012"))
+        transactions3.add(Transaction(OperationType.ENLISTMENT, 10f, Currency.RUB, CategoryType.Category2, "15-04-2012", 2))
 
-        fakeAccounts.add(Account("1", R.string.petr, Currency.RUB, 100.toBigDecimal(), transactions))
-        fakeAccounts.add(Account("2", R.string.maria, Currency.RUB, 200.toBigDecimal(), transactions2))
-        fakeAccounts.add(Account("3", R.string.alex, Currency.USD, 300.toBigDecimal(), transactions3))
+        fakeAccounts.add(Account(R.string.petr, Currency.RUB, 100.toBigDecimal(), transactions, 1))
+        fakeAccounts.add(Account(R.string.maria, Currency.RUB, 200.toBigDecimal(), transactions2, 2))
+        fakeAccounts.add(Account(R.string.alex, Currency.USD, 300.toBigDecimal(), transactions3, 3))
 
         currentAccount.onNext(fakeAccounts[0])
     }
