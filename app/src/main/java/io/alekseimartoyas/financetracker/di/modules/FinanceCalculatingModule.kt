@@ -5,5 +5,5 @@ package io.alekseimartoyas.financetracker.di.modules
 //
 //    @Provides
 //    fun financeCalculating(): FinanceCalculating = FinanceCalculating(
-//            arrayOf(Transaction(0, OperationType.ENLISTMENT,5F, Currency.USD)))  // заглушка
+//            arrayOf(FinanceTransaction(0, OperationType.ENLISTMENT,5F, Currency.USD)))  // заглушка
 //}

@@ -10,7 +10,7 @@ import io.alekseimartoyas.financetracker.domain.OperationType
 
 @Entity
 @TypeConverters(OperationType::class, CategoryType::class, Currency::class)
-data class Transaction(
+data class FinanceTransaction(
         val operationType: OperationType,
         val quantity: Float,
         val currency: Currency,

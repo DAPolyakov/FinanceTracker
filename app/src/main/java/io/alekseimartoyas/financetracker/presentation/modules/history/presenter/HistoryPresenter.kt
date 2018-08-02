@@ -1,6 +1,6 @@
 package io.alekseimartoyas.financetracker.presentation.modules.history.presenter
 
-import io.alekseimartoyas.financetracker.data.local.Transaction
+import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.domain.CategoryType
 import io.alekseimartoyas.financetracker.domain.Currency
 import io.alekseimartoyas.financetracker.domain.OperationType
@@ -23,14 +23,14 @@ class HistoryPresenter(view: IHistoryFragmentInput,
     override fun onStart() {
         //from interactor
         adapter?.setData(arrayOf(
-                Transaction(
+                FinanceTransaction(
                         OperationType.ENLISTMENT,
                         159F,
                         Currency.USD,
                         CategoryType.Category1,
                         "yesterday",
                         1),
-                Transaction(
+                FinanceTransaction(
                         OperationType.DEBIT,
                         5F,
                         Currency.USD,

@@ -13,6 +13,6 @@ data class Account(
         val title: Int,
         val currency: Currency,
         val amount: BigDecimal,
-        @Ignore val transactions: List<Transaction>,
+        @Ignore val transactions: List<FinanceTransaction>,
         @PrimaryKey(autoGenerate = true) val id: Long? = null
 )
