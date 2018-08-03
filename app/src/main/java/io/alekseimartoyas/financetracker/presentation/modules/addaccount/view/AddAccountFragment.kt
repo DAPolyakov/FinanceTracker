@@ -12,7 +12,7 @@ import io.alekseimartoyas.financetracker.presentation.modules.addaccount.present
 import io.alekseimartoyas.tradetracker.Foundation.BaseActivity
 import io.alekseimartoyas.tradetracker.Foundation.BaseFragment
 
-class AddAccountFragment: BaseFragment<AddAccountPresenter>(),
+class AddAccountFragment : BaseFragment<AddAccountPresenter>(),
         IAddAccountFragmentInput {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

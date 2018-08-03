@@ -4,9 +4,9 @@ import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.r
 import io.alekseimartoyas.tradetracker.Foundation.BasePresenter
 
 class AddAccountPresenter(view: IAddAccountFragmentInput,
-                          router: IMainActivityRouterInput):
+                          router: IMainActivityRouterInput) :
         BasePresenter<IAddAccountFragmentInput,
-        IMainActivityRouterInput>(view, router) {
+                IMainActivityRouterInput>(view, router) {
 
     override fun onStart() {
 

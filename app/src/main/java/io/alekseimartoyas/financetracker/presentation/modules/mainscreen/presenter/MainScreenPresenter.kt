@@ -20,9 +20,11 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
     private var course: Double = 1.0
 
     override fun onStart() {
-        getAccounts.execute {
-            view?.showAccountsList(it)
-            view?.showBalance(it[0])
+        getAccounts.executeFlowable {
+            view?.showAccountsList(it.toTypedArray())
+            if (it.isNotEmpty()) {
+                view?.showBalance(it[0])
+            }
         }
 
         getExchRateInteractor.execute { response ->
@@ -34,7 +36,7 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
                 else -> ""
             })
 
-            getAccounts.execute {
+            getAccounts.executeFlowable {
                 view?.showBalance(response.Valute.USD.Value, it[0])
             }
         }

@@ -30,10 +30,21 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
         initSpinners()
 
         add_transaction_bt.setOnClickListener {
+
+            val operationType = when (operation_type_spinner.selectedItem) {
+                "Enlistment" -> OperationType.ENLISTMENT
+                else -> OperationType.DEBIT
+            }
+
+            val currency = when (quantity_currency_spinner.selectedItem) {
+                "RUB" -> Currency.RUB
+                else -> Currency.USD
+            }
+
             presenter?.onAddFinanceTransaction(FinanceTransaction(
-                    operationType = OperationType.ENLISTMENT,
+                    operationType = operationType,
                     quantity = quantity_edit.text.toString().toFloat(),
-                    currency = Currency.RUB,
+                    currency = currency,
                     accountId = (spinner_account.selectedItem as Account).id!!,
                     category = (spinner_category.selectedItem as CategoryType),
                     date = presenter!!.getDate()

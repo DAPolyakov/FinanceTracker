@@ -15,8 +15,8 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
                 IAddTransactionRouter>(view) {
 
     override fun onStart() {
-        getAccountsInteractor.execute {
-            view?.setAccountsList(it)
+        getAccountsInteractor.executeFlowable {
+            view?.setAccountsList(it.toTypedArray())
         }
     }
 
