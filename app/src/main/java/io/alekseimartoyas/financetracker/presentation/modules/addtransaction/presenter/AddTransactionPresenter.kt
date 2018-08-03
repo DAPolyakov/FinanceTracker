@@ -21,7 +21,7 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
     }
 
     fun onAddFinanceTransaction(financeTransaction: FinanceTransaction) {
-        addFinanceTransactionInteractor.execute(financeTransaction) {
+        addFinanceTransactionInteractor.executeFlowable(financeTransaction) {
             view?.back()
         }
     }
