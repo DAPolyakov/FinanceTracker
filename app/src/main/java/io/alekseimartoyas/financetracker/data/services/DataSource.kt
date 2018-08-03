@@ -1,42 +1,48 @@
 package io.alekseimartoyas.financetracker.data.services
 
+import io.alekseimartoyas.financetracker.App
 import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.data.local.Account
-import io.alekseimartoyas.financetracker.data.local.Transaction
+import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.domain.CategoryType
 import io.alekseimartoyas.financetracker.domain.Currency
 import io.alekseimartoyas.financetracker.domain.OperationType
 import io.alekseimartoyas.financetracker.domain.dinversion.IDataSourceInput
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.Subject
 
-class DataSource : IDataSourceInput {
+class DataSource() : IDataSourceInput {
+
+    private val db = App.db
 
     override val subjectFakeAccounts: Subject<Array<Account>> = BehaviorSubject.create()
     override val currentAccount = BehaviorSubject.create<Account>()
 
     val fakeAccounts = ArrayList<Account>()
+    val fakeTransactions = ArrayList<FinanceTransaction>()
 
     init {
         createFakeAccounts()
     }
 
-    override fun addTransaction(transaction: Transaction) {
+    override fun addTransaction(transaction: FinanceTransaction) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun addTransactions(transactions: Array<Transaction>) {
+    override fun addTransactions(transactions: Array<FinanceTransaction>) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getTransaction(): Transaction {
+    override fun getTransaction(): FinanceTransaction {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getTransactions(): Array<Transaction> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getTransactionsByAccountId(accountId: Long): Flowable<Array<FinanceTransaction>> {
+//        db.financeTransactionDao.getByAccountId(accountId)
+        return Flowable.fromArray(fakeTransactions.filter { it.accountId == accountId }.toTypedArray())
     }
 
     override fun getAccounts(): Observable<Array<Account>> {
@@ -49,21 +55,17 @@ class DataSource : IDataSourceInput {
     }
 
     private fun createFakeAccounts() {
-        val transactions = ArrayList<Transaction>()
-        transactions.add(Transaction(1, OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category1, "12-01-2010"))
-        transactions.add(Transaction(2, OperationType.ENLISTMENT, 10f, Currency.RUB, CategoryType.Category2, "15-04-2012"))
-        transactions.add(Transaction(3, OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category3, "24-08-2014"))
 
-        val transactions2 = ArrayList<Transaction>()
-        transactions2.add(Transaction(1, OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category1, "12-01-2010"))
-        transactions2.add(Transaction(3, OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category3, "24-08-2014"))
+        fakeTransactions.add(FinanceTransaction(OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category1, "12-01-2010", 1, 1))
+        fakeTransactions.add(FinanceTransaction(OperationType.ENLISTMENT, 10f, Currency.RUB, CategoryType.Category2, "15-04-2012", 1, 2))
+        fakeTransactions.add(FinanceTransaction(OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category3, "24-08-2014", 1, 3))
+        fakeTransactions.add(FinanceTransaction(OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category1, "12-01-2010", 2, 1))
+        fakeTransactions.add(FinanceTransaction(OperationType.DEBIT, 10f, Currency.RUB, CategoryType.Category3, "24-08-2014", 2, 3))
+        fakeTransactions.add(FinanceTransaction(OperationType.ENLISTMENT, 10f, Currency.RUB, CategoryType.Category2, "15-04-2012", 3, 2))
 
-        val transactions3 = ArrayList<Transaction>()
-        transactions3.add(Transaction(2, OperationType.ENLISTMENT, 10f, Currency.RUB, CategoryType.Category2, "15-04-2012"))
-
-        fakeAccounts.add(Account("1", R.string.petr, Currency.RUB, 100.toBigDecimal(), transactions))
-        fakeAccounts.add(Account("2", R.string.maria, Currency.RUB, 200.toBigDecimal(), transactions2))
-        fakeAccounts.add(Account("3", R.string.alex, Currency.USD, 300.toBigDecimal(), transactions3))
+        fakeAccounts.add(Account(R.string.petr, Currency.RUB, 100.toBigDecimal(), 1))
+        fakeAccounts.add(Account(R.string.maria, Currency.RUB, 200.toBigDecimal(), 2))
+        fakeAccounts.add(Account(R.string.alex, Currency.USD, 300.toBigDecimal(), 3))
 
         currentAccount.onNext(fakeAccounts[0])
     }

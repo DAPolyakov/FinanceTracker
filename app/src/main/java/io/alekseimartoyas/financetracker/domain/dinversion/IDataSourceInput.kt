@@ -1,8 +1,9 @@
 package io.alekseimartoyas.financetracker.domain.dinversion
 
 import io.alekseimartoyas.financetracker.data.local.Account
-import io.alekseimartoyas.financetracker.data.local.Transaction
+import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.subjects.Subject
 
@@ -11,13 +12,13 @@ interface IDataSourceInput {
     val subjectFakeAccounts: Subject<Array<Account>>
     val currentAccount: Subject<Account>
 
-    fun addTransaction(transaction: Transaction)
+    fun addTransaction(transaction: FinanceTransaction)
 
-    fun addTransactions(transactions: Array<Transaction>)
+    fun addTransactions(transactions: Array<FinanceTransaction>)
 
-    fun getTransaction(): Transaction
+    fun getTransaction(): FinanceTransaction
 
-    fun getTransactions(): Array<Transaction>
+    fun getTransactionsByAccountId(accountId: Long): Flowable<Array<FinanceTransaction>>
 
     fun getAccounts(): Observable<Array<Account>>
 
