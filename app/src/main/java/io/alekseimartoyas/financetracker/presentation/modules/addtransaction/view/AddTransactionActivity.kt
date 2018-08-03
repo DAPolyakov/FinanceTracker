@@ -7,12 +7,14 @@ import io.alekseimartoyas.financetracker.data.local.Account
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.domain.CategoryType
 import io.alekseimartoyas.financetracker.domain.Currency
+import io.alekseimartoyas.financetracker.domain.FinanceTransactionState
 import io.alekseimartoyas.financetracker.domain.OperationType
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.configurator.AddTransactionConfigurator
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.presenter.AddTransactionPresenter
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.presenter.IAddTransactionActivityInput
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.view.spinnermanager.CategorySpinnerArrayAdapter
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.SpinnerManager.AccountSpinnerArrayAdapter
+import io.alekseimartoyas.financetracker.utils.daysToMillis
 import io.alekseimartoyas.tradetracker.Foundation.BaseActivity
 import kotlinx.android.synthetic.main.activity_add_transaction.*
 
@@ -31,6 +33,14 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
 
         add_transaction_bt.setOnClickListener {
 
+            val days = input_repeat_days.text.toString()
+            val repeatDays = if (days.isBlank()) 0 else days.toInt()
+            val state: FinanceTransactionState
+            val timeStart = System.currentTimeMillis()
+            val timeFinish = timeStart + repeatDays.daysToMillis()
+
+            state = if (repeatDays > 0) FinanceTransactionState.Waiting else FinanceTransactionState.Done
+
             val operationType = when (operation_type_spinner.selectedItem) {
                 "Enlistment" -> OperationType.ENLISTMENT
                 else -> OperationType.DEBIT
@@ -47,7 +57,10 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
                     currency = currency,
                     accountId = (spinner_account.selectedItem as Account).id!!,
                     category = (spinner_category.selectedItem as CategoryType),
-                    date = presenter!!.getDate()
+                    date = presenter!!.getDate(),
+                    state = state,
+                    timeStart = timeStart,
+                    timeFinish = timeFinish
             ))
         }
     }

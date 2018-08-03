@@ -38,4 +38,8 @@
     <string name="maria">Мария</string>
     <string name="alex">Александр</string>
 
+    <string name="transaction_canceled">Отменена</string>
+    <string name="transaction_waiting">Ожидается</string>
+    <string name="transaction_done">Выполнена</string>
+
 </resources>

@@ -37,7 +37,9 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
             })
 
             getAccounts.executeFlowable {
-                view?.showBalance(response.Valute.USD.Value, it[0])
+                if (it.isNotEmpty()) {
+                    view?.showBalance(response.Valute.USD.Value, it[0])
+                }
             }
         }
     }

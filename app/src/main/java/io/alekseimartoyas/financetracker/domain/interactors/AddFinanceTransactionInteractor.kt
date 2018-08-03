@@ -2,16 +2,15 @@ package io.alekseimartoyas.financetracker.domain.interactors
 
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.domain.dinversion.IDataSourceInput
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 
 
-class AddFinanceTransactionInteractor(private val dataSource: IDataSourceInput) : BaseInteractor<Boolean, FinanceTransaction>(
+class AddFinanceTransactionInteractor(private val dataSource: IDataSourceInput) : BaseInteractor<Unit, FinanceTransaction>(
         Schedulers.io(),
-        AndroidSchedulers.mainThread()) {
+        Schedulers.io()) {
 
-    override fun buildObservable(parametr: FinanceTransaction?): Observable<Boolean> =
+    override fun buildFlowable(parametr: FinanceTransaction?): Flowable<Unit> =
             dataSource.addTransaction(parametr!!)
 
 }
