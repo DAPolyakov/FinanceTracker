@@ -35,6 +35,10 @@ abstract class BaseInteractor<ResulType, ParametrType>(
         execute(null, subscriber)
     }
 
+    fun executeFlowable(subscriber: (ResulType) -> Unit) {
+        executeFlowable(null, subscriber)
+    }
+
     fun dispose() {
         disposable?.dispose()
     }

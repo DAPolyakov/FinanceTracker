@@ -5,9 +5,9 @@ import io.alekseimartoyas.tradetracker.Foundation.BasePresenter
 
 class MainActivityPresenter(
         view: IMainActivityInput,
-        router: IMainActivityRouterInput?):
+        router: IMainActivityRouterInput?) :
         BasePresenter<IMainActivityInput,
-        IMainActivityRouterInput>() {
+                IMainActivityRouterInput>() {
     override fun onStart() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

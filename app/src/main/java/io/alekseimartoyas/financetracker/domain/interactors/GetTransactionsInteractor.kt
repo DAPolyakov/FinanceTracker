@@ -7,13 +7,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class GetTransactionsByAccountIdInteractor(private val dataSource: IDataSourceInput) :
+class GetTransactionsInteractor(private val dataSource: IDataSourceInput) :
         BaseInteractor<List<FinanceTransaction>,
-                Long>(
+                Void>(
                 Schedulers.io(),
                 AndroidSchedulers.mainThread()) {
 
-    override fun buildFlowable(parametr: Long?): Flowable<List<FinanceTransaction>>? {
-        return dataSource.getTransactionsByAccountId(parametr!!)
+    override fun buildFlowable(parametr: Void?): Flowable<List<FinanceTransaction>>? {
+        return dataSource.getTransactions()
     }
 }

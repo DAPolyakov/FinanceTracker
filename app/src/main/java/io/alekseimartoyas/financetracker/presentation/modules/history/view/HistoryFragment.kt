@@ -2,7 +2,6 @@ package io.alekseimartoyas.financetracker.presentation.modules.history.view
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import io.alekseimartoyas.financetracker.presentation.modules.history.presenter.
 import io.alekseimartoyas.tradetracker.Foundation.BaseFragment
 import kotlinx.android.synthetic.main.fragment_history.*
 
-class HistoryFragment: BaseFragment<HistoryPresenter>(),
+class HistoryFragment : BaseFragment<HistoryPresenter>(),
         IHistoryFragmentInput {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

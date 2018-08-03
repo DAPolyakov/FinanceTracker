@@ -1,24 +1,17 @@
 package io.alekseimartoyas.financetracker.data.local
 
-import android.arch.persistence.room.*
+import android.arch.persistence.room.Dao
+import android.arch.persistence.room.Insert
+import android.arch.persistence.room.Query
+import io.reactivex.Flowable
 
 
 @Dao
 interface AccountDao {
 
     @Query("SELECT * FROM account")
-    fun getAll(): List<Account>
-
-    @Query("SELECT * FROM account WHERE id = :id")
-    fun getById(id: Long): Account
+    fun getAll(): Flowable<List<Account>>
 
     @Insert
     fun insert(account: Account)
-
-    @Update
-    fun update(account: Account)
-
-    @Delete
-    fun delete(account: Account)
-
 }

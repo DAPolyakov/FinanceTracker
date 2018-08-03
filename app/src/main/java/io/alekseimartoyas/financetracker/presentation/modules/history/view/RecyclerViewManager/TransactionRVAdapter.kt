@@ -9,13 +9,14 @@ import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.presentation.modules.history.presenter.ITransactionRVInput
 
-class TransactionRVAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(),
+class TransactionRVAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
         ITransactionRVInput {
 
     private var transactionList: Array<FinanceTransaction> = arrayOf()
 
     override fun setData(transactions: Array<FinanceTransaction>) {
         transactionList = transactions
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -40,7 +41,7 @@ class TransactionRVAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(),
         }
     }
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val categoryText = view.findViewById<TextView>(R.id.category_text)!!
         val operationTypeText = view.findViewById<TextView>(R.id.operation_type_text)!!
         val quantityCurrencyText = view.findViewById<TextView>(R.id.currency_quantity_text)!!

@@ -1,7 +1,7 @@
 package io.alekseimartoyas.financetracker.presentation.modules.aboutapp.view
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import io.alekseimartoyas.financetracker.R
 import kotlinx.android.synthetic.main.activity_about_app.*
