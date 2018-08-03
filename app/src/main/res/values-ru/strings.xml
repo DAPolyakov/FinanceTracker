@@ -18,6 +18,7 @@
     <string name="balance">Баланс</string>
     <string name="RUB">РУБ</string>
 
+    <string name="repeat_day">Повторить через, дней</string>
     <!--fragment_another_currency-->
     <string-array name="currency_spinner">
         <item>USD</item>

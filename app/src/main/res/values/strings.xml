@@ -52,6 +52,8 @@
     <string name="quantity">Quantity</string>
     <string name="category">Category</string>
     <string name="account">Account</string>
+    <string name="repeat_day">Repeat after, days</string>
+
     <string-array name="operation_type">
         <item>Enlistment</item>
         <item>Debit</item>
