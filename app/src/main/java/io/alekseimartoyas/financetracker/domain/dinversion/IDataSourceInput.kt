@@ -12,7 +12,7 @@ interface IDataSourceInput {
     val subjectFakeAccounts: Subject<Array<Account>>
     val currentAccount: Subject<Account>
 
-    fun addTransaction(transaction: FinanceTransaction)
+    fun addTransaction(transaction: FinanceTransaction): Observable<Boolean>
 
     fun addTransactions(transactions: Array<FinanceTransaction>)
 

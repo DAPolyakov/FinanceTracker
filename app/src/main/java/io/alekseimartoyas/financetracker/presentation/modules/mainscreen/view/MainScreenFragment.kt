@@ -46,14 +46,14 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
     }
 
     override fun showAccountsList(accounts: Array<Account>) {
-        spinner_accounts?.adapter = AccountSpinnerArrayAdapter(context!!, accounts)
+        spinner_account?.adapter = AccountSpinnerArrayAdapter(context!!, accounts)
 
-        spinner_accounts?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spinner_account?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                presenter?.changeCurrentAccount(spinner_accounts.selectedItem as Account)
+                presenter?.changeCurrentAccount(spinner_account.selectedItem as Account)
             }
 
         }
