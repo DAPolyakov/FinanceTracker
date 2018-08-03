@@ -12,6 +12,9 @@ interface FinanceTransactionDao {
     @Query("SELECT * FROM financetransaction WHERE id = :id")
     fun getById(id: Long): FinanceTransaction
 
+    @Query("SELECT * FROM financetransaction WHERE accountId = :id")
+    fun getByAccountId(id: Long): List<FinanceTransaction>
+
     @Insert
     fun insert(financeTransaction: FinanceTransaction)
 

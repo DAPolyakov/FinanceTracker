@@ -1,15 +1,13 @@
 package io.alekseimartoyas.financetracker.data.local
 
-import android.arch.persistence.room.Delete
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
-import android.arch.persistence.room.Update
+import android.arch.persistence.room.*
 
 
+@Dao
 interface AccountDao {
 
     @Query("SELECT * FROM account")
-    fun getAll(): List<FinanceTransaction>
+    fun getAll(): List<Account>
 
     @Query("SELECT * FROM account WHERE id = :id")
     fun getById(id: Long): Account
