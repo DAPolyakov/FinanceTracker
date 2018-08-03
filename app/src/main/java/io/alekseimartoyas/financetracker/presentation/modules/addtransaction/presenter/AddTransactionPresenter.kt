@@ -1,17 +1,29 @@
 package io.alekseimartoyas.financetracker.presentation.modules.addtransaction.presenter
 
+import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
+import io.alekseimartoyas.financetracker.domain.interactors.AddFinanceTransactionInteractor
+import io.alekseimartoyas.financetracker.domain.interactors.GetAccountsInteractor
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.router.IAddTransactionRouter
 import io.alekseimartoyas.tradetracker.Foundation.BasePresenter
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AddTransactionPresenter(view: IAddTransactionActivityInput,
-                              router: IAddTransactionRouter?):
+                              val addFinanceTransactionInteractor: AddFinanceTransactionInteractor,
+                              val getAccountsInteractor: GetAccountsInteractor) :
         BasePresenter<IAddTransactionActivityInput,
-        IAddTransactionRouter>(view, router) {
+                IAddTransactionRouter>(view) {
 
     override fun onStart() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        getAccountsInteractor.execute {
+            view?.setAccountsList(it)
+        }
+    }
+
+    fun onAddFinanceTransaction(financeTransaction: FinanceTransaction) {
+        addFinanceTransactionInteractor.execute(financeTransaction) {
+            view?.back()
+        }
     }
 
     fun getDate(): String {
@@ -24,6 +36,6 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
     }
 
     override fun onStop() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 }

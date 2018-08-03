@@ -28,8 +28,9 @@ class DataSource() : IDataSourceInput {
         createFakeAccounts()
     }
 
-    override fun addTransaction(transaction: FinanceTransaction) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun addTransaction(transaction: FinanceTransaction): Observable<Boolean> {
+        fakeTransactions.add(transaction)
+        return Observable.just(true)
     }
 
     override fun addTransactions(transactions: Array<FinanceTransaction>) {

@@ -7,7 +7,9 @@ import io.alekseimartoyas.financetracker.data.services.SettingsSevice
 import io.alekseimartoyas.financetracker.di.modules.DataSourceModule
 import io.alekseimartoyas.financetracker.di.modules.ExchRateProviderModule
 import io.alekseimartoyas.financetracker.di.modules.SettingsModule
+import javax.inject.Singleton
 
+@Singleton
 @Component(modules = [
     DataSourceModule::class,
     SettingsModule::class,
