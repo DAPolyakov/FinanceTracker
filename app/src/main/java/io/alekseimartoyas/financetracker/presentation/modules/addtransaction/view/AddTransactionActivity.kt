@@ -70,7 +70,11 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
                     state = state,
                     timeStart = timeStart,
                     timeFinish = timeFinish
-            ))
+            ), (spinner_account.selectedItem as Account).currency)
+        }
+
+        cancel_transaction_bt.setOnClickListener {
+            presenter?.cancelTransaction(intent.getParcelableExtra("transaction"))
         }
     }
 

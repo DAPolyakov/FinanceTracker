@@ -5,14 +5,18 @@ import io.alekseimartoyas.financetracker.data.local.Account
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.domain.dinversion.IDataSourceInput
 import io.reactivex.Flowable
+import java.math.BigDecimal
 
-class DataSource() : IDataSourceInput {
+class DataSource : IDataSourceInput {
 
     private val db = App.db
 
-    override fun addTransaction(transaction: FinanceTransaction): Flowable<Unit> {
+    override fun addTransaction(transaction: FinanceTransaction, sum: BigDecimal): Flowable<Unit> {
         return Flowable.fromCallable {
-            db.financeTransactionDao.insert(transaction)
+            db.accountFinanceTransactionDao.insertFinanceTransactionUpdateAccountAmount(
+                    transaction,
+                    transaction.accountId,
+                    sum)
         }
     }
 
@@ -32,9 +36,13 @@ class DataSource() : IDataSourceInput {
         return db.financeTransactionDao.getNewTransactionsFromScheduled(System.currentTimeMillis())
     }
 
-    override fun updateFinanceTransaction(financeTransaction: FinanceTransaction): Flowable<Unit> {
+    override fun updateFinanceTransaction(financeTransaction: FinanceTransaction,
+                                          sum: BigDecimal): Flowable<Unit> {
         return Flowable.fromCallable {
-            db.financeTransactionDao.update(financeTransaction)
+            db.accountFinanceTransactionDao.updateFinanceTransactionUpdateAccountAmount(
+                    financeTransaction,
+                    financeTransaction.accountId,
+                    sum)
         }
     }
 }

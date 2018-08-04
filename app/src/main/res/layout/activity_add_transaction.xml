@@ -128,6 +128,19 @@
         app:layout_constraintTop_toBottomOf="@+id/label_repeat" />
 
     <Button
+        android:id="@+id/cancel_transaction_bt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/cancel_button"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toStartOf="@id/add_transaction_bt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_repeat_days" />
+
+    <Button
         android:id="@+id/add_transaction_bt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -137,7 +150,7 @@
         android:text="@string/add_button"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cancel_transaction_bt"
         app:layout_constraintTop_toBottomOf="@+id/input_repeat_days" />
 
 </android.support.constraint.ConstraintLayout>
