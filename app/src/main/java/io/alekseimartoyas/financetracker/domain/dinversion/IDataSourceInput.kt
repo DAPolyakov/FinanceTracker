@@ -3,10 +3,11 @@ package io.alekseimartoyas.financetracker.domain.dinversion
 import io.alekseimartoyas.financetracker.data.local.Account
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.reactivex.Flowable
+import java.math.BigDecimal
 
 interface IDataSourceInput {
 
-    fun addTransaction(transaction: FinanceTransaction): Flowable<Unit>
+    fun addTransaction(transaction: FinanceTransaction, sum: BigDecimal): Flowable<Unit>
 
     fun getTransactions(): Flowable<List<FinanceTransaction>>
 
@@ -16,5 +17,6 @@ interface IDataSourceInput {
 
     fun getNewTransactionsFromScheduled(): Flowable<List<FinanceTransaction>>
 
-    fun updateFinanceTransaction(financeTransaction: FinanceTransaction): Flowable<Unit>
+    fun updateFinanceTransaction(
+            financeTransaction: FinanceTransaction, sum: BigDecimal): Flowable<Unit>
 }

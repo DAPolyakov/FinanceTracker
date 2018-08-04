@@ -14,6 +14,9 @@
     <string name="nav_about_app">О приложении</string>
     <string name="other">Прочее</string>
 
+    <string name="add_button">Добавить</string>
+    <string name="cancel_button">Отменить</string>
+
     <!--fragment_main_screen-->
     <string name="balance">Баланс</string>
     <string name="RUB">РУБ</string>

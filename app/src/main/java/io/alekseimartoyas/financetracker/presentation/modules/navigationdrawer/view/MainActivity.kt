@@ -45,7 +45,7 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
             savedInstanceState.getInt(keyCurrentFragment)
         }
     }
-
+    
     fun setTb() {
         setSupportActionBar(toolbar_main_activity as Toolbar)
 
