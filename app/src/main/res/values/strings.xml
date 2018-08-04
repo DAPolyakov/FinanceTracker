@@ -12,6 +12,7 @@
     <string name="nav_settings">Settings</string>
     <string name="nav_about_app">About app</string>
     <string name="nav_history">History</string>
+    <string name="scheduled_transactions">Scheduled transactions</string>
     <string name="other">Other</string>
     <string name="feedback">Feedback</string>
 

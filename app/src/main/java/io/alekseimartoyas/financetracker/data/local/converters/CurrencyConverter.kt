@@ -6,15 +6,8 @@ import io.alekseimartoyas.financetracker.domain.Currency
 
 class CurrencyConverter {
     @TypeConverter
-    fun fromCurrency(currency: Currency): String = currency.strId.toString()
+    fun fromCurrency(currency: Currency): String = currency.toString()
 
     @TypeConverter
-    fun toCurrency(data: String): Currency {
-        for (currency in Currency.values()) {
-            if (currency.strId.toString() == data) {
-                return currency
-            }
-        }
-        throw Exception("Unknown currency type")
-    }
+    fun toCurrency(data: String): Currency = Currency.valueOf(data)
 }

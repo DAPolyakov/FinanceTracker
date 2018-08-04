@@ -6,16 +6,9 @@ import io.alekseimartoyas.financetracker.domain.CategoryType
 
 class CategoryTypeConverter {
     @TypeConverter
-    fun fromCategory(categoryType: CategoryType): String = categoryType.strId.toString()
+    fun fromCategoryType(categoryType: CategoryType): String = categoryType.toString()
 
     @TypeConverter
-    fun toCategoryType(data: String): CategoryType {
-        for (category in CategoryType.values()) {
-            if (category.strId.toString() == data) {
-                return category
-            }
-        }
-        throw Exception("Unknown category type")
-    }
+    fun toCategoryType(data: String): CategoryType = CategoryType.valueOf(data)
 
 }
