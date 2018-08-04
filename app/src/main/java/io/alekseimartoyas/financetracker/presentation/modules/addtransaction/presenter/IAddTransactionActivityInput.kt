@@ -6,4 +6,5 @@ import io.alekseimartoyas.financetracker.data.local.Account
 interface IAddTransactionActivityInput {
     fun setAccountsList(accounts: Array<Account>)
     fun back()
+    fun loadTransaction()
 }

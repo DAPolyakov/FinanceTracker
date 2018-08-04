@@ -28,4 +28,13 @@ class DataSource() : IDataSourceInput {
         return db.accountDao.getAll()
     }
 
+    override fun getNewTransactionsFromScheduled(): Flowable<List<FinanceTransaction>> {
+        return db.financeTransactionDao.getNewTransactionsFromScheduled(System.currentTimeMillis())
+    }
+
+    override fun updateFinanceTransaction(financeTransaction: FinanceTransaction): Flowable<Unit> {
+        return Flowable.fromCallable {
+            db.financeTransactionDao.update(financeTransaction)
+        }
+    }
 }

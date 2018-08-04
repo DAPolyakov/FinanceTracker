@@ -2,9 +2,7 @@ package io.alekseimartoyas.financetracker.domain.dinversion
 
 import io.alekseimartoyas.financetracker.data.local.Account
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
-import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.Observable
 
 interface IDataSourceInput {
 
@@ -15,4 +13,8 @@ interface IDataSourceInput {
     fun getTransactionsByAccountId(accountId: Long): Flowable<List<FinanceTransaction>>
 
     fun getAccounts(): Flowable<List<Account>>
+
+    fun getNewTransactionsFromScheduled(): Flowable<List<FinanceTransaction>>
+
+    fun updateFinanceTransaction(financeTransaction: FinanceTransaction): Flowable<Unit>
 }

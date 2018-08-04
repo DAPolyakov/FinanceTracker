@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import io.alekseimartoyas.financetracker.R
+import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.presentation.modules.addaccount.view.AddAccountFragment
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.view.AddTransactionActivity
 import io.alekseimartoyas.financetracker.presentation.modules.history.view.HistoryFragment
@@ -43,8 +44,6 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
         } else {
             savedInstanceState.getInt(keyCurrentFragment)
         }
-
-//        MainActivityConfigurator().buildModule(this)
     }
 
     fun setTb() {
@@ -58,12 +57,6 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
 
     override fun onResume() {
         super.onResume()
-        presenter?.unblockStartActivity()
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        presenter?.blockStartActivity()
     }
 
     override fun onBackPressed() {
@@ -92,7 +85,6 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
             }
         }
 
-//        item.isChecked = true
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
@@ -119,8 +111,9 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
         this.startActivity(Intent(this, SettingsActivity::class.java))
     }
 
-    override fun showAddTransaction() {
-        this.startActivity(Intent(this, AddTransactionActivity::class.java))
+    override fun showAddTransaction(financeTransaction: FinanceTransaction?) {
+        this.startActivity(Intent(this, AddTransactionActivity::class.java)
+                .putExtra("transaction", financeTransaction))
     }
 
     override fun showAddAccount() {
@@ -135,6 +128,5 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
         supportFragmentManager.beginTransaction()
                 .remove(supportFragmentManager.findFragmentByTag("visible_fragment"))
                 .commit()
-//        supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
 }

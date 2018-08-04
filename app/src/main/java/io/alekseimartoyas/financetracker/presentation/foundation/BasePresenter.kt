@@ -1,4 +1,4 @@
-package io.alekseimartoyas.tradetracker.Foundation
+package io.alekseimartoyas.financetracker.presentation.foundation
 
 /**
  * Created by optim on 04.02.2018.

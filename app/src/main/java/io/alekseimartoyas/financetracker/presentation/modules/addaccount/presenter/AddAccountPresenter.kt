@@ -1,7 +1,7 @@
 package io.alekseimartoyas.financetracker.presentation.modules.addaccount.presenter
 
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
-import io.alekseimartoyas.tradetracker.Foundation.BasePresenter
+import io.alekseimartoyas.financetracker.presentation.foundation.BasePresenter
 
 class AddAccountPresenter(view: IAddAccountFragmentInput,
                           router: IMainActivityRouterInput) :

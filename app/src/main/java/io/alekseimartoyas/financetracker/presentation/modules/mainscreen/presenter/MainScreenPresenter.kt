@@ -4,13 +4,15 @@ import io.alekseimartoyas.financetracker.data.local.Account
 import io.alekseimartoyas.financetracker.domain.Currency
 import io.alekseimartoyas.financetracker.domain.interactors.GetAccountsInteractor
 import io.alekseimartoyas.financetracker.domain.interactors.GetExchRateInteractor
+import io.alekseimartoyas.financetracker.domain.interactors.GetNewTransactionsFromScheduledInteractor
 import io.alekseimartoyas.financetracker.domain.interactors.GetTransactionsByAccountIdInteractor
+import io.alekseimartoyas.financetracker.presentation.foundation.BasePresenter
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
-import io.alekseimartoyas.tradetracker.Foundation.BasePresenter
 
 class MainScreenPresenter(view: IMainScreenFragmentInput,
                           var getAccounts: GetAccountsInteractor,
                           val getExchRateInteractor: GetExchRateInteractor,
+                          val getNewTransactionsFromScheduledInteractor: GetNewTransactionsFromScheduledInteractor,
                           val getTransactionsByAccountIdInteractor: GetTransactionsByAccountIdInteractor,
                           router: IMainActivityRouterInput,
                           var pieChart: IPieChartViewInput? = null) :
@@ -40,6 +42,14 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
                 if (it.isNotEmpty()) {
                     view?.showBalance(response.Valute.USD.Value, it[0])
                 }
+            }
+        }
+    }
+
+    fun checkScheduledTransactions() {
+        getNewTransactionsFromScheduledInteractor.executeFlowable {
+            if (it.isNotEmpty()) {
+                router?.showAddTransaction(it.first())
             }
         }
     }
