@@ -3,7 +3,7 @@ package io.alekseimartoyas.financetracker.presentation.modules.history.presenter
 import io.alekseimartoyas.financetracker.domain.interactors.GetTransactionsInteractor
 import io.alekseimartoyas.financetracker.presentation.modules.history.view.RecyclerViewManager.TransactionRVAdapter
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
-import io.alekseimartoyas.tradetracker.Foundation.BasePresenter
+import io.alekseimartoyas.financetracker.presentation.foundation.BasePresenter
 
 class HistoryPresenter(view: IHistoryFragmentInput,
                        val getTransactionsInteractor: GetTransactionsInteractor,

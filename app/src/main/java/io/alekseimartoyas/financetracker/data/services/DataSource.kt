@@ -5,15 +5,15 @@ import io.alekseimartoyas.financetracker.data.local.Account
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.domain.dinversion.IDataSourceInput
 import io.reactivex.Flowable
-import io.reactivex.Observable
 
 class DataSource() : IDataSourceInput {
 
     private val db = App.db
 
-    override fun addTransaction(transaction: FinanceTransaction): Observable<Boolean> {
-        db.financeTransactionDao.insert(transaction)
-        return Observable.just(true)
+    override fun addTransaction(transaction: FinanceTransaction): Flowable<Unit> {
+        return Flowable.fromCallable {
+            db.financeTransactionDao.insert(transaction)
+        }
     }
 
     override fun getTransactions(): Flowable<List<FinanceTransaction>> {
@@ -28,4 +28,13 @@ class DataSource() : IDataSourceInput {
         return db.accountDao.getAll()
     }
 
+    override fun getNewTransactionsFromScheduled(): Flowable<List<FinanceTransaction>> {
+        return db.financeTransactionDao.getNewTransactionsFromScheduled(System.currentTimeMillis())
+    }
+
+    override fun updateFinanceTransaction(financeTransaction: FinanceTransaction): Flowable<Unit> {
+        return Flowable.fromCallable {
+            db.financeTransactionDao.update(financeTransaction)
+        }
+    }
 }

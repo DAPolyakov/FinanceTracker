@@ -33,6 +33,10 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
         chang_rate_usd.text = "$data ${resources.getString(R.string.RUB)}"
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter?.checkScheduledTransactions()
+    }
 
     override fun showBalance(course: Double, account: Account) {
         val s = account.currency.toTargetCurrency(Currency.USD, account.amount, course.toBigDecimal()).toString()

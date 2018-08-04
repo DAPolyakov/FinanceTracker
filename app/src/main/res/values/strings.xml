@@ -52,6 +52,8 @@
     <string name="quantity">Quantity</string>
     <string name="category">Category</string>
     <string name="account">Account</string>
+    <string name="repeat_day">Repeat after, days</string>
+
     <string-array name="operation_type">
         <item>Enlistment</item>
         <item>Debit</item>
@@ -70,6 +72,9 @@
     <!--AddAccount-->
     <string name="choose_account_type">Choose type of account</string>
     <string name="choose_currency_type">Choose type of currency</string>
+    <string name="transaction_canceled">Canceled</string>
+    <string name="transaction_waiting">Waiting</string>
+    <string name="transaction_done">Done</string>
     <string-array name="account_type">
         <item>Wallet</item>
         <item>Card</item>

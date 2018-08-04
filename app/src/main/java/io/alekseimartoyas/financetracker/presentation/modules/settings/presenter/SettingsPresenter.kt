@@ -2,7 +2,7 @@ package io.alekseimartoyas.financetracker.presentation.modules.settings.presente
 
 import android.content.Context
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
-import io.alekseimartoyas.tradetracker.Foundation.BasePresenter
+import io.alekseimartoyas.financetracker.presentation.foundation.BasePresenter
 
 class SettingsPresenter(view: ISettingsActivityInput,
                         router: IMainActivityRouterInput?) :
