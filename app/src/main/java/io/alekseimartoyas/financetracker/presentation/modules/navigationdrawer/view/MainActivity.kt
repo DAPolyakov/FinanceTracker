@@ -18,6 +18,7 @@ import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.Ma
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.presenter.IMainActivityInput
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.presenter.MainActivityPresenter
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
+import io.alekseimartoyas.financetracker.presentation.modules.scheduledtransactions.view.ScheduledTransactionsFragment
 import io.alekseimartoyas.financetracker.presentation.modules.settings.view.SettingsActivity
 import io.alekseimartoyas.tradetracker.Foundation.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -45,7 +46,7 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
             savedInstanceState.getInt(keyCurrentFragment)
         }
     }
-    
+
     fun setTb() {
         setSupportActionBar(toolbar_main_activity as Toolbar)
 
@@ -80,7 +81,10 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
                 }
                 R.id.nav_settings -> {
                     startActivity(Intent(this, SettingsActivity::class.java))
-//                    presenter?.showSettings(this)
+                }
+                R.id.nav_scheduled_transactions -> {
+                    currentFragment = R.id.nav_scheduled_transactions
+                    replaceFragment(ScheduledTransactionsFragment())
                 }
             }
         }

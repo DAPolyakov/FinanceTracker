@@ -12,10 +12,15 @@
             android:id="@+id/nav_history"
             android:icon="@drawable/ic_history_24dp"
             android:title="@string/nav_history" />
+        <item
+            android:id="@+id/nav_scheduled_transactions"
+            android:icon="@drawable/ic_schedule"
+            android:title="@string/scheduled_transactions" />
     </group>
 
-    <group android:checkableBehavior="none"
-        android:id="@+id/other">
+    <group
+        android:id="@+id/other"
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings_24dp"

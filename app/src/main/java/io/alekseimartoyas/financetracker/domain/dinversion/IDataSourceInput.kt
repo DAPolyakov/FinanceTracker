@@ -10,6 +10,9 @@ interface IDataSourceInput {
     fun addTransaction(transaction: FinanceTransaction, sum: BigDecimal): Flowable<Unit>
 
     fun getTransactions(): Flowable<List<FinanceTransaction>>
+    fun getDoneTransactions(): Flowable<List<FinanceTransaction>>
+
+    fun getScheduledTransactions(): Flowable<List<FinanceTransaction>>
 
     fun getTransactionsByAccountId(accountId: Long): Flowable<List<FinanceTransaction>>
 

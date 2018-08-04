@@ -9,6 +9,10 @@ import java.math.BigDecimal
 
 class DataSource : IDataSourceInput {
 
+    override fun getScheduledTransactions(): Flowable<List<FinanceTransaction>> {
+        return db.financeTransactionDao.getAllScheduled()
+    }
+
     private val db = App.db
 
     override fun addTransaction(transaction: FinanceTransaction, sum: BigDecimal): Flowable<Unit> {
@@ -22,6 +26,10 @@ class DataSource : IDataSourceInput {
 
     override fun getTransactions(): Flowable<List<FinanceTransaction>> {
         return db.financeTransactionDao.getAll()
+    }
+
+    override fun getDoneTransactions(): Flowable<List<FinanceTransaction>> {
+        return db.financeTransactionDao.getAllDone()
     }
 
     override fun getTransactionsByAccountId(accountId: Long): Flowable<List<FinanceTransaction>> {
