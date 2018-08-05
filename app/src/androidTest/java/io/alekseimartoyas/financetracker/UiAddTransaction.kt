@@ -1,4 +1,4 @@
-package io.alekseimartoyas.financetracker.ui
+package io.alekseimartoyas.financetracker
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
@@ -12,7 +12,6 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.view.Gravity
-import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.view.MainActivity
 import org.hamcrest.CoreMatchers.allOf
 import org.junit.*
@@ -20,7 +19,7 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4::class)
-open class AddTransactionUiTests {
+open class UiAddTransaction {
 
     companion object {
         @JvmStatic
@@ -68,7 +67,7 @@ open class AddTransactionUiTests {
 
         onView(allOf(withId(R.id.transaction_rv), isDisplayed()))
         onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText("ENLISTMENT"))))
-        onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText("Category1"))))
+        onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText(InstrumentationRegistry.getTargetContext().getString(R.string.category1)))))
         onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText("777.0"))))
 
         onView(withId(R.id.drawer_layout))
@@ -80,7 +79,5 @@ open class AddTransactionUiTests {
 
         onView(withId(R.id.main_quant_text)).check(matches(withText("877.0")))
     }
-
-
 
 }
