@@ -52,6 +52,7 @@ ext {
     espressoVersion = '3.0.2'
     mockitoVersion = '2.20.1'
     roomVersion = "1.1.1"
+    awaitilityVersion = "3.1.2"
 }
 
 dependencies {
@@ -73,7 +74,13 @@ dependencies {
     implementation "com.github.PhilJay:MPAndroidChart:$MPAndroidChartVersion"
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "com.android.support.test:runner:$supportTestRunnerVersion"
+    androidTestImplementation "com.android.support.test:rules:$supportTestRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
+    androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
+    androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
+    androidTestImplementation "org.awaitility:awaitility:$awaitilityVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
 
     implementation "android.arch.persistence.room:runtime:$roomVersion"
