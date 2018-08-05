@@ -1,4 +1,4 @@
-package io.alekseimartoyas.financetracker
+package io.alekseimartoyas.financetracker.ui
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
@@ -12,6 +12,7 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.view.Gravity
+import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.view.MainActivity
 import org.hamcrest.CoreMatchers.allOf
 import org.junit.*
@@ -19,7 +20,7 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4::class)
-open class UiAddTransaction {
+open class AddTransactionTest {
 
     companion object {
         @JvmStatic

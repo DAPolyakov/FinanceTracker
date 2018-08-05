@@ -19,7 +19,7 @@ interface AccountFinanceTransactionDao {
     fun updateAccount(accountId: Long, sum: BigDecimal)
 
     @Transaction
-    open fun insertFinanceTransactionUpdateAccountAmount(
+    fun insertFinanceTransactionUpdateAccountAmount(
             transaction: FinanceTransaction,
             accountId: Long,
             sum: BigDecimal) {
@@ -29,7 +29,7 @@ interface AccountFinanceTransactionDao {
     }
 
     @Transaction
-    open fun updateFinanceTransactionUpdateAccountAmount(
+    fun updateFinanceTransactionUpdateAccountAmount(
             transaction: FinanceTransaction,
             accountId: Long,
             sum: BigDecimal) {
