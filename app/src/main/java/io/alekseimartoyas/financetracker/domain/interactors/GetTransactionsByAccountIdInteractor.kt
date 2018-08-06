@@ -13,7 +13,7 @@ class GetTransactionsByAccountIdInteractor(private val dataSource: IDataSourceIn
                 Schedulers.io(),
                 AndroidSchedulers.mainThread()) {
 
-    override fun buildFlowable(parametr: Long?): Flowable<List<FinanceTransaction>>? {
-        return dataSource.getTransactionsByAccountId(parametr!!)
+    override fun buildFlowable(args: Long?): Flowable<List<FinanceTransaction>>? {
+        return dataSource.getTransactionsByAccountId(args!!)
     }
 }

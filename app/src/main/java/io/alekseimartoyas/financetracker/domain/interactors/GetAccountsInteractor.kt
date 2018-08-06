@@ -11,7 +11,7 @@ class GetAccountsInteractor(private val dataSource: IDataSourceInput) : BaseInte
         Schedulers.io(),
         AndroidSchedulers.mainThread()) {
 
-    override fun buildFlowable(parametr: Unit?): Flowable<List<Account>>? {
+    override fun buildFlowable(args: Unit?): Flowable<List<Account>>? {
         return dataSource.getAccounts()
     }
 }

@@ -13,7 +13,7 @@ class GetTransactionsInteractor(private val dataSource: IDataSourceInput) :
                 Schedulers.io(),
                 AndroidSchedulers.mainThread()) {
 
-    override fun buildFlowable(parametr: Void?): Flowable<List<FinanceTransaction>>? {
+    override fun buildFlowable(args: Void?): Flowable<List<FinanceTransaction>>? {
         return dataSource.getTransactions()
     }
 }

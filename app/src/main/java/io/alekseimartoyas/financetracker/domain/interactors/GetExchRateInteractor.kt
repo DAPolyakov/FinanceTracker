@@ -12,6 +12,6 @@ class GetExchRateInteractor(private val exchRateProvider: ExchRateProvider) :
                 Schedulers.io(),
                 AndroidSchedulers.mainThread()) {
 
-    override fun buildObservable(parametr: Unit?): Observable<DailyResponse> =
+    override fun buildObservable(args: Unit?): Observable<DailyResponse> =
             exchRateProvider.getExchRates()
 }

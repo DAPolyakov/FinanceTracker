@@ -72,7 +72,6 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
         super.onStart()
         presenter?.onStart()
         presenter?.getAccountsId()
-        presenter?.getAccountData(/*selected*/1)
     }
 
     override fun onStop() {

@@ -11,7 +11,7 @@ class GetNewTransactionsFromScheduledInteractor(private val dataSource: IDataSou
         Schedulers.io(),
         AndroidSchedulers.mainThread()) {
 
-    override fun buildFlowable(parametr: Unit?): Flowable<List<FinanceTransaction>>? {
+    override fun buildFlowable(args: Unit?): Flowable<List<FinanceTransaction>>? {
         return dataSource.getNewTransactionsFromScheduled()
     }
 }

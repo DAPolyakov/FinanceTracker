@@ -6,7 +6,7 @@ import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.v
 class MainActivityConfigurator {
 
     fun buildModule(view: MainActivity) {
-        val presenter = MainActivityPresenter(view, null)
+        val presenter = MainActivityPresenter()
 
         view.setPres(presenter)
     }

@@ -66,16 +66,8 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
         changePieChart(account)
     }
 
-    fun showAddAccount() {
-        router?.showAddAccount()
-    }
-
     fun getAccountsId(): Array<Int> {
         return arrayOf()
-    }
-
-    fun getAccountData(accountId: Int) {
-
     }
 
     override fun onStop() {

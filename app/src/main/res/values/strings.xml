@@ -12,7 +12,7 @@
     <string name="nav_settings">Settings</string>
     <string name="nav_about_app">About app</string>
     <string name="nav_history">History</string>
-    <string name="scheduled_transactions">Scheduled transactions</string>
+    <string name="scheduled_transactions">Scheduled</string>
     <string name="other">Other</string>
     <string name="feedback">Feedback</string>
 
@@ -29,7 +29,7 @@
     <string name="maria">Maria</string>
     <string name="alex">Alex</string>
 
-    <string-array name="all_currency">
+    <string-array name="all_currency" translatable="false">
         <item>RUB</item>
         <item>USD</item>
     </string-array>
@@ -37,8 +37,8 @@
     <!--fragment_main_screen-->
     <string name="balance">Balance</string>
     <string name="RUB">RUB</string>
-    <string name="USD">USD</string>
-    <string name="new_account">Add Account</string>
+    <string name="USD" translatable="false">USD</string>
+    <string name="new_account">Add account</string>
 
     <!--fragment_another_currency-->
     <string-array name="currency_spinner">
@@ -56,11 +56,11 @@
     <string name="account">Account</string>
     <string name="repeat_day">Repeat after, days</string>
 
-    <string-array name="operation_type">
+    <string-array name="operation_type" translatable="false">
         <item>Enlistment</item>
         <item>Debit</item>
     </string-array>
-    <string-array name="category_items">
+    <string-array name="category_items" translatable="false">
         <item>Products</item>
         <item>Clothes</item>
         <item>Health and Fitness</item>
@@ -77,16 +77,21 @@
     <string name="transaction_canceled">Canceled</string>
     <string name="transaction_waiting">Waiting</string>
     <string name="transaction_done">Done</string>
-    <string-array name="account_type">
+    <string-array name="account_type" translatable="false">
         <item>Wallet</item>
         <item>Card</item>
     </string-array>
 
     <!--Will removed-->
-    <string-array name="accounts_test">
+    <string-array name="accounts_test" translatable="false">
         <item>card1</item>
         <item>wallet1</item>
         <item>card2</item>
         <item>all</item>
     </string-array>
+    <string name="all_currency" translatable="false">All currency</string>
+    <string name="operation_type" translatable="false">Operation type</string>
+    <string name="category_items" translatable="false">Category items</string>
+    <string name="account_type" translatable="false">Account type</string>
+    <string name="accounts_test" translatable="false">Accounts for test</string>
 </resources>

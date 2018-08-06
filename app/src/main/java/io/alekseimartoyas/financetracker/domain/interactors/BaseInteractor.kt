@@ -10,11 +10,11 @@ abstract class BaseInteractor<ResulType, ParametrType>(
         private val uiScheduler: Scheduler) {
     private var disposable: Disposable? = null
 
-    protected open fun buildObservable(parametr: ParametrType?): Observable<ResulType>? = null
-    protected open fun buildFlowable(parametr: ParametrType?): Flowable<ResulType>? = null
+    protected open fun buildObservable(args: ParametrType?): Observable<ResulType>? = null
+    protected open fun buildFlowable(args: ParametrType?): Flowable<ResulType>? = null
 
-    fun execute(parametr: ParametrType?, subscriber: (ResulType) -> Unit) {
-        disposable = buildObservable(parametr)?.run {
+    fun execute(args: ParametrType?, subscriber: (ResulType) -> Unit) {
+        disposable = buildObservable(args)?.run {
             subscribeOn(jobScheduler)
                     .observeOn(uiScheduler)
                     .subscribe {
@@ -23,8 +23,8 @@ abstract class BaseInteractor<ResulType, ParametrType>(
         }
     }
 
-    fun executeFlowable(parametr: ParametrType?, subscriber: (ResulType) -> Unit) {
-        disposable = buildFlowable(parametr)?.run {
+    fun executeFlowable(args: ParametrType?, subscriber: (ResulType) -> Unit) {
+        disposable = buildFlowable(args)?.run {
             subscribeOn(jobScheduler)
                     .observeOn(uiScheduler)
                     .subscribe { subscriber(it) }

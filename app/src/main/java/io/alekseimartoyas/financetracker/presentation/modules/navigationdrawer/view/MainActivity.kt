@@ -130,7 +130,7 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
 
     override fun returnFromAddAccount() {
         supportFragmentManager.beginTransaction()
-                .remove(supportFragmentManager.findFragmentByTag("visible_fragment"))
+                .remove(supportFragmentManager.findFragmentByTag("visible_fragment")!!)
                 .commit()
     }
 }

@@ -3,7 +3,6 @@ package io.alekseimartoyas.financetracker.presentation.modules.settings.view
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
-import android.view.View
 import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.presentation.modules.aboutapp.view.AboutAppActivity
 import io.alekseimartoyas.financetracker.presentation.modules.settings.configurator.SettingsConfigurator
@@ -31,12 +30,11 @@ class SettingsActivity :
         title = resources.getString(R.string.nav_settings)
     }
 
-    fun onClickAboutApp(view: View) {
-//        presenter?.showAboutApp(this)
+    fun onClickAboutApp() {
         startActivity(Intent(this, AboutAppActivity::class.java))  // to router
     }
 
-    fun onClickFeedback(view: View) {
+    fun onClickFeedback() {
         val emailIntent = Intent(Intent.ACTION_SEND)
         emailIntent.type = "text/plain"
         emailIntent.putExtra(Intent.EXTRA_EMAIL, "someAddress@gmail.com")
