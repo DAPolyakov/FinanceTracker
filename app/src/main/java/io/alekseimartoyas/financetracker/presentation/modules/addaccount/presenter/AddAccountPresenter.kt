@@ -1,12 +1,12 @@
 package io.alekseimartoyas.financetracker.presentation.modules.addaccount.presenter
 
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
-import io.alekseimartoyas.tradetracker.Foundation.BasePresenter
+import io.alekseimartoyas.financetracker.presentation.foundation.BasePresenter
 
 class AddAccountPresenter(view: IAddAccountFragmentInput,
-                          router: IMainActivityRouterInput):
+                          router: IMainActivityRouterInput) :
         BasePresenter<IAddAccountFragmentInput,
-        IMainActivityRouterInput>(view, router) {
+                IMainActivityRouterInput>(view, router) {
 
     override fun onStart() {
 

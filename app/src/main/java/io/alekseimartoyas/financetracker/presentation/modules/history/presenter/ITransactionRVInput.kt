@@ -1,7 +1,7 @@
 package io.alekseimartoyas.financetracker.presentation.modules.history.presenter
 
-import io.alekseimartoyas.financetracker.data.local.Transaction
+import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 
 interface ITransactionRVInput {
-    fun setData(transactions: Array<Transaction>)
+    fun setData(transactions: Array<FinanceTransaction>)
 }

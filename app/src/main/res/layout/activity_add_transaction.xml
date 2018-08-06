@@ -69,7 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/spinner_category"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -89,10 +89,10 @@
         android:text="@string/account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinner_account"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -101,6 +101,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account_tv" />
+
+    <TextView
+        android:id="@+id/label_repeat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/repeat_day"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_account" />
+
+    <EditText
+        android:id="@+id/input_repeat_days"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:inputType="number"
+        android:maxLength="3"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_repeat" />
+
+    <Button
+        android:id="@+id/cancel_transaction_bt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/cancel_button"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toStartOf="@id/add_transaction_bt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_repeat_days" />
 
     <Button
         android:id="@+id/add_transaction_bt"
@@ -112,7 +150,7 @@
         android:text="@string/add_button"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintStart_toEndOf="@id/cancel_transaction_bt"
+        app:layout_constraintTop_toBottomOf="@+id/input_repeat_days" />
 
 </android.support.constraint.ConstraintLayout>

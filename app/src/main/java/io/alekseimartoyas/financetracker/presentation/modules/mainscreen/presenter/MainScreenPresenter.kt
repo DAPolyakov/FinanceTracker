@@ -1,31 +1,69 @@
 package io.alekseimartoyas.financetracker.presentation.modules.mainscreen.presenter
 
+import io.alekseimartoyas.financetracker.data.local.Account
 import io.alekseimartoyas.financetracker.domain.Currency
-import io.alekseimartoyas.financetracker.domain.OperationType
-import io.alekseimartoyas.financetracker.data.local.Transaction
+import io.alekseimartoyas.financetracker.domain.interactors.GetAccountsInteractor
+import io.alekseimartoyas.financetracker.domain.interactors.GetExchRateInteractor
+import io.alekseimartoyas.financetracker.domain.interactors.GetNewTransactionsFromScheduledInteractor
+import io.alekseimartoyas.financetracker.domain.interactors.GetTransactionsByAccountIdInteractor
+import io.alekseimartoyas.financetracker.presentation.foundation.BasePresenter
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
-import io.alekseimartoyas.tradetracker.Foundation.BasePresenter
 
 class MainScreenPresenter(view: IMainScreenFragmentInput,
+                          var getAccounts: GetAccountsInteractor,
+                          val getExchRateInteractor: GetExchRateInteractor,
+                          val getNewTransactionsFromScheduledInteractor: GetNewTransactionsFromScheduledInteractor,
+                          val getTransactionsByAccountIdInteractor: GetTransactionsByAccountIdInteractor,
                           router: IMainActivityRouterInput,
-                          var pieChart: IPieChartViewInput? = null):
+                          var pieChart: IPieChartViewInput? = null) :
         BasePresenter<IMainScreenFragmentInput,
-        IMainActivityRouterInput>(view, router) {
+                IMainActivityRouterInput>(view, router) {
+
+    private var course: Double = 1.0
 
     override fun onStart() {
-        pieChart?.changeData(listOf(
-                Transaction(1,
-                        OperationType.ENLISTMENT,
-                        75F,
-                        Currency.USD,
-                        "correcting",
-                        "yesterday"),
-                Transaction(2,
-                        OperationType.DEBIT,
-                        25F,
-                        Currency.USD,
-                        "Food",
-                        "today")))
+        getAccounts.executeFlowable {
+            view?.showAccountsList(it.toTypedArray())
+            if (it.isNotEmpty()) {
+                view?.showBalance(it[0])
+            }
+        }
+
+        getExchRateInteractor.execute { response ->
+
+            course = response.Valute.USD.Value
+
+            view?.setExchRate(when (Currency.USD) {
+                Currency.USD -> "%.2f".format(course)
+                else -> ""
+            })
+
+            getAccounts.executeFlowable {
+                if (it.isNotEmpty()) {
+                    view?.showBalance(response.Valute.USD.Value, it[0])
+                }
+            }
+        }
+    }
+
+    fun checkScheduledTransactions() {
+        getNewTransactionsFromScheduledInteractor.executeFlowable {
+            if (it.isNotEmpty()) {
+                router?.showAddTransaction(it.first())
+            }
+        }
+    }
+
+    private fun changePieChart(account: Account) {
+        getTransactionsByAccountIdInteractor.executeFlowable(account.id) {
+            pieChart?.changeData(it.toList())
+        }
+    }
+
+    fun changeCurrentAccount(account: Account) {
+        view?.showBalance(account)
+        view?.showBalance(course, account)
+        changePieChart(account)
     }
 
     fun showAddAccount() {
@@ -33,15 +71,15 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
     }
 
     fun getAccountsId(): Array<Int> {
-        return arrayOf()  //from interactor
+        return arrayOf()
     }
 
     fun getAccountData(accountId: Int) {
-        //from interactor
+
     }
 
     override fun onStop() {
-        pieChart?.destructor()  //  может не надо это делать в onStop, хотя data может измениться
+        pieChart?.destructor()
     }
 
     override fun destructor() {

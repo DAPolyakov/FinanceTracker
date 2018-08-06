@@ -12,10 +12,22 @@
     <string name="nav_settings">Settings</string>
     <string name="nav_about_app">About app</string>
     <string name="nav_history">History</string>
+    <string name="scheduled_transactions">Scheduled transactions</string>
     <string name="other">Other</string>
     <string name="feedback">Feedback</string>
 
     <string name="add_button">Add</string>
+    <string name="cancel_button">Cancel</string>
+
+    <string name="category1">Category1</string>
+    <string name="category2">Category2</string>
+    <string name="category3">Category3</string>
+    <string name="category4">Category4</string>
+    <string name="category5">Category5</string>
+
+    <string name="petr">Petr</string>
+    <string name="maria">Maria</string>
+    <string name="alex">Alex</string>
 
     <string-array name="all_currency">
         <item>RUB</item>
@@ -42,9 +54,11 @@
     <string name="quantity">Quantity</string>
     <string name="category">Category</string>
     <string name="account">Account</string>
+    <string name="repeat_day">Repeat after, days</string>
+
     <string-array name="operation_type">
-        <item>Income</item>
-        <item>Expenditure</item>
+        <item>Enlistment</item>
+        <item>Debit</item>
     </string-array>
     <string-array name="category_items">
         <item>Products</item>
@@ -60,6 +74,9 @@
     <!--AddAccount-->
     <string name="choose_account_type">Choose type of account</string>
     <string name="choose_currency_type">Choose type of currency</string>
+    <string name="transaction_canceled">Canceled</string>
+    <string name="transaction_waiting">Waiting</string>
+    <string name="transaction_done">Done</string>
     <string-array name="account_type">
         <item>Wallet</item>
         <item>Card</item>

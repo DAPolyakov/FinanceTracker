@@ -1,13 +1,25 @@
 package io.alekseimartoyas.financetracker.domain.dinversion
 
-import io.alekseimartoyas.financetracker.data.local.Transaction
+import io.alekseimartoyas.financetracker.data.local.Account
+import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
+import io.reactivex.Flowable
+import java.math.BigDecimal
 
 interface IDataSourceInput {
-    fun addTransaction(transaction: Transaction)
 
-    fun addTransactions(transactions: Array<Transaction>)
+    fun addTransaction(transaction: FinanceTransaction, sum: BigDecimal): Flowable<Unit>
 
-    fun getTransaction(): Transaction
+    fun getTransactions(): Flowable<List<FinanceTransaction>>
+    fun getDoneTransactions(): Flowable<List<FinanceTransaction>>
 
-    fun getTransactions(): Array<Transaction>
+    fun getScheduledTransactions(): Flowable<List<FinanceTransaction>>
+
+    fun getTransactionsByAccountId(accountId: Long): Flowable<List<FinanceTransaction>>
+
+    fun getAccounts(): Flowable<List<Account>>
+
+    fun getNewTransactionsFromScheduled(): Flowable<List<FinanceTransaction>>
+
+    fun updateFinanceTransaction(
+            financeTransaction: FinanceTransaction, sum: BigDecimal): Flowable<Unit>
 }

@@ -5,25 +5,27 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
-import io.alekseimartoyas.financetracker.data.local.Transaction
+import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.presenter.IPieChartViewInput
 
-class PieChartView(chart: PieChart): IPieChartViewInput {
+class PieChartView(chart: PieChart) : IPieChartViewInput {
     private var chart: PieChart? = chart
-    private lateinit var chartData: List<Transaction>
+    private lateinit var chartData: List<FinanceTransaction>
 
-    override fun changeData(data: List<Transaction>) {
+    override fun changeData(data: List<FinanceTransaction>) {
         chartData = data
         setup()
     }
 
     private fun setup() {
         val pieData = hashMapOf<String, Float>()
+
         for (item in chartData)
-            if (pieData[item.category] == null)
-                pieData[item.category] = item.quantity
+            if (pieData[item.category.toString()] == null)
+                pieData[item.category.toString()] = item.quantity
             else
-                pieData[item.category] = (pieData[item.category] ?: 0F) + item.quantity
+                pieData[item.category.toString()] = (pieData[item.category.toString()]
+                        ?: 0F) + item.quantity
 
         var pieEntries = mutableListOf<PieEntry>()
 

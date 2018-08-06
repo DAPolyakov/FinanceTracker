@@ -12,7 +12,7 @@ import io.alekseimartoyas.financetracker.presentation.modules.settings.presenter
 import io.alekseimartoyas.tradetracker.Foundation.BaseActivity
 import kotlinx.android.synthetic.main.activity_settings.*
 
-class SettingsActivity:
+class SettingsActivity :
         BaseActivity<SettingsPresenter>(),
         ISettingsActivityInput {
 

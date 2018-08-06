@@ -2,12 +2,12 @@ package io.alekseimartoyas.financetracker.presentation.modules.settings.presente
 
 import android.content.Context
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
-import io.alekseimartoyas.tradetracker.Foundation.BasePresenter
+import io.alekseimartoyas.financetracker.presentation.foundation.BasePresenter
 
 class SettingsPresenter(view: ISettingsActivityInput,
-                        router: IMainActivityRouterInput?):
+                        router: IMainActivityRouterInput?) :
         BasePresenter<ISettingsActivityInput,
-        IMainActivityRouterInput>(view, router) {
+                IMainActivityRouterInput>(view, router) {
     override fun onStart() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

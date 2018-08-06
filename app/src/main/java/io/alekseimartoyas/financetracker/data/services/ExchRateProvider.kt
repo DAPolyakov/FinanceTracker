@@ -5,7 +5,7 @@ import io.alekseimartoyas.financetracker.data.network.IRetrofitReqs
 import io.alekseimartoyas.financetracker.domain.dinversion.IExchRateProviderInput
 import io.reactivex.Observable
 
-class ExchRateProvider(private val retrofit: IRetrofitReqs): IExchRateProviderInput {
+class ExchRateProvider(private val retrofit: IRetrofitReqs) : IExchRateProviderInput {
     override fun getExchRates(): Observable<DailyResponse> {
         return retrofit.getExchRates()
     }
