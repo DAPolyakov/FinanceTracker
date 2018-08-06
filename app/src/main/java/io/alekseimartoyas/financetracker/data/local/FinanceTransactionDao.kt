@@ -25,7 +25,7 @@ interface FinanceTransactionDao {
     fun getByAccountId(id: Long): Flowable<List<FinanceTransaction>>
 
     @Insert
-    fun insert(financeTransaction: FinanceTransaction)
+    fun insert(financeTransaction: FinanceTransaction): Long
 
     @Update
     fun update(financeTransaction: FinanceTransaction)

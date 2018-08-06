@@ -13,5 +13,5 @@ interface AccountDao {
     fun getAll(): Flowable<List<Account>>
 
     @Insert
-    fun insert(account: Account)
+    fun insert(account: Account): Long
 }

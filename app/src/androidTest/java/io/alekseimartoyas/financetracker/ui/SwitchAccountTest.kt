@@ -1,4 +1,4 @@
-package io.alekseimartoyas.financetracker
+package io.alekseimartoyas.financetracker.ui
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso
@@ -8,6 +8,7 @@ import android.support.test.espresso.intent.Intents
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
+import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.view.MainActivity
 import org.hamcrest.CoreMatchers
 import org.junit.After
@@ -18,7 +19,7 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4::class)
-open class UiSwitchAccountTest {
+open class SwitchAccountTest {
 
     @Rule
     @JvmField
