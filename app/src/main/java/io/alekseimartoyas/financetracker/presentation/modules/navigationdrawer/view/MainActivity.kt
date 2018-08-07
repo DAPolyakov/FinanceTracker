@@ -14,12 +14,14 @@ import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.presentation.modules.addaccount.view.AddAccountFragment
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.view.AddTransactionActivity
 import io.alekseimartoyas.financetracker.presentation.modules.history.view.HistoryFragment
+import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.AccountListFragment
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.MainScreenFragment
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.presenter.IMainActivityInput
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.presenter.MainActivityPresenter
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
 import io.alekseimartoyas.financetracker.presentation.modules.scheduledtransactions.view.ScheduledTransactionsFragment
 import io.alekseimartoyas.financetracker.presentation.modules.settings.view.SettingsActivity
+import io.alekseimartoyas.financetracker.utils.isTabledMode
 import io.alekseimartoyas.tradetracker.Foundation.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,8 +30,10 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
         NavigationView.OnNavigationItemSelectedListener,
         IMainActivityRouterInput {
 
-    var currentFragment: Int = R.id.nav_main
-    private val keyCurrentFragment = "currentFragment"
+    var mainFragment = 0
+    var secondFragment: Int = 0
+    private val keyCurrentFragment = "mainFragment"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +42,15 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
         initToolbar()
         nav_view.setNavigationItemSelectedListener(this)
 
-        currentFragment = if (savedInstanceState == null) {
-            replaceFragment(MainScreenFragment())
+        if (savedInstanceState == null) {
+            mainFragment = R.id.nav_main
             nav_view.setCheckedItem(R.id.nav_main)
-            R.id.nav_main
+            replaceMainFragment(MainScreenFragment())
+            if (isTabledMode()) {
+//                replaceMainFragment(AccountListFragment())
+            }
         } else {
-            savedInstanceState.getInt(keyCurrentFragment)
+            mainFragment = savedInstanceState.getInt(keyCurrentFragment)
         }
     }
 
@@ -65,31 +72,31 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        if (item.itemId != currentFragment) {
+        if (item.itemId != mainFragment) {
             when (item.itemId) {
                 R.id.nav_main -> {
-                    currentFragment = R.id.nav_main
-                    replaceFragment(MainScreenFragment())
+                    mainFragment = R.id.nav_main
+                    replaceMainFragment(MainScreenFragment())
                 }
                 R.id.nav_history -> {
-                    currentFragment = R.id.nav_history
-                    replaceFragment(HistoryFragment())
+                    mainFragment = R.id.nav_history
+                    replaceMainFragment(HistoryFragment())
                 }
                 R.id.nav_settings -> {
                     startActivity(Intent(this, SettingsActivity::class.java))
                 }
                 R.id.nav_scheduled_transactions -> {
-                    currentFragment = R.id.nav_scheduled_transactions
-                    replaceFragment(ScheduledTransactionsFragment())
+                    mainFragment = R.id.nav_scheduled_transactions
+                    replaceMainFragment(ScheduledTransactionsFragment())
                 }
             }
         }
-        
+
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    private fun replaceMainFragment(fragment: Fragment) {
 
         supportActionBar?.setTitle(when (fragment) {
             is MainScreenFragment -> R.string.nav_main
@@ -103,10 +110,17 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
                 .commit()
     }
 
+    private fun replaceSecondFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.second_frame, fragment)
+                .commit()
+    }
+
+
     override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
         super.onSaveInstanceState(outState, outPersistentState)
 
-        outState?.putInt(keyCurrentFragment, currentFragment)
+        outState?.putInt(keyCurrentFragment, mainFragment)
     }
 
     override fun onDestroy() {

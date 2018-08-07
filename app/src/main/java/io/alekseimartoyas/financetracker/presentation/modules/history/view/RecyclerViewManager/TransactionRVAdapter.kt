@@ -22,7 +22,7 @@ class TransactionRVAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater
                 .from(parent.context)
-                .inflate(R.layout.card_transaction, parent, false)
+                .inflate(R.layout.item_transaction, parent, false)
 
         return ViewHolder(view)
     }

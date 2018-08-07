@@ -9,14 +9,14 @@
 
     <TextView
         android:id="@+id/balance_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/balance"
         android:textColor="@color/yandex_black"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/rvAccounts"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -96,7 +96,7 @@
         app:cardElevation="0dp"
         app:layout_constraintBottom_toTopOf="@+id/add_account_bt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/rvAccounts"
         app:layout_constraintTop_toBottomOf="@+id/usd_curr_chang_text">
 
         <com.github.mikephil.charting.charts.PieChart
@@ -132,7 +132,7 @@
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/add_account_bt"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/rvAccounts" />
 
     <Button
         android:id="@+id/add_account_bt"
@@ -150,9 +150,28 @@
         android:id="@+id/add_transaction_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_add_white" />
+        android:src="@drawable/ic_add_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvAccounts"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_account" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="#14ffcc00"
+        app:layout_constraintStart_toEndOf="@id/rvAccounts" />
 
 </android.support.constraint.ConstraintLayout>

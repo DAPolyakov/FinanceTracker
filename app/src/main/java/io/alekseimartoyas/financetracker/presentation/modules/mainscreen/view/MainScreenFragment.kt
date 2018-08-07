@@ -1,10 +1,13 @@
 package io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view
 
+import android.content.Context
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.LinearLayout
 import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.data.local.Account
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
@@ -14,6 +17,7 @@ import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.present
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.presenter.MainScreenPresenter
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.PieChartManager.PieChartView
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.SpinnerManager.AccountSpinnerArrayAdapter
+import io.alekseimartoyas.financetracker.utils.isTabledMode
 import io.alekseimartoyas.financetracker.utils.toTargetCurrency
 import io.alekseimartoyas.tradetracker.Foundation.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main_screen.*
@@ -31,14 +35,38 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         pieChart = PieChartView(pie_chart_view)
 
         MainScreenConfigurator().buildModule(this)
 
         add_transaction_fab.setOnClickListener {
             presenter?.showAddTransaction()
+        }
+
+        initViews(view.context)
+    }
+
+    private fun initViews(context: Context) {
+        if (context.isTabledMode()) {
+            spinner_account.visibility = View.GONE
+
+            rvAccounts?.apply {
+                visibility = View.VISIBLE
+                layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, true)
+                adapter = AccountRvAdapter {
+                    presenter?.changeCurrentAccount(it)
+                }
+            }
+        } else {
+            rvAccounts.visibility = View.GONE
+
+            spinner_account.visibility = View.VISIBLE
+            spinner_account?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                    presenter?.changeCurrentAccount(spinner_account.selectedItem as Account)
+                }
+            }
         }
     }
 
@@ -64,16 +92,11 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
     }
 
     override fun showAccountsList(accounts: Array<Account>) {
-        spinner_account?.adapter = AccountSpinnerArrayAdapter(context!!, accounts)
-
-        spinner_account?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                presenter?.changeCurrentAccount(spinner_account.selectedItem as Account)
-            }
-
+        if (context!!.isTabledMode()) {
+            (rvAccounts.adapter as AccountRvAdapter).setData(accounts)
+            presenter!!.changeCurrentAccount(accounts[0])
+        } else {
+            spinner_account?.adapter = AccountSpinnerArrayAdapter(context!!, accounts)
         }
     }
 
