@@ -10,18 +10,16 @@
     <string name="nav_settings">Settings</string>
     <string name="nav_about_app">About app</string>
     <string name="nav_history">Operations history</string>
+    <string name="nav_scheduled_transactions">Scheduled</string>
 
-    <string name="scheduled_transactions">Scheduled</string>
     <string name="feedback">Feedback</string>
 
     <string name="add_button">Add</string>
     <string name="cancel_button">Cancel</string>
 
-    <string name="category1">Category1</string>
-    <string name="category2">Category2</string>
-    <string name="category3">Category3</string>
-    <string name="category4">Category4</string>
-    <string name="category5">Category5</string>
+    <string name="salary">Salary</string>
+    <string name="shopping">Shopping</string>
+    <string name="education">Education</string>
 
     <string name="balance">Balance</string>
     <string name="RUB">RUB</string>
@@ -55,12 +53,16 @@
         <item>USD</item>
     </string-array>
 
+    <string name="enlistment" translatable="false">Enlistment</string>
+    <string name="debit" translatable="false">Debit</string>
+
     <string-array name="operation_type">
-        <item>Enlistment</item>
-        <item>Debit</item>
+        <item>@string/enlistment</item>
+        <item>@string/debit</item>
     </string-array>
 
     <string name="appInfo" translatable="false">Finance tracking application</string>
     <string name="devBy" translatable="false">Developed by Aleksei Martoyas for Yandex Mobile Development School, 2018</string>
+    <string name="course_dollar">Dollar exchange rate</string>
 
 </resources>

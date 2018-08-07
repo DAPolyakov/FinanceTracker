@@ -68,7 +68,7 @@ open class AddTransactionTest {
 
         onView(allOf(withId(R.id.transaction_rv), isDisplayed()))
         onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText("ENLISTMENT"))))
-        onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText(InstrumentationRegistry.getTargetContext().getString(R.string.category1)))))
+        onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText(InstrumentationRegistry.getTargetContext().getString(R.string.salary)))))
         onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText("777.0"))))
 
         onView(withId(R.id.drawer_layout))

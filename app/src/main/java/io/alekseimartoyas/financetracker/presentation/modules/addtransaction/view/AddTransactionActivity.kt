@@ -51,7 +51,7 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
             state = if (repeatDays > 0) FinanceTransactionState.Waiting else FinanceTransactionState.Done
 
             val operationType = when (operation_type_spinner.selectedItem) {
-                "Enlistment" -> OperationType.ENLISTMENT
+                getString(R.string.enlistment) -> OperationType.ENLISTMENT
                 else -> OperationType.DEBIT
             }
 

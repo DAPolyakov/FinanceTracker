@@ -1,10 +1,13 @@
 package io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.PieChartManager
 
+import android.graphics.Color
+import android.support.v4.content.ContextCompat
 import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.utils.ColorTemplate
+import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.presenter.IPieChartViewInput
 
@@ -20,16 +23,27 @@ class PieChartView(chart: PieChart) : IPieChartViewInput {
     private fun setup() {
         val pieData = hashMapOf<String, Float>()
 
-        for (item in chartData)
-            if (pieData[item.category.toString()] == null)
-                pieData[item.category.toString()] = item.quantity
-            else
-                pieData[item.category.toString()] = (pieData[item.category.toString()]
-                        ?: 0F) + item.quantity
+        for (item in chartData) {
+            val title = chart!!.context.getString(item.category.strId)
 
-        var pieEntries = mutableListOf<PieEntry>()
+            if (pieData[title] == null) {
+                pieData[title] = item.quantity
+            } else {
+                pieData[title] = (pieData[title] ?: 0F) + item.quantity
+            }
+        }
 
-//        val colors = mutableListOf<Int>()
+        val pieEntries = mutableListOf<PieEntry>()
+
+        val colors = listOf(
+                ContextCompat.getColor(chart!!.context, R.color.yandex_blue),
+                ContextCompat.getColor(chart!!.context, R.color.yandex_orange),
+                ContextCompat.getColor(chart!!.context, R.color.yandex_red))
+
+        val textColors = listOf(
+                ContextCompat.getColor(chart!!.context, R.color.yandex_white),
+                ContextCompat.getColor(chart!!.context, R.color.yandex_blue),
+                ContextCompat.getColor(chart!!.context, R.color.yandex_orange))
 
         for (item in pieData) {
             val value = PieEntry(item.value, item.key)
@@ -38,24 +52,29 @@ class PieChartView(chart: PieChart) : IPieChartViewInput {
         }
 
         val dataSet = PieDataSet(pieEntries, "")
-        dataSet.colors = ColorTemplate.COLORFUL_COLORS.toList()
-//        dataSet.valueTextColor = Color.WHITE
-        dataSet.valueTextSize = 12f
-//        dataSet.valueFormatter = PercentFormatter()
-//        dataSet.setDrawValues(false)
+        dataSet.colors = colors
+        dataSet.valueTextSize = 18f
+//        dataSet.setValueTextColors(textColors)
+        dataSet.valueTextColor = Color.WHITE
         val data = PieData(dataSet)
-        chart?.data = data
-        chart?.setDrawEntryLabels(false)
-        chart?.description?.isEnabled = false
-        chart?.setUsePercentValues(true)
-//        chart?.legend?.position = Legend.LegendPosition.BELOW_CHART_CENTER
-        chart?.legend?.isWordWrapEnabled = true
-        chart?.legend?.textSize = 14f
-        chart?.invalidate()
+
+        chart!!.apply {
+            this.data = data
+            setDrawEntryLabels(false)
+            description?.isEnabled = false
+            setUsePercentValues(true)
+
+            legend?.apply {
+                isWordWrapEnabled = false
+                textSize = 12f
+                position = Legend.LegendPosition.LEFT_OF_CHART
+            }
+            invalidate()
+            notifyDataSetChanged()
+        }
     }
 
     override fun destructor() {
         chart = null
-//        contextView = null
     }
 }

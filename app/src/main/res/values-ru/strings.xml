@@ -10,18 +10,16 @@
     <string name="nav_settings">Настройки</string>
     <string name="nav_about_app">О приложении</string>
     <string name="nav_history">История операций</string>
+    <string name="nav_scheduled_transactions">Запланированные</string>
 
-    <string name="scheduled_transactions">Запланированные</string>
     <string name="feedback">Обратная связь</string>
 
     <string name="add_button">Добавить</string>
     <string name="cancel_button">Отменить</string>
 
-    <string name="category1">Категория_1</string>
-    <string name="category2">Категория_2</string>
-    <string name="category3">Категория_3</string>
-    <string name="category4">Категория_4</string>
-    <string name="category5">Категория_5</string>
+    <string name="salary">Зарплата</string>
+    <string name="shopping">Магазины</string>
+    <string name="education">Образование</string>
 
     <string name="balance">Баланс</string>
     <string name="RUB">РУБ</string>
@@ -39,8 +37,13 @@
     <string name="transaction_waiting">Ожидается</string>
     <string name="transaction_done">Выполнена</string>
 
+    <string name="enlistment" translatable="false">Зачисление</string>
+    <string name="debit" translatable="false">Расход</string>
+    <string name="course_dollar">Курс доллара</string>
+
     <string-array name="operation_type">
-        <item>Зачисление</item>
-        <item>Расход</item>
+        <item>@string/enlistment</item>
+        <item>@string/debit</item>
     </string-array>
+
 </resources>

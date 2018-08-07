@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="toolbarItems">#FFFFFF</color>
+    <color name="yandex_black">#000000</color>
+    <color name="yandex_blue">#0857B6</color>
+    <color name="yandex_orange">#FFCC00</color>
+    <color name="yandex_red">#FC091B</color>
+    <color name="yandex_white">#FFFFFF</color>
+
+
 </resources>

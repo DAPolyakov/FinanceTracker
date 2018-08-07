@@ -35,7 +35,7 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setTb()
+        initToolbar()
         nav_view.setNavigationItemSelectedListener(this)
 
         currentFragment = if (savedInstanceState == null) {
@@ -47,17 +47,13 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
         }
     }
 
-    fun setTb() {
+    private fun initToolbar() {
         setSupportActionBar(toolbar_main_activity as Toolbar)
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar_main_activity as Toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     override fun onBackPressed() {
@@ -88,12 +84,20 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
                 }
             }
         }
-
+        
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 
     private fun replaceFragment(fragment: Fragment) {
+
+        supportActionBar?.setTitle(when (fragment) {
+            is MainScreenFragment -> R.string.nav_main
+            is HistoryFragment -> R.string.nav_history
+            is ScheduledTransactionsFragment -> R.string.nav_scheduled_transactions
+            else -> R.string.app_name
+        })
+
         supportFragmentManager.beginTransaction()
                 .replace(R.id.main_frame, fragment, "visible_fragment")
                 .commit()
