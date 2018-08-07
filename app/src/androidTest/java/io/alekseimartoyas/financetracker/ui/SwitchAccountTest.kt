@@ -1,6 +1,5 @@
 package io.alekseimartoyas.financetracker.ui
 
-import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions
@@ -41,12 +40,12 @@ open class SwitchAccountTest {
     @Throws(Exception::class)
     fun switchAccountUiTest() {
 
-        Espresso.onView(ViewMatchers.withId(R.id.main_quant_text)).check(ViewAssertions.matches(ViewMatchers.withText("877.0")))
+        Espresso.onView(ViewMatchers.withId(R.id.main_quant_text)).check(ViewAssertions.matches(ViewMatchers.withText("1077.0")))
         Espresso.onView(ViewMatchers.withId(R.id.spinner_account)).perform(ViewActions.click())
         Espresso.onView(CoreMatchers
-                .allOf(ViewMatchers.withId(android.R.id.text1), ViewMatchers.withText(InstrumentationRegistry.getTargetContext().getString(R.string.maria))))
+                .allOf(ViewMatchers.withId(android.R.id.text1), ViewMatchers.withText("На карте")))
                 .perform(ViewActions.click());
-        Espresso.onView(ViewMatchers.withId(R.id.main_quant_text)).check(ViewAssertions.matches(ViewMatchers.withText("200")))
+        Espresso.onView(ViewMatchers.withId(R.id.main_quant_text)).check(ViewAssertions.matches(ViewMatchers.withText("50000")))
     }
 
 }

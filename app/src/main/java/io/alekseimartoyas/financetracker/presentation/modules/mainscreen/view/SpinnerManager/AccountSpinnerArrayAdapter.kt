@@ -16,7 +16,7 @@ class AccountSpinnerArrayAdapter(context: Context, private val items: Array<Acco
         if (view == null)
             view = View.inflate(context, android.R.layout.simple_spinner_dropdown_item, null)
 
-        (view as TextView).text = context.resources.getString(items[position].title)
+        (view as TextView).text = items[position].title
         return view
     }
 

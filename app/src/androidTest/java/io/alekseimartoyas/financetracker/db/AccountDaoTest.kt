@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
 class AccountDaoTest {
 
     private val mockAccount = Account(
-            123456,
+            "Кошелек",
             Currency.RUB,
             BigDecimal(1000)
     )
