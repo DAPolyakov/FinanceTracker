@@ -17,6 +17,8 @@
     <string name="add_button">Добавить</string>
     <string name="cancel_button">Отменить</string>
 
+    <string name="add_transaction">Добавить транзакцию</string>
+
     <string name="salary">Зарплата</string>
     <string name="shopping">Магазины</string>
     <string name="education">Образование</string>

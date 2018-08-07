@@ -30,14 +30,6 @@ class HistoryFragment : BaseFragment<HistoryPresenter>(),
         transaction_rv.adapter = presenter!!.getAdapter()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        add_transaction_fab.setOnClickListener {
-            presenter?.showAddTransaction()
-        }
-    }
-
     override fun onStart() {
         super.onStart()
         presenter?.onStart()

@@ -46,6 +46,10 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
         }
     }
 
+    fun showAddTransaction() {
+        router?.showAddTransaction()
+    }
+
     fun checkScheduledTransactions() {
         getNewTransactionsFromScheduledInteractor.executeFlowable {
             if (it.isNotEmpty()) {

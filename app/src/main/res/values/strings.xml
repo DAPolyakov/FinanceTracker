@@ -17,6 +17,8 @@
     <string name="add_button">Add</string>
     <string name="cancel_button">Cancel</string>
 
+    <string name="add_transaction">Add transaction</string>
+
     <string name="salary">Salary</string>
     <string name="shopping">Shopping</string>
     <string name="education">Education</string>

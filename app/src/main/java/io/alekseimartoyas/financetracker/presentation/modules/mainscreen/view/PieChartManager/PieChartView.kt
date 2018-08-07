@@ -67,7 +67,7 @@ class PieChartView(chart: PieChart) : IPieChartViewInput {
             legend?.apply {
                 isWordWrapEnabled = false
                 textSize = 12f
-                position = Legend.LegendPosition.LEFT_OF_CHART
+                position = Legend.LegendPosition.BELOW_CHART_LEFT
             }
             invalidate()
             notifyDataSetChanged()

@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="textStart"
-        android:textColor="@color/yandex_orange"
+        android:textColor="#4e7db6"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/main_quant_text"
         app:layout_constraintStart_toStartOf="@id/main_currency"
@@ -68,7 +68,7 @@
         android:layout_marginTop="4dp"
         android:text="@string/course_dollar"
         android:textAlignment="textStart"
-        android:textColor="@color/yandex_blue"
+        android:textColor="@color/yandex_black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/main_currency" />
@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="textStart"
-        android:textColor="@color/yandex_orange"
+        android:textColor="@color/yandex_black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@id/label_dollar_rate"
         app:layout_constraintStart_toStartOf="@id/label_dollar_rate"
@@ -145,5 +145,14 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_transaction_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add_white" />
 
 </android.support.constraint.ConstraintLayout>

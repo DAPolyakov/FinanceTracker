@@ -158,7 +158,7 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
 
     private fun configurationToolbar() {
         setSupportActionBar(toolbar_add_transaction_activity as Toolbar)
-        title = resources.getString(R.string.add_button)
+        title = resources.getString(R.string.add_transaction)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }

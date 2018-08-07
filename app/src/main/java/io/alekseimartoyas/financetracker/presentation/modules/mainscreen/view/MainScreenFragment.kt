@@ -22,9 +22,7 @@ import java.text.DecimalFormat
 class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
         IMainScreenFragmentInput {
 
-    val pieChart: PieChartView by lazy {
-        PieChartView(pie_chart_view)
-    }
+    lateinit var pieChart: PieChartView
 
     private val decimalFormat = DecimalFormat("0.00")
 
@@ -35,7 +33,13 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        pieChart = PieChartView(pie_chart_view)
+
         MainScreenConfigurator().buildModule(this)
+
+        add_transaction_fab.setOnClickListener {
+            presenter?.showAddTransaction()
+        }
     }
 
     override fun setExchRate(data: String) {
@@ -87,11 +91,6 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
         super.onStart()
         presenter?.onStart()
         presenter?.getAccountsId()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        pieChart.destructor()
     }
 
     override fun onDestroy() {
