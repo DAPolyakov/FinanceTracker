@@ -1,19 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Finance Tracker</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
 
     <string name="action_settings">Settings</string>
     <string name="nav_main">Main</string>
     <string name="nav_settings">Settings</string>
     <string name="nav_about_app">About app</string>
     <string name="nav_history">History</string>
+
     <string name="scheduled_transactions">Scheduled</string>
-    <string name="other">Other</string>
     <string name="feedback">Feedback</string>
 
     <string name="add_button">Add</string>
@@ -25,73 +23,44 @@
     <string name="category4">Category4</string>
     <string name="category5">Category5</string>
 
-    <string name="petr">Petr</string>
-    <string name="maria">Maria</string>
-    <string name="alex">Alex</string>
+    <string name="balance">Balance</string>
+    <string name="RUB">RUB</string>
+
+    <string name="new_account">Add account</string>
+
+    <string name="quantity">Quantity</string>
+    <string name="category">Category</string>
+    <string name="account">Account</string>
+    <string name="repeat_day">Repeat after, days</string>
+
+    <string name="choose_account_type">Choose type of account</string>
+    <string name="choose_currency_type">Choose type of currency</string>
+    <string name="transaction_canceled">Canceled</string>
+    <string name="transaction_waiting">Waiting</string>
+    <string name="transaction_done">Done</string>
+
+    <string name="all_currency" translatable="false">All currency</string>
+    <string name="operation_type" translatable="false">Operation type</string>
+    <string name="category_items" translatable="false">Category items</string>
+    <string name="account_type" translatable="false">Account type</string>
+
+    <string name="USD" translatable="false">USD</string>
+
+    <string-array name="currency_spinner" translatable="false">
+        <item>USD</item>
+    </string-array>
 
     <string-array name="all_currency" translatable="false">
         <item>RUB</item>
         <item>USD</item>
     </string-array>
 
-    <!--fragment_main_screen-->
-    <string name="balance">Balance</string>
-    <string name="RUB">RUB</string>
-    <string name="USD" translatable="false">USD</string>
-    <string name="new_account">Add account</string>
-
-    <!--fragment_another_currency-->
-    <string-array name="currency_spinner">
-        <item>USD</item>
-    </string-array>
-
-
-    <!--AboutApp-->
-    <string name="appInfo">Finance tracking application</string>
-    <string name="devBy">Developed by Aleksei Martoyas for Mob Dev School</string>
-
-    <!--AddTransactionActivity-->
-    <string name="quantity">Quantity</string>
-    <string name="category">Category</string>
-    <string name="account">Account</string>
-    <string name="repeat_day">Repeat after, days</string>
-
-    <string-array name="operation_type" translatable="false">
+    <string-array name="operation_type">
         <item>Enlistment</item>
         <item>Debit</item>
     </string-array>
-    <string-array name="category_items" translatable="false">
-        <item>Products</item>
-        <item>Clothes</item>
-        <item>Health and Fitness</item>
-        <item>Investments</item>
-        <item>Communal payments</item>
-        <item>Cafe and Restaurants</item>
-        <item>Correction</item>
-        <item>Other</item>
-    </string-array>
 
-    <!--AddAccount-->
-    <string name="choose_account_type">Choose type of account</string>
-    <string name="choose_currency_type">Choose type of currency</string>
-    <string name="transaction_canceled">Canceled</string>
-    <string name="transaction_waiting">Waiting</string>
-    <string name="transaction_done">Done</string>
-    <string-array name="account_type" translatable="false">
-        <item>Wallet</item>
-        <item>Card</item>
-    </string-array>
+    <string name="appInfo" translatable="false">Finance tracking application</string>
+    <string name="devBy" translatable="false">Developed by Aleksei Martoyas for Yandex Mobile Development School, 2018</string>
 
-    <!--Will removed-->
-    <string-array name="accounts_test" translatable="false">
-        <item>card1</item>
-        <item>wallet1</item>
-        <item>card2</item>
-        <item>all</item>
-    </string-array>
-    <string name="all_currency" translatable="false">All currency</string>
-    <string name="operation_type" translatable="false">Operation type</string>
-    <string name="category_items" translatable="false">Category items</string>
-    <string name="account_type" translatable="false">Account type</string>
-    <string name="accounts_test" translatable="false">Accounts for test</string>
 </resources>
