@@ -50,7 +50,7 @@ open class AddTransactionTest {
     @Throws(Exception::class)
     fun addTransactionUiTest() {
 
-        onView(withId(R.id.main_quant_text)).check(matches(withText("100")))
+        onView(withId(R.id.main_quant_text)).check(matches(withText("300")))
 
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT)))
@@ -68,7 +68,7 @@ open class AddTransactionTest {
 
         onView(allOf(withId(R.id.transaction_rv), isDisplayed()))
         onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText("ENLISTMENT"))))
-        onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText(InstrumentationRegistry.getTargetContext().getString(R.string.category1)))))
+        onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText(InstrumentationRegistry.getTargetContext().getString(R.string.salary)))))
         onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText("777.0"))))
 
         onView(withId(R.id.drawer_layout))
@@ -78,7 +78,7 @@ open class AddTransactionTest {
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_main))
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.close())
 
-        onView(withId(R.id.main_quant_text)).check(matches(withText("877.0")))
+        onView(withId(R.id.main_quant_text)).check(matches(withText("1077.0")))
     }
 
 }

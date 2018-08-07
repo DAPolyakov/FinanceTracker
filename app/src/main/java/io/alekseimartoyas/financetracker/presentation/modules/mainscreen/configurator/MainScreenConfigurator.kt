@@ -19,8 +19,7 @@ class MainScreenConfigurator {
                 GetExchRateInteractor(App.graph.getExchRateProvider()),
                 GetNewTransactionsFromScheduledInteractor(App.graph.getDataSource()),
                 GetTransactionsByAccountIdInteractor(App.graph.getDataSource()),
-                view.activity as IMainActivityRouterInput,
-                PieChartView(view.pie_chart_view))
+                view.activity as IMainActivityRouterInput)
 
         view.setPres(presenter)
     }

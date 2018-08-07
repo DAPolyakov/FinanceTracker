@@ -12,10 +12,6 @@ class HistoryPresenter(view: IHistoryFragmentInput,
         BasePresenter<IHistoryFragmentInput,
                 IMainActivityRouterInput>(view, router) {
 
-    fun showAddTransaction() {
-        router?.showAddTransaction()
-    }
-
     fun getAdapter(): TransactionRVAdapter = adapter!! as TransactionRVAdapter
 
     override fun onStart() {

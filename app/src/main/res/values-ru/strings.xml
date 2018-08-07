@@ -1,57 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FinanceTracker</string>
+    <string name="app_name">Трекер финансов</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-
     <string name="action_settings">Настройки</string>
-    <string name="nav_main">Обзор</string>
+    <string name="nav_main">Баланс</string>
     <string name="nav_settings">Настройки</string>
     <string name="nav_about_app">О приложении</string>
-    <string name="other">Прочее</string>
+    <string name="nav_history">История операций</string>
+    <string name="nav_scheduled_transactions">Запланированные</string>
+
+    <string name="feedback">Обратная связь</string>
 
     <string name="add_button">Добавить</string>
     <string name="cancel_button">Отменить</string>
 
-    <!--fragment_main_screen-->
+    <string name="add_transaction">Добавить транзакцию</string>
+
+    <string name="salary">Зарплата</string>
+    <string name="shopping">Магазины</string>
+    <string name="education">Образование</string>
+
     <string name="balance">Баланс</string>
     <string name="RUB">РУБ</string>
 
-    <string name="repeat_day">Повторить через, дней</string>
-    <!--fragment_another_currency-->
-    <string-array name="currency_spinner">
-        <item>USD</item>
-    </string-array>
-
-    <!--AboutApp-->
-    <string name="appInfo">Finance tracking application</string>
-    <string name="devBy">Developed by Aleksei Martoyas for Mob Dev School</string>
-
-    <string name="category1">Категория_1</string>
-    <string name="category2">Категория_2</string>
-    <string name="category3">Категория_3</string>
-    <string name="category4">Категория_4</string>
-    <string name="category5">Категория_5</string>
-
-    <string name="petr">Петр</string>
-    <string name="maria">Мария</string>
-    <string name="alex">Александр</string>
-
-    <string name="transaction_canceled">Отменена</string>
-    <string name="transaction_waiting">Ожидается</string>
-    <string name="transaction_done">Выполнена</string>
-    <string name="nav_history">История</string>
-    <string name="scheduled_transactions">Запланированные</string>
-    <string name="feedback">Обратная связь</string>
     <string name="new_account">Добавить счет</string>
+
     <string name="quantity">Количество</string>
     <string name="category">Категория</string>
     <string name="account">Счет</string>
+    <string name="repeat_day">Повторить через, дней</string>
+
     <string name="choose_account_type">Выберите счет</string>
     <string name="choose_currency_type">Выберите валюту</string>
+    <string name="transaction_canceled">Отменена</string>
+    <string name="transaction_waiting">Ожидается</string>
+    <string name="transaction_done">Выполнена</string>
+
+    <string name="enlistment" translatable="false">Зачисление</string>
+    <string name="debit" translatable="false">Расход</string>
+    <string name="course_dollar">Курс доллара</string>
+
+    <string-array name="operation_type">
+        <item>@string/enlistment</item>
+        <item>@string/debit</item>
+    </string-array>
 
 </resources>
