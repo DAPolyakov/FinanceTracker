@@ -9,7 +9,7 @@
     <string name="nav_main">Баланс</string>
     <string name="nav_settings">Настройки</string>
     <string name="nav_about_app">О приложении</string>
-    <string name="nav_history">История</string>
+    <string name="nav_history">История операций</string>
 
     <string name="scheduled_transactions">Запланированные</string>
     <string name="feedback">Обратная связь</string>
