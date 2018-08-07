@@ -55,7 +55,7 @@ class ScheduledTransactionsRVAdapter : RecyclerView.Adapter<RecyclerView.ViewHol
         val operationTypeText = view.findViewById<TextView>(R.id.operation_type_text)!!
         val quantityCurrencyText = view.findViewById<TextView>(R.id.currency_quantity_text)!!
         val currencyText = view.findViewById<TextView>(R.id.currency_text)!!
-        val data = view.findViewById<TextView>(R.id.date_tv)
+        val data: TextView = view.findViewById<TextView>(R.id.date_tv)
         val icDelete = view.findViewById<View>(R.id.ic_delete)
     }
 }
