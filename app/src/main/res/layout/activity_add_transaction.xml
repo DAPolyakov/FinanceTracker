@@ -19,7 +19,7 @@
         android:layout_marginTop="16dp"
         android:entries="@array/operation_type"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/rvTemplates"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_add_transaction_activity" />
 
     <android.support.design.widget.TextInputLayout
@@ -27,10 +27,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toStartOf="@+id/quantity_currency_spinner"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/operation_type_spinner"
         app:layout_constraintTop_toBottomOf="@+id/operation_type_spinner">
 
         <android.support.design.widget.TextInputEditText
@@ -61,11 +60,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/category"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/operation_type_spinner"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <Spinner
@@ -73,10 +71,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/operation_type_spinner"
         app:layout_constraintTop_toBottomOf="@+id/category_tv" />
 
     <TextView
@@ -84,11 +81,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/account"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/operation_type_spinner"
         app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
 
     <Spinner
@@ -96,10 +92,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/operation_type_spinner"
         app:layout_constraintTop_toBottomOf="@+id/account_tv" />
 
     <TextView
@@ -107,11 +102,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/repeat_day"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/operation_type_spinner"
         app:layout_constraintTop_toBottomOf="@+id/spinner_account" />
 
     <EditText
@@ -119,26 +113,34 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
         android:inputType="number"
         android:maxLength="3"
         android:text="0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/operation_type_spinner"
         app:layout_constraintTop_toBottomOf="@+id/label_repeat" />
+
+    <CheckBox
+        android:id="@+id/save_as_template"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:checked="false"
+        android:text="Сохранить как шаблон"
+        app:layout_constraintStart_toStartOf="@id/input_repeat_days"
+        app:layout_constraintTop_toBottomOf="@id/input_repeat_days" />
 
     <Button
         android:id="@+id/cancel_transaction_bt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/cancel_button"
         android:textAllCaps="false"
         app:layout_constraintEnd_toStartOf="@id/add_transaction_bt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_repeat_days" />
+        app:layout_constraintStart_toStartOf="@id/operation_type_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/save_as_template" />
 
     <Button
         android:id="@+id/add_transaction_bt"
@@ -146,11 +148,32 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="@string/add_button"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cancel_transaction_bt"
-        app:layout_constraintTop_toBottomOf="@+id/input_repeat_days" />
+        app:layout_constraintTop_toTopOf="@id/cancel_transaction_bt" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvTemplates"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_add_transaction_activity"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_scheduled_transaction" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="#14ffcc00"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@id/rvTemplates" />
 
 </android.support.constraint.ConstraintLayout>

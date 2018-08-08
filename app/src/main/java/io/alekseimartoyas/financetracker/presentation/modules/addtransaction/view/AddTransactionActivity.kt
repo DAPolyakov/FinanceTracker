@@ -1,7 +1,9 @@
 package io.alekseimartoyas.financetracker.presentation.modules.addtransaction.view
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
+import android.view.View
 import io.alekseimartoyas.financetracker.BuildConfig
 import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.data.local.Account
@@ -15,12 +17,13 @@ import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.pre
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.presenter.IAddTransactionActivityInput
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.view.spinnermanager.CategorySpinnerArrayAdapter
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.SpinnerManager.AccountSpinnerArrayAdapter
-import io.alekseimartoyas.financetracker.utils.daysToMillis
-import io.alekseimartoyas.financetracker.utils.millisToDays
-import io.alekseimartoyas.financetracker.utils.millisToSeconds
-import io.alekseimartoyas.financetracker.utils.secondsToMillis
+import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.view.MainActivity.Companion.ADD_TRANSACTION_RESPONSE_CODE_TEMPLATE
+import io.alekseimartoyas.financetracker.presentation.modules.templates.view.TemplatesRvAdapter
+import io.alekseimartoyas.financetracker.utils.*
 import io.alekseimartoyas.tradetracker.Foundation.BaseActivity
 import kotlinx.android.synthetic.main.activity_add_transaction.*
+import kotlinx.android.synthetic.main.toolbar.*
+
 
 class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
         IAddTransactionActivityInput {
@@ -60,7 +63,7 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
                 else -> Currency.USD
             }
 
-            presenter?.onAddFinanceTransaction(FinanceTransaction(
+            val transaction = FinanceTransaction(
                     operationType = operationType,
                     quantity = quantity_edit.text.toString().toFloat(),
                     currency = currency,
@@ -69,13 +72,46 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
                     date = presenter!!.getDate(),
                     state = state,
                     timeStart = timeStart,
-                    timeFinish = timeFinish
-            ), (spinner_account.selectedItem as Account).currency)
+                    timeFinish = timeFinish)
+
+            presenter?.onAddFinanceTransaction(transaction,
+                    (spinner_account.selectedItem as Account).currency,
+                    save_as_template.isChecked)
         }
 
         cancel_transaction_bt.setOnClickListener {
             presenter?.cancelTransaction(intent.getParcelableExtra("transaction"))
         }
+
+        ic_add_templates.setOnClickListener {
+            setResult(ADD_TRANSACTION_RESPONSE_CODE_TEMPLATE)
+            finish()
+        }
+
+        initViews()
+    }
+
+    private fun initViews() {
+        if (isTabledMode()) {
+            ic_add_templates.visibility = View.GONE
+            rvTemplates.visibility = View.VISIBLE
+            divider.visibility = View.VISIBLE
+
+            rvTemplates.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+            rvTemplates.adapter = TemplatesRvAdapter({
+                loadFields(it)
+            }, {
+                presenter!!.onDeleteTemplate(it)
+            })
+        } else {
+            ic_add_templates.visibility = View.VISIBLE
+            rvTemplates.visibility = View.GONE
+            divider.visibility = View.GONE
+        }
+    }
+
+    override fun showTemplates(templates: List<FinanceTransaction>) {
+        (rvTemplates.adapter as TemplatesRvAdapter).setData(templates.toTypedArray())
     }
 
     override fun loadTransaction() {
@@ -92,14 +128,22 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
             spinner_category.setSelection(getCategorySpinnerPosition(category))
             spinner_account.setSelection(getAccountSpinnerPosition(accountId))
 
-            presenter?.loadTransactionId(id)
+            presenter!!.loadTransactionId(id)
         }
+
+        save_as_template.isChecked = false
     }
 
     private fun getOperationTypeSpinnerPosition(operationType: OperationType): Int {
+
+        val operation = when (operationType) {
+            OperationType.ENLISTMENT -> getString(R.string.enlistment)
+            OperationType.DEBIT -> getString(R.string.debit)
+        }
+
         for (i in 0 until operation_type_spinner.adapter.count) {
             val item = operation_type_spinner.getItemAtPosition(i) as String
-            if (operationType.name.equals(item, true)) {
+            if (operation.equals(item, true)) {
                 return i
             }
         }

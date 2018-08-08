@@ -13,6 +13,10 @@ class DataSource : IDataSourceInput {
         return db.financeTransactionDao.getAllScheduled()
     }
 
+    override fun getTemplateTransactions(): Flowable<List<FinanceTransaction>> {
+        return db.financeTransactionDao.getAllTemplate()
+    }
+
     private val db = App.db
 
     override fun addTransaction(transaction: FinanceTransaction, sum: BigDecimal): Flowable<Unit> {

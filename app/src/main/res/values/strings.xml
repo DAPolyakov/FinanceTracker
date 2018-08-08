@@ -11,6 +11,7 @@
     <string name="nav_about_app">About app</string>
     <string name="nav_history">Operations history</string>
     <string name="nav_scheduled_transactions">Scheduled</string>
+    <string name="nav_templates">Templates</string>
 
     <string name="feedback">Feedback</string>
 
@@ -38,6 +39,7 @@
     <string name="transaction_canceled">Canceled</string>
     <string name="transaction_waiting">Waiting</string>
     <string name="transaction_done">Done</string>
+    <string name="transaction_template">Template</string>
 
     <string name="all_currency" translatable="false">All currency</string>
     <string name="operation_type" translatable="false">Operation type</string>
@@ -55,8 +57,8 @@
         <item>USD</item>
     </string-array>
 
-    <string name="enlistment" translatable="false">Enlistment</string>
-    <string name="debit" translatable="false">Debit</string>
+    <string name="enlistment">Enlistment</string>
+    <string name="debit">Debit</string>
 
     <string-array name="operation_type">
         <item>@string/enlistment</item>

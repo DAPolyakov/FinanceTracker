@@ -21,6 +21,10 @@ interface FinanceTransactionDao {
     fun getAllScheduled(scheduledState: FinanceTransactionState = FinanceTransactionState.Waiting)
             : Flowable<List<FinanceTransaction>>
 
+    @Query("SELECT * FROM financetransaction WHERE state = :templateState")
+    fun getAllTemplate(templateState: FinanceTransactionState = FinanceTransactionState.Template)
+            : Flowable<List<FinanceTransaction>>
+
     @Query("SELECT * FROM financetransaction WHERE accountId = :id")
     fun getByAccountId(id: Long): Flowable<List<FinanceTransaction>>
 

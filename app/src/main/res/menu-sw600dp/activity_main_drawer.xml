@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
@@ -16,19 +14,6 @@
             android:id="@+id/nav_scheduled_transactions"
             android:icon="@drawable/ic_schedule"
             android:title="@string/nav_scheduled_transactions" />
-        <item
-            android:id="@+id/nav_templates"
-            android:icon="@drawable/ic_template_black"
-            android:title="@string/nav_templates" />
-    </group>
-
-    <group
-        android:id="@+id/other"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_settings"
-            android:title="@string/nav_settings" />
     </group>
 
 </menu>
