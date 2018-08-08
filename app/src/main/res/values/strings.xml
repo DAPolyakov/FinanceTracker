@@ -39,6 +39,7 @@
     <string name="transaction_canceled">Canceled</string>
     <string name="transaction_waiting">Waiting</string>
     <string name="transaction_done">Done</string>
+    <string name="transaction_template">Template</string>
 
     <string name="all_currency" translatable="false">All currency</string>
     <string name="operation_type" translatable="false">Operation type</string>

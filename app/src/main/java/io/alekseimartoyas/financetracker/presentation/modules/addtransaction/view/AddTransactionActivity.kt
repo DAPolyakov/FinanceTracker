@@ -24,6 +24,7 @@ import io.alekseimartoyas.tradetracker.Foundation.BaseActivity
 import kotlinx.android.synthetic.main.activity_add_transaction.*
 import kotlinx.android.synthetic.main.toolbar.*
 
+
 class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
         IAddTransactionActivityInput {
 
@@ -62,7 +63,7 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
                 else -> Currency.USD
             }
 
-            presenter?.onAddFinanceTransaction(FinanceTransaction(
+            val transaction = FinanceTransaction(
                     operationType = operationType,
                     quantity = quantity_edit.text.toString().toFloat(),
                     currency = currency,
@@ -71,8 +72,11 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
                     date = presenter!!.getDate(),
                     state = state,
                     timeStart = timeStart,
-                    timeFinish = timeFinish
-            ), (spinner_account.selectedItem as Account).currency)
+                    timeFinish = timeFinish)
+
+            presenter?.onAddFinanceTransaction(transaction,
+                    (spinner_account.selectedItem as Account).currency,
+                    save_as_template.isChecked)
         }
 
         cancel_transaction_bt.setOnClickListener {

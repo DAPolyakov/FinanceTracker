@@ -32,22 +32,30 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
         }
     }
 
-    fun onAddFinanceTransaction(financeTransaction: FinanceTransaction, accountCurrency: Currency) {
+    fun onAddFinanceTransaction(
+            financeTransaction: FinanceTransaction,
+            accountCurrency: Currency,
+            isTemplate: Boolean) {
 
-        getExchRateInteractor.execute {
+        getExchRateInteractor.execute { it ->
             var sum = financeTransaction.currency.toTargetCurrency(
                     accountCurrency,
                     financeTransaction.quantity.toBigDecimal(),
                     it.Valute.USD.Value.toBigDecimal()
             )
 
+            if (isTemplate) {
+                addFinanceTransactionInteractor.executeFlowable(
+                        Pair(financeTransaction.copy(state = FinanceTransactionState.Template), BigDecimal(0))) {}
+            }
+
             if (financeTransaction.operationType == OperationType.DEBIT) {
                 sum = sum.negate()
             }
 
-            id?.let {
+            id?.let { id ->
                 updateFinanceTransactionInteractor.executeFlowable(
-                        Pair(financeTransaction.copy(id = it, state = FinanceTransactionState.Done),
+                        Pair(financeTransaction.copy(id = id, state = FinanceTransactionState.Done),
                                 sum)
                 ) {
                     view?.back()
@@ -64,7 +72,7 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
     }
 
     fun getDate(): String {
-        var date: Date = Calendar.getInstance().time
+        val date: Date = Calendar.getInstance().time
 
         val myFormat = "dd.MM.yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.getDefault())
@@ -82,8 +90,12 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
 
     fun cancelTransaction(transaction: FinanceTransaction?) {
         transaction?.let {
-            updateFinanceTransactionInteractor.executeFlowable(Pair(transaction.copy(state = FinanceTransactionState.Canceled), BigDecimal(0))) {
+            if (transaction.state == FinanceTransactionState.Template) {
                 view?.back()
+            } else {
+                updateFinanceTransactionInteractor.executeFlowable(Pair(transaction.copy(state = FinanceTransactionState.Canceled), BigDecimal(0))) {
+                    view?.back()
+                }
             }
         } ?: view?.back()
     }

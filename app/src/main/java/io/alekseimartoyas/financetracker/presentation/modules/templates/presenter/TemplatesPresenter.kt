@@ -1,15 +1,17 @@
 package io.alekseimartoyas.financetracker.presentation.modules.templates.presenter
 
-import io.alekseimartoyas.financetracker.domain.interactors.GetTransactionsInteractor
+import io.alekseimartoyas.financetracker.domain.FinanceTransactionState
+import io.alekseimartoyas.financetracker.domain.interactors.GetTemplateTransactionsInteractor
 import io.alekseimartoyas.financetracker.domain.interactors.UpdateFinanceTransactionInteractor
 import io.alekseimartoyas.financetracker.presentation.foundation.BasePresenter
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
 import io.alekseimartoyas.financetracker.presentation.modules.templates.view.TemplatesRvAdapter
 import io.alekseimartoyas.financetracker.presentation.modules.templates.view.TemplatesView
+import java.math.BigDecimal
 
 
 class TemplatesPresenter(view: TemplatesView,
-                         val getScheduledTransactionsInteractor: GetTransactionsInteractor,
+                         val getTemplateTransactionsInteractor: GetTemplateTransactionsInteractor,
                          val updateFinanceTransactionInteractor: UpdateFinanceTransactionInteractor,
                          router: IMainActivityRouterInput) :
         BasePresenter<TemplatesView,
@@ -17,29 +19,21 @@ class TemplatesPresenter(view: TemplatesView,
 
     lateinit var adapter: TemplatesRvAdapter
 
-    fun getRvAdapter(): TemplatesRvAdapter = adapter
-
     override fun onStart() {
 
         adapter = TemplatesRvAdapter(onClick = {
             router?.showAddTransaction(it)
         }, onDelete = { it ->
-            //            updateFinanceTransactionInteractor
-//                    .executeFlowable(Pair(it.copy(state = FinanceTransactionState.Canceled), BigDecimal(0))) {
-//                    }
+            updateFinanceTransactionInteractor
+                    .executeFlowable(Pair(it.copy(state = FinanceTransactionState.Canceled), BigDecimal(0))) {
+                    }
         })
 
-        getScheduledTransactionsInteractor.executeFlowable {
+        getTemplateTransactionsInteractor.executeFlowable {
             adapter.setData(it.toTypedArray())
         }
 
         view!!.setRvAdapter(adapter)
-
-//        adapter?.onDelete { it ->
-//            updateFinanceTransactionInteractor
-//                    .executeFlowable(Pair(it.copy(state = FinanceTransactionState.Canceled), BigDecimal(0))) {
-//                    }
-//        }
 
     }
 

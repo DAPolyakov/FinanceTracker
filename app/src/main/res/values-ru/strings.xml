@@ -39,6 +39,7 @@
     <string name="transaction_canceled">Отменена</string>
     <string name="transaction_waiting">Ожидается</string>
     <string name="transaction_done">Выполнена</string>
+    <string name="transaction_template">Шаблон</string>
 
     <string name="enlistment">Зачисление</string>
     <string name="debit">Расход</string>
