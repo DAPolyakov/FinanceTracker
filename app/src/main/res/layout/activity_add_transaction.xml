@@ -127,6 +127,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_repeat" />
 
+    <CheckBox
+        android:id="@+id/saveAsTemplate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:checked="false"
+        android:text="Сохранить как шаблон"
+        app:layout_constraintStart_toStartOf="@id/input_repeat_days"
+        app:layout_constraintTop_toBottomOf="@id/input_repeat_days" />
+
     <Button
         android:id="@+id/cancel_transaction_bt"
         android:layout_width="0dp"
@@ -138,7 +148,7 @@
         android:textAllCaps="false"
         app:layout_constraintEnd_toStartOf="@id/add_transaction_bt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_repeat_days" />
+        app:layout_constraintTop_toBottomOf="@+id/saveAsTemplate" />
 
     <Button
         android:id="@+id/add_transaction_bt"
@@ -146,11 +156,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="@string/add_button"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cancel_transaction_bt"
-        app:layout_constraintTop_toBottomOf="@+id/input_repeat_days" />
+        app:layout_constraintTop_toTopOf="@id/cancel_transaction_bt" />
 
 </android.support.constraint.ConstraintLayout>

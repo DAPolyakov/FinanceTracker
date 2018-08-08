@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
-    android:theme="@style/ToolBarStyle" />
+    android:theme="@style/ToolBarStyle">
+
+    <ImageView
+        android:id="@+id/ic_add_templates"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/ic_template_white" />
+
+
+</android.support.v7.widget.Toolbar>

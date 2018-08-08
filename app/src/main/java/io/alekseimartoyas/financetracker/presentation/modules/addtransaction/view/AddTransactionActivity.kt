@@ -15,12 +15,14 @@ import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.pre
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.presenter.IAddTransactionActivityInput
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.view.spinnermanager.CategorySpinnerArrayAdapter
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.SpinnerManager.AccountSpinnerArrayAdapter
+import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.view.MainActivity.Companion.ADD_TRANSACTION_RESPONSE_CODE_TEMPLATE
 import io.alekseimartoyas.financetracker.utils.daysToMillis
 import io.alekseimartoyas.financetracker.utils.millisToDays
 import io.alekseimartoyas.financetracker.utils.millisToSeconds
 import io.alekseimartoyas.financetracker.utils.secondsToMillis
 import io.alekseimartoyas.tradetracker.Foundation.BaseActivity
 import kotlinx.android.synthetic.main.activity_add_transaction.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
         IAddTransactionActivityInput {
@@ -76,6 +78,11 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
         cancel_transaction_bt.setOnClickListener {
             presenter?.cancelTransaction(intent.getParcelableExtra("transaction"))
         }
+
+        ic_add_templates.setOnClickListener {
+            setResult(ADD_TRANSACTION_RESPONSE_CODE_TEMPLATE)
+            finish()
+        }
     }
 
     override fun loadTransaction() {
@@ -97,9 +104,15 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
     }
 
     private fun getOperationTypeSpinnerPosition(operationType: OperationType): Int {
+
+        val operation = when (operationType) {
+            OperationType.ENLISTMENT -> getString(R.string.enlistment)
+            OperationType.DEBIT -> getString(R.string.debit)
+        }
+
         for (i in 0 until operation_type_spinner.adapter.count) {
             val item = operation_type_spinner.getItemAtPosition(i) as String
-            if (operationType.name.equals(item, true)) {
+            if (operation.equals(item, true)) {
                 return i
             }
         }

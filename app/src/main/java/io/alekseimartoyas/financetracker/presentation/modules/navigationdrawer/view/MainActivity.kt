@@ -9,21 +9,23 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import android.view.View
 import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.presentation.modules.addaccount.view.AddAccountFragment
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.view.AddTransactionActivity
 import io.alekseimartoyas.financetracker.presentation.modules.history.view.HistoryFragment
-import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.AccountListFragment
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.MainScreenFragment
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.presenter.IMainActivityInput
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.presenter.MainActivityPresenter
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
 import io.alekseimartoyas.financetracker.presentation.modules.scheduledtransactions.view.ScheduledTransactionsFragment
 import io.alekseimartoyas.financetracker.presentation.modules.settings.view.SettingsActivity
+import io.alekseimartoyas.financetracker.presentation.modules.templates.view.TemplatesFragment
 import io.alekseimartoyas.financetracker.utils.isTabledMode
 import io.alekseimartoyas.tradetracker.Foundation.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : BaseActivity<MainActivityPresenter>(),
         IMainActivityInput,
@@ -34,6 +36,12 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
     var secondFragment: Int = 0
     private val keyCurrentFragment = "mainFragment"
 
+    companion object {
+        const val ADD_TRANSACTION_REQUEST_CODE = 101
+        const val ADD_TRANSACTION_RESPONSE_CODE_BACK = 1
+        const val ADD_TRANSACTION_RESPONSE_CODE_TEMPLATE = 2
+        const val ADD_TRANSACTION_RESPONSE_CODE_OK = 3
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +49,8 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
 
         initToolbar()
         nav_view.setNavigationItemSelectedListener(this)
+
+        ic_add_templates.visibility = View.GONE
 
         if (savedInstanceState == null) {
             mainFragment = R.id.nav_main
@@ -82,6 +92,10 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
                     mainFragment = R.id.nav_history
                     replaceMainFragment(HistoryFragment())
                 }
+                R.id.nav_templates -> {
+                    mainFragment = R.id.nav_templates
+                    replaceMainFragment(TemplatesFragment())
+                }
                 R.id.nav_settings -> {
                     startActivity(Intent(this, SettingsActivity::class.java))
                 }
@@ -102,6 +116,7 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
             is MainScreenFragment -> R.string.nav_main
             is HistoryFragment -> R.string.nav_history
             is ScheduledTransactionsFragment -> R.string.nav_scheduled_transactions
+            is TemplatesFragment -> R.string.nav_templates
             else -> R.string.app_name
         })
 
@@ -134,8 +149,21 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
     }
 
     override fun showAddTransaction(financeTransaction: FinanceTransaction?) {
-        this.startActivity(Intent(this, AddTransactionActivity::class.java)
-                .putExtra("transaction", financeTransaction))
+        val intent = Intent(this, AddTransactionActivity::class.java)
+        intent.putExtra("transaction", financeTransaction)
+
+        this.startActivityForResult(intent, ADD_TRANSACTION_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == ADD_TRANSACTION_REQUEST_CODE) {
+            if (resultCode == ADD_TRANSACTION_RESPONSE_CODE_TEMPLATE) {
+                mainFragment = R.id.nav_templates
+                nav_view.setCheckedItem(R.id.nav_templates)
+                replaceMainFragment(TemplatesFragment())
+            }
+        }
     }
 
     override fun showAddAccount() {
