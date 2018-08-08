@@ -4,10 +4,7 @@ import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.domain.Currency
 import io.alekseimartoyas.financetracker.domain.FinanceTransactionState
 import io.alekseimartoyas.financetracker.domain.OperationType
-import io.alekseimartoyas.financetracker.domain.interactors.AddFinanceTransactionInteractor
-import io.alekseimartoyas.financetracker.domain.interactors.GetAccountsInteractor
-import io.alekseimartoyas.financetracker.domain.interactors.GetExchRateInteractor
-import io.alekseimartoyas.financetracker.domain.interactors.UpdateFinanceTransactionInteractor
+import io.alekseimartoyas.financetracker.domain.interactors.*
 import io.alekseimartoyas.financetracker.presentation.foundation.BasePresenter
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.router.IAddTransactionRouter
 import io.alekseimartoyas.financetracker.utils.toTargetCurrency
@@ -19,7 +16,8 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
                               val updateFinanceTransactionInteractor: UpdateFinanceTransactionInteractor,
                               val getExchRateInteractor: GetExchRateInteractor,
                               val addFinanceTransactionInteractor: AddFinanceTransactionInteractor,
-                              val getAccountsInteractor: GetAccountsInteractor) :
+                              val getAccountsInteractor: GetAccountsInteractor,
+                              val getTemplateTransactionsInteractor: GetTemplateTransactionsInteractor) :
         BasePresenter<IAddTransactionActivityInput,
                 IAddTransactionRouter>(view) {
 
@@ -29,6 +27,10 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
         getAccountsInteractor.executeFlowable {
             view?.setAccountsList(it.toTypedArray())
             view?.loadTransaction()
+        }
+
+        getTemplateTransactionsInteractor.executeFlowable {
+            view?.showTemplates(it)
         }
     }
 
@@ -98,5 +100,9 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
                 }
             }
         } ?: view?.back()
+    }
+
+    fun onDeleteTemplate(it: FinanceTransaction) {
+        updateFinanceTransactionInteractor.executeFlowable(Pair(it.copy(state = FinanceTransactionState.Canceled), BigDecimal(0))) {}
     }
 }

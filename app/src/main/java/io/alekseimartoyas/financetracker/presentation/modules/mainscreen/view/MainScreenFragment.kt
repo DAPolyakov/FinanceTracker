@@ -49,7 +49,8 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
     private fun initViews(context: Context) {
         if (context.isTabledMode()) {
             spinner_account.visibility = View.GONE
-
+            divider.visibility = View.VISIBLE
+            
             rvAccounts?.apply {
                 visibility = View.VISIBLE
                 layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, true)
@@ -59,6 +60,7 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
             }
         } else {
             rvAccounts.visibility = View.GONE
+            divider.visibility = View.GONE
 
             spinner_account.visibility = View.VISIBLE
             spinner_account?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

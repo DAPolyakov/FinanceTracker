@@ -24,9 +24,7 @@ class ScheduledTransactionsPresenter(view: IScheduledTransactionsInput,
         }
 
         adapter?.onDelete {
-            updateFinanceTransactionInteractor.executeFlowable(Pair(it.copy(state = FinanceTransactionState.Canceled), BigDecimal(0))) {
-                
-            }
+            updateFinanceTransactionInteractor.executeFlowable(Pair(it.copy(state = FinanceTransactionState.Canceled), BigDecimal(0))) {}
         }
     }
 
