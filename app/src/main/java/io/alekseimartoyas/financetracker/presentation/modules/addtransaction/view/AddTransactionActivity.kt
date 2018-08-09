@@ -63,9 +63,11 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
                 else -> Currency.USD
             }
 
+            val quantity = quantity_edit.text.toString()
+
             val transaction = FinanceTransaction(
                     operationType = operationType,
-                    quantity = quantity_edit.text.toString().toFloat(),
+                    quantity = if (quantity.isBlank()) 0f else quantity.toFloat(),
                     currency = currency,
                     accountId = (spinner_account.selectedItem as Account).id!!,
                     category = (spinner_category.selectedItem as CategoryType),

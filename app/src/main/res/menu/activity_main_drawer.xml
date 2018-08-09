@@ -10,11 +10,11 @@
             android:title="@string/nav_main" />
         <item
             android:id="@+id/nav_history"
-            android:icon="@drawable/ic_history"
+            android:icon="@drawable/ic_schedule"
             android:title="@string/nav_history" />
         <item
             android:id="@+id/nav_scheduled_transactions"
-            android:icon="@drawable/ic_schedule"
+            android:icon="@drawable/ic_history"
             android:title="@string/nav_scheduled_transactions" />
         <item
             android:id="@+id/nav_templates"
@@ -22,7 +22,7 @@
             android:title="@string/nav_templates" />
         <item
             android:id="@+id/nav_statistics"
-            android:icon="@drawable/ic_template_black"
+            android:icon="@drawable/ic_chart"
             android:title="@string/nav_statistics" />
     </group>
 

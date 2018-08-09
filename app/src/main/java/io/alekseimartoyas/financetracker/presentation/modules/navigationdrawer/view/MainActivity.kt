@@ -122,6 +122,7 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
             is HistoryFragment -> R.string.nav_history
             is ScheduledTransactionsFragment -> R.string.nav_scheduled_transactions
             is TemplatesFragment -> R.string.nav_templates
+            is StatisticsFragment -> R.string.nav_statistics
             else -> R.string.app_name
         })
 
