@@ -30,19 +30,14 @@ class AddTransactionPresenterUnitTest : BaseUnitTest() {
 
     lateinit var presenter: AddTransactionPresenter
 
-    @Mock
-    lateinit var view: AddTransactionActivity
-    @Mock
     lateinit var updateFinanceTransactionInteractor: UpdateFinanceTransactionInteractor
-    @Mock
     lateinit var getExchRateInteractor: GetExchRateInteractor
-    @Mock
     lateinit var addFinanceTransactionInteractor: AddFinanceTransactionInteractor
-    @Mock
     lateinit var getAccountsInteractor: GetAccountsInteractor
-    @Mock
     lateinit var getTemplateTransactionsInteractor: GetTemplateTransactionsInteractor
 
+    @Mock
+    lateinit var view: AddTransactionActivity
     @Mock
     lateinit var dataSource: DataSource
     @Mock

@@ -26,11 +26,10 @@ class HistoryPresenterUnitTest : BaseUnitTest() {
 
     lateinit var presenter: HistoryPresenter
 
-    @Mock
-    lateinit var view: HistoryFragment
-    @Mock
     lateinit var getDoneTransactionsInteractor: GetDoneTransactionsInteractor
 
+    @Mock
+    lateinit var view: HistoryFragment
     @Mock
     lateinit var router: IMainActivityRouterInput
     @Mock

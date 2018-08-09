@@ -37,16 +37,13 @@ class MainScreenPresenterUnitTest : BaseUnitTest() {
 
     lateinit var presenter: MainScreenPresenter
 
+    lateinit var getAccountsInteractor: GetAccountsInteractor
+    lateinit var getExchRateInteractor: GetExchRateInteractor
+    lateinit var getNewTransactionsFromScheduledInteractor: GetNewTransactionsFromScheduledInteractor
+    lateinit var getTransactionsByAccountIdInteractor: GetTransactionsByAccountIdInteractor
+
     @Mock
     lateinit var view: MainScreenFragment
-    @Mock
-    lateinit var getAccountsInteractor: GetAccountsInteractor
-    @Mock
-    lateinit var getExchRateInteractor: GetExchRateInteractor
-    @Mock
-    lateinit var getNewTransactionsFromScheduledInteractor: GetNewTransactionsFromScheduledInteractor
-    @Mock
-    lateinit var getTransactionsByAccountIdInteractor: GetTransactionsByAccountIdInteractor
     @Mock
     lateinit var router: IMainActivityRouterInput
     @Mock
