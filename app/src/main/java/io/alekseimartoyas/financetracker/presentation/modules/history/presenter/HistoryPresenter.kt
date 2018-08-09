@@ -16,7 +16,7 @@ class HistoryPresenter(view: IHistoryFragmentInput,
 
     override fun onStart() {
         getDoneTransactionsInteractor.executeFlowable {
-            view?.showTransactions(it)
+            view?.showTransactions(it.reversed())
         }
     }
 

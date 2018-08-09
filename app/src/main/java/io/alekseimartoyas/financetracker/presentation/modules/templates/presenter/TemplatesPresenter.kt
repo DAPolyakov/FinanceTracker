@@ -22,7 +22,7 @@ class TemplatesPresenter(view: TemplatesView,
     override fun onStart() {
 
         adapter = TemplatesRvAdapter(onClick = {
-            router?.showAddTransaction(it)
+            router?.showAddTransaction(it.copy(id = null))
         }, onDelete = { it ->
             updateFinanceTransactionInteractor
                     .executeFlowable(Pair(it.copy(state = FinanceTransactionState.Canceled), BigDecimal(0))) {
@@ -30,11 +30,10 @@ class TemplatesPresenter(view: TemplatesView,
         })
 
         getTemplateTransactionsInteractor.executeFlowable {
-            view?.showTransactions(it)
+            view?.showTransactions(it.reversed())
         }
 
         view!!.setRvAdapter(adapter)
-
     }
 
 

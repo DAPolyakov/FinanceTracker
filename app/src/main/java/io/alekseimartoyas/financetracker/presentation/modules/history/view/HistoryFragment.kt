@@ -33,8 +33,8 @@ class HistoryFragment : BaseFragment<HistoryPresenter>(),
     }
 
     override fun showTransactions(data: List<FinanceTransaction>) {
-        empty_state.visibility = if (data.isEmpty()) View.VISIBLE else View.GONE
-        (transaction_rv.adapter as TransactionRVAdapter).setData(data.toTypedArray())
+        empty_state?.visibility = if (data.isEmpty()) View.VISIBLE else View.GONE
+        (transaction_rv?.adapter as? TransactionRVAdapter)?.setData(data.toTypedArray())
     }
 
     override fun onStart() {

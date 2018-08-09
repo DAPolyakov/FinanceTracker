@@ -137,7 +137,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/yandex_white"
         android:text="@string/cancel_button"
+        android:textColor="@color/yandex_black"
         android:textAllCaps="false"
         app:layout_constraintEnd_toStartOf="@id/add_transaction_bt"
         app:layout_constraintStart_toStartOf="@id/operation_type_spinner"
@@ -150,7 +152,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:text="@string/add_button"
+        android:backgroundTint="@color/yandex_blue"
         android:textAllCaps="false"
+        android:textColor="@color/yandex_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cancel_transaction_bt"
         app:layout_constraintTop_toTopOf="@id/cancel_transaction_bt" />
@@ -168,7 +172,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar_add_transaction_activity"
         tools:itemCount="4"
         tools:listitem="@layout/item_scheduled_transaction"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <View
         android:id="@+id/divider"

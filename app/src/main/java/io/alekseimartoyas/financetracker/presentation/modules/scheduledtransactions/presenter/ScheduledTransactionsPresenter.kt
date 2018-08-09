@@ -20,7 +20,7 @@ class ScheduledTransactionsPresenter(view: IScheduledTransactionsInput,
 
     override fun onStart() {
         getScheduledTransactionsInteractor.executeFlowable {
-            view?.showTransactions(it)
+            view?.showTransactions(it.reversed())
         }
 
         adapter?.onDelete { it ->
