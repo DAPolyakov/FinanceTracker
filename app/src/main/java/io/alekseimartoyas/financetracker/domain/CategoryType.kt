@@ -3,7 +3,14 @@ package io.alekseimartoyas.financetracker.domain
 import io.alekseimartoyas.financetracker.R
 
 enum class CategoryType(val strId: Int) {
-    Category1(R.string.salary),
-    Category2(R.string.shopping),
-    Category3(R.string.education)
+    Salary(R.string.salary),
+    Shopping(R.string.shopping),
+    Education(R.string.education)
+}
+
+enum class StatisticsCategoryType(val strId: Int) {
+    AllCategories(R.string.all_categories),
+    Salary(R.string.salary),
+    Shopping(R.string.shopping),
+    Education(R.string.education)
 }

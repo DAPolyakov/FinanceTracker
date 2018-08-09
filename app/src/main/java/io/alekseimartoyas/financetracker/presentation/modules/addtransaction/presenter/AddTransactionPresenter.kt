@@ -22,6 +22,11 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
                 IAddTransactionRouter>(view) {
 
     private var id: Long? = null
+    private var isTabletMode = false
+
+    fun setTabletMode(isTabletMode: Boolean) {
+        this.isTabletMode = isTabletMode
+    }
 
     override fun onStart() {
         getAccountsInteractor.executeFlowable {
@@ -29,8 +34,10 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
             view?.loadTransaction()
         }
 
-        getTemplateTransactionsInteractor.executeFlowable {
-            view?.showTemplates(it)
+        if (isTabletMode) {
+            getTemplateTransactionsInteractor.executeFlowable {
+                view?.showTemplates(it)
+            }
         }
     }
 

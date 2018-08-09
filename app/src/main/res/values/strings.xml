@@ -12,11 +12,13 @@
     <string name="nav_history">Operations history</string>
     <string name="nav_scheduled_transactions">Scheduled</string>
     <string name="nav_templates">Templates</string>
+    <string name="nav_statistics">Statistics</string>
 
     <string name="feedback">Feedback</string>
 
     <string name="add_button">Add</string>
     <string name="cancel_button">Cancel</string>
+    <string name="build_statistics">Build graph</string>
 
     <string name="add_transaction">Add transaction</string>
 
@@ -59,8 +61,18 @@
 
     <string name="enlistment">Enlistment</string>
     <string name="debit">Debit</string>
+    <string name="all_operation_type">All operation type</string>
+    <string name="all_categories">All categories</string>
+    <string name="all_accounts">All accounts</string>
+    <string name="none">None</string>
 
     <string-array name="operation_type">
+        <item>@string/enlistment</item>
+        <item>@string/debit</item>
+    </string-array>
+
+    <string-array name="statistic_operation_type">
+        <item>@string/all_operation_type</item>
         <item>@string/enlistment</item>
         <item>@string/debit</item>
     </string-array>
@@ -68,5 +80,9 @@
     <string name="appInfo" translatable="false">Finance tracking application</string>
     <string name="devBy" translatable="false">Developed by Aleksei Martoyas for Yandex Mobile Development School, 2018</string>
     <string name="course_dollar">Dollar exchange rate</string>
+    <string name="stat_period_start">Beginning of period</string>
+    <string name="stat_period_finish">End of the period</string>
+    <string name="filter_not_operations">There are no transactions for the selected filter</string>
+    <string name="not_transactions">There is no transaction for the selected account</string>
 
 </resources>

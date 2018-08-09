@@ -20,6 +20,10 @@
             android:id="@+id/nav_templates"
             android:icon="@drawable/ic_template_black"
             android:title="@string/nav_templates" />
+        <item
+            android:id="@+id/nav_statistics"
+            android:icon="@drawable/ic_template_black"
+            android:title="@string/nav_statistics" />
     </group>
 
     <group

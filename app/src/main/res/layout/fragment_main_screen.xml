@@ -113,7 +113,7 @@
         android:background="@color/yandex_white"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
-        android:text="Нет операций для этого счета"
+        android:text="@string/not_transactions"
         android:textColor="@color/yandex_red"
         android:textSize="12sp"
         android:textStyle="italic"

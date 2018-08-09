@@ -21,8 +21,9 @@ import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.p
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
 import io.alekseimartoyas.financetracker.presentation.modules.scheduledtransactions.view.ScheduledTransactionsFragment
 import io.alekseimartoyas.financetracker.presentation.modules.settings.view.SettingsActivity
+import io.alekseimartoyas.financetracker.presentation.modules.statistics.view.StatisticsFragment
 import io.alekseimartoyas.financetracker.presentation.modules.templates.view.TemplatesFragment
-import io.alekseimartoyas.financetracker.utils.isTabledMode
+import io.alekseimartoyas.financetracker.utils.isTabletMode
 import io.alekseimartoyas.tradetracker.Foundation.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -56,7 +57,7 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
             mainFragment = R.id.nav_main
             nav_view.setCheckedItem(R.id.nav_main)
             replaceMainFragment(MainScreenFragment())
-            if (isTabledMode()) {
+            if (isTabletMode()) {
 //                replaceMainFragment(AccountListFragment())
             }
         } else {
@@ -98,6 +99,10 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
                 }
                 R.id.nav_settings -> {
                     startActivity(Intent(this, SettingsActivity::class.java))
+                }
+                R.id.nav_statistics -> {
+                    mainFragment = R.id.nav_statistics
+                    replaceMainFragment(StatisticsFragment())
                 }
                 R.id.nav_scheduled_transactions -> {
                     mainFragment = R.id.nav_scheduled_transactions
