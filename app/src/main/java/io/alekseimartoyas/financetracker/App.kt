@@ -27,7 +27,7 @@ class App : Application() {
     }
 
     private fun initDb() {
-        db = Room.databaseBuilder(this, AppDatabase::class.java, "finance_tracker")
+            db = Room.databaseBuilder(this, AppDatabase::class.java, "finance_tracker")
                 .addCallback(object : RoomDatabase.Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         Executors.newSingleThreadExecutor().execute {
