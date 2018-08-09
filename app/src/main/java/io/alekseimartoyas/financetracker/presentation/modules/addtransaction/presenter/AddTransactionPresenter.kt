@@ -18,8 +18,7 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
                               val addFinanceTransactionInteractor: AddFinanceTransactionInteractor,
                               val getAccountsInteractor: GetAccountsInteractor,
                               val getTemplateTransactionsInteractor: GetTemplateTransactionsInteractor) :
-        BasePresenter<IAddTransactionActivityInput,
-                IAddTransactionRouter>(view) {
+        BasePresenter<IAddTransactionActivityInput, IAddTransactionRouter>(view) {
 
     private var id: Long? = null
     private var isTabletMode = false
@@ -98,7 +97,7 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
     }
 
     fun cancelTransaction(transaction: FinanceTransaction?) {
-        transaction?.let {
+        transaction?.let { it ->
             if (transaction.state == FinanceTransactionState.Template) {
                 view?.back()
             } else {
