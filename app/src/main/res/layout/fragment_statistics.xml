@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.modules.addtransaction.view.AddTransactionActivity">
+
+    <Spinner
+        android:id="@+id/operation_type_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:entries="@array/statistic_operation_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@id/spinner_account"
+        app:layout_constraintStart_toStartOf="@id/operation_type_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/operation_type_spinner" />
+
+    <Spinner
+        android:id="@+id/spinner_account"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/spinner_category"
+        app:layout_constraintTop_toTopOf="@id/spinner_category" />
+
+    <EditText
+        android:id="@+id/date_start"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="@string/stat_period_start"
+        android:inputType="date"
+        android:paddingStart="8dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/date_finish"
+        app:layout_constraintStart_toStartOf="@id/spinner_category"
+        app:layout_constraintTop_toBottomOf="@id/spinner_category" />
+
+    <EditText
+        android:id="@+id/date_finish"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="@string/stat_period_finish"
+        android:inputType="date"
+        android:paddingStart="8dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/spinner_account"
+        app:layout_constraintStart_toEndOf="@id/date_start"
+        app:layout_constraintTop_toTopOf="@id/date_start" />
+
+    <Button
+        android:id="@+id/build_statistics"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/build_statistics"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/operation_type_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/date_start" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/pie_chart_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/build_statistics"
+        app:layout_constraintStart_toStartOf="@id/build_statistics"
+        app:layout_constraintTop_toBottomOf="@id/build_statistics">
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pie_chart_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp" />
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/empty_pie_chart"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/yandex_white"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="@string/filter_not_operations"
+        android:textColor="@color/yandex_red"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/pie_chart_card"
+        app:layout_constraintEnd_toEndOf="@id/pie_chart_card"
+        app:layout_constraintStart_toStartOf="@id/pie_chart_card"
+        app:layout_constraintTop_toTopOf="@id/pie_chart_card" />
+
+</android.support.constraint.ConstraintLayout>

@@ -14,6 +14,10 @@
             android:id="@+id/nav_scheduled_transactions"
             android:icon="@drawable/ic_schedule"
             android:title="@string/nav_scheduled_transactions" />
+        <item
+            android:id="@+id/nav_statistics"
+            android:icon="@drawable/ic_template_black"
+            android:title="@string/nav_statistics" />
     </group>
 
 </menu>

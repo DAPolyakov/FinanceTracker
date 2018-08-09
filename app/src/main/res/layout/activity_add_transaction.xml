@@ -166,7 +166,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar_add_transaction_activity"
         tools:itemCount="4"
-        tools:listitem="@layout/item_scheduled_transaction" />
+        tools:listitem="@layout/item_scheduled_transaction"
+        tools:visibility="gone" />
 
     <View
         android:id="@+id/divider"

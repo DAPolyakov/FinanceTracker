@@ -89,10 +89,11 @@ class AddTransactionActivity : BaseActivity<AddTransactionPresenter>(),
         }
 
         initViews()
+        presenter!!.setTabletMode(isTabletMode())
     }
 
     private fun initViews() {
-        if (isTabledMode()) {
+        if (isTabletMode()) {
             ic_add_templates.visibility = View.GONE
             rvTemplates.visibility = View.VISIBLE
             divider.visibility = View.VISIBLE

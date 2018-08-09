@@ -12,11 +12,13 @@
     <string name="nav_history">История операций</string>
     <string name="nav_scheduled_transactions">Запланированные</string>
     <string name="nav_templates">Шаблоны</string>
+    <string name="nav_statistics">Статистика</string>
 
     <string name="feedback">Обратная связь</string>
 
     <string name="add_button">Добавить</string>
     <string name="cancel_button">Отменить</string>
+    <string name="build_statistics">Построить график</string>
 
     <string name="add_transaction">Добавить транзакцию</string>
 
@@ -43,9 +45,23 @@
 
     <string name="enlistment">Зачисление</string>
     <string name="debit">Расход</string>
+    <string name="none">Не выбрано</string>
+    <string name="all_operation_type">Все типы операций</string>
+    <string name="all_categories">Все категории</string>
+    <string name="all_accounts">Все счета</string>
     <string name="course_dollar">Курс доллара</string>
+    <string name="stat_period_start">Начало периода</string>
+    <string name="stat_period_finish">Конец периода</string>
+    <string name="filter_not_operations">Нет операций по выбранному фильтру</string>
+    <string name="not_transactions">Нет операций для этого счета</string>
 
     <string-array name="operation_type">
+        <item>@string/enlistment</item>
+        <item>@string/debit</item>
+    </string-array>
+
+    <string-array name="statistic_operation_type">
+        <item>@string/all_operation_type</item>
         <item>@string/enlistment</item>
         <item>@string/debit</item>
     </string-array>

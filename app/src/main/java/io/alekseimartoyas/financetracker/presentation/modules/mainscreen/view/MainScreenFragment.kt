@@ -17,7 +17,7 @@ import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.present
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.presenter.MainScreenPresenter
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.PieChartManager.PieChartView
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.SpinnerManager.AccountSpinnerArrayAdapter
-import io.alekseimartoyas.financetracker.utils.isTabledMode
+import io.alekseimartoyas.financetracker.utils.isTabletMode
 import io.alekseimartoyas.financetracker.utils.toTargetCurrency
 import io.alekseimartoyas.tradetracker.Foundation.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main_screen.*
@@ -47,10 +47,10 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
     }
 
     private fun initViews(context: Context) {
-        if (context.isTabledMode()) {
+        if (context.isTabletMode()) {
             spinner_account.visibility = View.GONE
             divider.visibility = View.VISIBLE
-            
+
             rvAccounts?.apply {
                 visibility = View.VISIBLE
                 layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, true)
@@ -94,7 +94,7 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
     }
 
     override fun showAccountsList(accounts: Array<Account>) {
-        if (context!!.isTabledMode()) {
+        if (context!!.isTabletMode()) {
             (rvAccounts.adapter as AccountRvAdapter).setData(accounts)
             presenter!!.changeCurrentAccount(accounts[0])
         } else {
