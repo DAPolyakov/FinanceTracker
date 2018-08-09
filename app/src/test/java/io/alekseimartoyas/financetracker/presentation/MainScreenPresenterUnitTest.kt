@@ -24,7 +24,6 @@ import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.Ma
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
 import io.reactivex.Flowable
 import io.reactivex.Observable
-import io.reactivex.schedulers.TestScheduler
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -92,8 +91,6 @@ class MainScreenPresenterUnitTest : BaseUnitTest() {
             EUR = Information(33.1, "EUR"),
             GBP = Information(23.1, "GBR")
     ))
-
-    private val testScheduler = TestScheduler()
 
     @Before
     override fun onInit() {
@@ -176,4 +173,21 @@ class MainScreenPresenterUnitTest : BaseUnitTest() {
         Mockito.verify(view).changePieChartData(any())
     }
 
+    @Test
+    fun getParameters() {
+        presenter.getAccounts
+        presenter.getExchRateInteractor
+        presenter.getNewTransactionsFromScheduledInteractor
+        presenter.getTransactionsByAccountIdInteractor
+    }
+
+    @Test
+    fun onStop() {
+        presenter.onStop()
+    }
+
+    @Test
+    fun destructor() {
+        presenter.destructor()
+    }
 }

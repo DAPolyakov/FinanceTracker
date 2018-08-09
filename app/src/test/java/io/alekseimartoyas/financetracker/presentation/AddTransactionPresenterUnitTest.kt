@@ -79,8 +79,6 @@ class AddTransactionPresenterUnitTest : BaseUnitTest() {
             GBP = Information(23.1, "GBR")
     ))
 
-    private val testScheduler = TestScheduler()
-
     @Before
     override fun onInit() {
         super.onInit()

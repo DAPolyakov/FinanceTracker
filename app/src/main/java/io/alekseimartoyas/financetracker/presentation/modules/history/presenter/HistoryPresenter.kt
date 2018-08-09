@@ -9,8 +9,7 @@ class HistoryPresenter(view: IHistoryFragmentInput,
                        val getDoneTransactionsInteractor: GetDoneTransactionsInteractor,
                        router: IMainActivityRouterInput,
                        var adapter: ITransactionRVInput? = null) :
-        BasePresenter<IHistoryFragmentInput,
-                IMainActivityRouterInput>(view, router) {
+        BasePresenter<IHistoryFragmentInput, IMainActivityRouterInput>(view, router) {
 
     fun getAdapter(): TransactionRVAdapter = adapter!! as TransactionRVAdapter
 
