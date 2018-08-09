@@ -23,7 +23,6 @@ import io.alekseimartoyas.financetracker.presentation.modules.scheduledtransacti
 import io.alekseimartoyas.financetracker.presentation.modules.settings.view.SettingsActivity
 import io.alekseimartoyas.financetracker.presentation.modules.statistics.view.StatisticsFragment
 import io.alekseimartoyas.financetracker.presentation.modules.templates.view.TemplatesFragment
-import io.alekseimartoyas.financetracker.utils.isTabletMode
 import io.alekseimartoyas.tradetracker.Foundation.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -57,9 +56,6 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
             mainFragment = R.id.nav_main
             nav_view.setCheckedItem(R.id.nav_main)
             replaceMainFragment(MainScreenFragment())
-            if (isTabletMode()) {
-//                replaceMainFragment(AccountListFragment())
-            }
         } else {
             mainFragment = savedInstanceState.getInt(keyCurrentFragment)
         }
@@ -116,7 +112,6 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
     }
 
     private fun replaceMainFragment(fragment: Fragment) {
-
         supportActionBar?.setTitle(when (fragment) {
             is MainScreenFragment -> R.string.nav_main
             is HistoryFragment -> R.string.nav_history

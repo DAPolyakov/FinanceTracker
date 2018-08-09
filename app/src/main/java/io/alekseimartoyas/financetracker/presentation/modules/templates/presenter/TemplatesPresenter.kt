@@ -30,7 +30,7 @@ class TemplatesPresenter(view: TemplatesView,
         })
 
         getTemplateTransactionsInteractor.executeFlowable {
-            adapter.setData(it.toTypedArray())
+            view?.showTransactions(it)
         }
 
         view!!.setRvAdapter(adapter)

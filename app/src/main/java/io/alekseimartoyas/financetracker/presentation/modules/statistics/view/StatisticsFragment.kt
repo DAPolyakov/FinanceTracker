@@ -31,7 +31,7 @@ class StatisticsFragment : BaseFragment<StatisticsPresenter>(),
 
     var myCalendar = Calendar.getInstance()
 
-    var date: DatePickerDialog.OnDateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+    var date: DatePickerDialog.OnDateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
         myCalendar.set(Calendar.YEAR, year)
         myCalendar.set(Calendar.MONTH, monthOfYear)
         myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)

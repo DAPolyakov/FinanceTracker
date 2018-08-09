@@ -55,6 +55,10 @@
     <string name="filter_not_operations">Нет операций по выбранному фильтру</string>
     <string name="not_transactions">Нет операций для этого счета</string>
 
+    <string name="history_not_operations">Нет финансовых операций</string>
+    <string name="templates_not_operations">Нет шаблонных операций</string>
+    <string name="scheduled_not_operations">Нет запланированных операций</string>
+
     <string-array name="operation_type">
         <item>@string/enlistment</item>
         <item>@string/debit</item>

@@ -16,7 +16,7 @@ class HistoryPresenter(view: IHistoryFragmentInput,
 
     override fun onStart() {
         getDoneTransactionsInteractor.executeFlowable {
-            adapter?.setData(it.toTypedArray())
+            view?.showTransactions(it)
         }
     }
 

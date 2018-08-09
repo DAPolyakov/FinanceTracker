@@ -20,11 +20,12 @@ class ScheduledTransactionsPresenter(view: IScheduledTransactionsInput,
 
     override fun onStart() {
         getScheduledTransactionsInteractor.executeFlowable {
-            adapter?.setData(it.toTypedArray())
+            view?.showTransactions(it)
         }
 
-        adapter?.onDelete {
-            updateFinanceTransactionInteractor.executeFlowable(Pair(it.copy(state = FinanceTransactionState.Canceled), BigDecimal(0))) {}
+        adapter?.onDelete { it ->
+            updateFinanceTransactionInteractor.executeFlowable(
+                    Pair(it.copy(state = FinanceTransactionState.Canceled), BigDecimal(0))) {}
         }
     }
 

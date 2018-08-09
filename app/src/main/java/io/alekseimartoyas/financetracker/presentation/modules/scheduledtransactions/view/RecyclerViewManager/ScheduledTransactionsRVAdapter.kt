@@ -1,5 +1,6 @@
 package io.alekseimartoyas.financetracker.presentation.modules.scheduledtransactions.view.RecyclerViewManager
 
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -7,21 +8,24 @@ import android.view.ViewGroup
 import android.widget.TextView
 import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
+import io.alekseimartoyas.financetracker.domain.OperationType
 import io.alekseimartoyas.financetracker.presentation.modules.scheduledtransactions.presenter.IScheduledTransactionsRVInput
+import java.text.DecimalFormat
 
 
 class ScheduledTransactionsRVAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
         IScheduledTransactionsRVInput {
 
-    private var transactionList: Array<FinanceTransaction> = arrayOf()
+    private var transactions: Array<FinanceTransaction> = arrayOf()
     private var onDelete: (FinanceTransaction) -> Unit = {}
+    private val decimalFormat = DecimalFormat("0.00")
 
     override fun onDelete(onDelete: (FinanceTransaction) -> Unit) {
         this.onDelete = onDelete
     }
 
     override fun setData(transactions: Array<FinanceTransaction>) {
-        transactionList = transactions
+        this.transactions = transactions
         notifyDataSetChanged()
     }
 
@@ -34,28 +38,44 @@ class ScheduledTransactionsRVAdapter : RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     override fun getItemCount(): Int {
-        return transactionList.size
+        return transactions.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is ViewHolder) {
-            holder.categoryText.text = transactionList[position].category.toString()
-            holder.currencyText.text = transactionList[position].currency.toString()
-            holder.operationTypeText.text = transactionList[position].operationType.toString()
-            holder.quantityCurrencyText.text = transactionList[position].quantity.toString()
-            holder.data.text = transactionList[position].date
-            holder.icDelete.setOnClickListener {
-                onDelete(transactionList[position])
+        (holder as ViewHolder).apply {
+            val item = transactions[position]
+
+            category.setText(item.category.strId)
+            date.text = item.date
+
+            var amount = decimalFormat.format(item.quantity) + " " + itemView.context.getString(item.currency.strId)
+
+            when (item.operationType) {
+                OperationType.ENLISTMENT -> {
+                    amount = "+ $amount"
+                    this.amount.setTextColor(ContextCompat.getColor(itemView.context, R.color.yandex_blue))
+                }
+                OperationType.DEBIT -> {
+                    amount = "- $amount"
+                    this.amount.setTextColor(ContextCompat.getColor(itemView.context, R.color.yandex_red))
+                }
             }
+
+            this.amount.text = amount
         }
+
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val categoryText = view.findViewById<TextView>(R.id.category_text)!!
-        val operationTypeText = view.findViewById<TextView>(R.id.operation_type_text)!!
-        val quantityCurrencyText = view.findViewById<TextView>(R.id.currency_quantity_text)!!
-        val currencyText = view.findViewById<TextView>(R.id.currency_text)!!
-        val data: TextView = view.findViewById<TextView>(R.id.date_tv)
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val category = view.findViewById<TextView>(R.id.category)!!
+        val date = view.findViewById<TextView>(R.id.date)
+        val amount = view.findViewById<TextView>(R.id.amount)!!
         val icDelete = view.findViewById<View>(R.id.ic_delete)
+
+        init {
+            icDelete.setOnClickListener {
+                onDelete(transactions[adapterPosition])
+            }
+        }
     }
 }

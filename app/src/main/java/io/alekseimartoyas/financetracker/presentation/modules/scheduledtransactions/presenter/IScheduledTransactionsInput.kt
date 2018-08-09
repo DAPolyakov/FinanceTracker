@@ -3,4 +3,6 @@ package io.alekseimartoyas.financetracker.presentation.modules.scheduledtransact
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 
 
-interface IScheduledTransactionsInput {}
+interface IScheduledTransactionsInput {
+    fun showTransactions(data: List<FinanceTransaction>)
+}

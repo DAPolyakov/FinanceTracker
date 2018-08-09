@@ -3,6 +3,7 @@ package io.alekseimartoyas.financetracker.presentation.modules.settings.view
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
+import android.view.View
 import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.presentation.modules.aboutapp.view.AboutAppActivity
 import io.alekseimartoyas.financetracker.presentation.modules.settings.configurator.SettingsConfigurator
@@ -10,6 +11,7 @@ import io.alekseimartoyas.financetracker.presentation.modules.settings.presenter
 import io.alekseimartoyas.financetracker.presentation.modules.settings.presenter.SettingsPresenter
 import io.alekseimartoyas.tradetracker.Foundation.BaseActivity
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class SettingsActivity :
         BaseActivity<SettingsPresenter>(),
@@ -21,6 +23,7 @@ class SettingsActivity :
 
         setTb()
         SettingsConfigurator().buildModule(this)
+        ic_add_templates.visibility = View.GONE
     }
 
     private fun setTb() {

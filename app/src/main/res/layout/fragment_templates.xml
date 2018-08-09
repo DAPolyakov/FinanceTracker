@@ -24,7 +24,7 @@
         android:background="@color/yandex_white"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
-        android:text="@string/scheduled_not_operations"
+        android:text="@string/templates_not_operations"
         android:textColor="@color/yandex_orange"
         android:textSize="12sp"
         android:textStyle="italic"

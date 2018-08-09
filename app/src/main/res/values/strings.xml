@@ -83,6 +83,9 @@
     <string name="stat_period_start">Beginning of period</string>
     <string name="stat_period_finish">End of the period</string>
     <string name="filter_not_operations">There are no transactions for the selected filter</string>
+    <string name="history_not_operations">No transactions</string>
+    <string name="templates_not_operations">No template transactions</string>
+    <string name="scheduled_not_operations">No scheduled transactions</string>
     <string name="not_transactions">There is no transaction for the selected account</string>
 
 </resources>
