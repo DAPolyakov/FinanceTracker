@@ -11,11 +11,10 @@ import java.math.BigDecimal
 
 
 class TemplatesPresenter(view: TemplatesView,
-                         val getTemplateTransactionsInteractor: GetTemplateTransactionsInteractor,
-                         val updateFinanceTransactionInteractor: UpdateFinanceTransactionInteractor,
-                         router: IMainActivityRouterInput) :
-        BasePresenter<TemplatesView,
-                IMainActivityRouterInput>(view, router) {
+                         private val getTemplateTransactionsInteractor: GetTemplateTransactionsInteractor,
+                         private val updateFinanceTransactionInteractor: UpdateFinanceTransactionInteractor,
+                         router: IMainActivityRouterInput)
+    : BasePresenter<TemplatesView, IMainActivityRouterInput>(view, router) {
 
     lateinit var adapter: TemplatesRvAdapter
 
