@@ -8,20 +8,21 @@ import io.alekseimartoyas.financetracker.domain.interactors.GetNewTransactionsFr
 import io.alekseimartoyas.financetracker.domain.interactors.GetTransactionsByAccountIdInteractor
 import io.alekseimartoyas.financetracker.presentation.foundation.BasePresenter
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
+import java.text.DecimalFormat
 
 class MainScreenPresenter(view: IMainScreenFragmentInput,
                           var getAccounts: GetAccountsInteractor,
                           val getExchRateInteractor: GetExchRateInteractor,
                           val getNewTransactionsFromScheduledInteractor: GetNewTransactionsFromScheduledInteractor,
                           val getTransactionsByAccountIdInteractor: GetTransactionsByAccountIdInteractor,
-                          router: IMainActivityRouterInput,
-                          var pieChart: IPieChartViewInput? = null) :
+                          router: IMainActivityRouterInput) :
         BasePresenter<IMainScreenFragmentInput,
                 IMainActivityRouterInput>(view, router) {
 
     private var course: Double = 1.0
 
     override fun onStart() {
+
         getAccounts.executeFlowable {
             view?.showAccountsList(it.toTypedArray())
             if (it.isNotEmpty()) {
@@ -34,16 +35,14 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
             course = response.Valute.USD.Value
 
             view?.setExchRate(when (Currency.USD) {
-                Currency.USD -> "%.2f".format(course)
+                Currency.USD -> DecimalFormat("0.00").format(course)
                 else -> ""
             })
-
-            getAccounts.executeFlowable {
-                if (it.isNotEmpty()) {
-                    view?.showBalance(response.Valute.USD.Value, it[0])
-                }
-            }
         }
+    }
+
+    fun showAddTransaction() {
+        router?.showAddTransaction()
     }
 
     fun checkScheduledTransactions() {
@@ -56,7 +55,7 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
 
     private fun changePieChart(account: Account) {
         getTransactionsByAccountIdInteractor.executeFlowable(account.id) {
-            pieChart?.changeData(it.toList())
+            view?.changePieChartData(it)
         }
     }
 
@@ -66,25 +65,11 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
         changePieChart(account)
     }
 
-    fun showAddAccount() {
-        router?.showAddAccount()
-    }
-
-    fun getAccountsId(): Array<Int> {
-        return arrayOf()
-    }
-
-    fun getAccountData(accountId: Int) {
-
-    }
-
     override fun onStop() {
-        pieChart?.destructor()
     }
 
     override fun destructor() {
         super.destructor()
         view = null
-        pieChart?.destructor()
     }
 }

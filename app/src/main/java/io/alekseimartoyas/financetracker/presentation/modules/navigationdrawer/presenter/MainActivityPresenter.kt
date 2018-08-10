@@ -3,9 +3,7 @@ package io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.
 import io.alekseimartoyas.financetracker.presentation.foundation.BasePresenter
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
 
-class MainActivityPresenter(
-        view: IMainActivityInput,
-        router: IMainActivityRouterInput?) :
+class MainActivityPresenter :
         BasePresenter<IMainActivityInput,
                 IMainActivityRouterInput>() {
 

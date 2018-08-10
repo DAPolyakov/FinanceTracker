@@ -9,24 +9,22 @@ import io.alekseimartoyas.financetracker.presentation.modules.scheduledtransacti
 import java.math.BigDecimal
 
 class ScheduledTransactionsPresenter(view: IScheduledTransactionsInput,
-                                     val getScheduledTransactionsInteractor: GetScheduledTransactionsInteractor,
-                                     val updateFinanceTransactionInteractor: UpdateFinanceTransactionInteractor,
+                                     private val getScheduledTransactionsInteractor: GetScheduledTransactionsInteractor,
+                                     private val updateFinanceTransactionInteractor: UpdateFinanceTransactionInteractor,
                                      router: IMainActivityRouterInput,
-                                     var adapter: IScheduledTransactionsRVInput? = null) :
-        BasePresenter<IScheduledTransactionsInput,
-                IMainActivityRouterInput>(view, router) {
+                                     private var adapter: IScheduledTransactionsRVInput? = null) :
+        BasePresenter<IScheduledTransactionsInput, IMainActivityRouterInput>(view, router) {
 
     fun getAdapter(): ScheduledTransactionsRVAdapter = adapter!! as ScheduledTransactionsRVAdapter
 
     override fun onStart() {
         getScheduledTransactionsInteractor.executeFlowable {
-            adapter?.setData(it.toTypedArray())
+            view?.showTransactions(it.reversed())
         }
 
-        adapter?.onDelete {
-            updateFinanceTransactionInteractor.executeFlowable(Pair(it.copy(state = FinanceTransactionState.Canceled), BigDecimal(0))) {
-                
-            }
+        adapter?.onDelete { it ->
+            updateFinanceTransactionInteractor.executeFlowable(
+                    Pair(it.copy(state = FinanceTransactionState.Canceled), BigDecimal(0))) {}
         }
     }
 

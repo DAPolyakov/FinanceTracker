@@ -27,13 +27,13 @@ class App : Application() {
     }
 
     private fun initDb() {
-        db = Room.databaseBuilder(this, AppDatabase::class.java, "finance_tracker")
+            db = Room.databaseBuilder(this, AppDatabase::class.java, "finance_tracker")
                 .addCallback(object : RoomDatabase.Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         Executors.newSingleThreadExecutor().execute {
-                            App.db.accountDao.insert(Account(R.string.alex, Currency.RUB, BigDecimal(100)))
-                            App.db.accountDao.insert(Account(R.string.maria, Currency.RUB, BigDecimal(200)))
-                            App.db.accountDao.insert(Account(R.string.petr, Currency.RUB, BigDecimal(300)))
+                            App.db.accountDao.insert(Account("Наличные", Currency.RUB, BigDecimal(300)))
+                            App.db.accountDao.insert(Account("На карте", Currency.RUB, BigDecimal(50000)))
+                            App.db.accountDao.insert(Account("В банке", Currency.USD, BigDecimal(100000)))
                         }
                     }
                 })

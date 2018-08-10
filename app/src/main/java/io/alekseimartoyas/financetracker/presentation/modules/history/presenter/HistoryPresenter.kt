@@ -9,18 +9,13 @@ class HistoryPresenter(view: IHistoryFragmentInput,
                        val getDoneTransactionsInteractor: GetDoneTransactionsInteractor,
                        router: IMainActivityRouterInput,
                        var adapter: ITransactionRVInput? = null) :
-        BasePresenter<IHistoryFragmentInput,
-                IMainActivityRouterInput>(view, router) {
-
-    fun showAddTransaction() {
-        router?.showAddTransaction()
-    }
+        BasePresenter<IHistoryFragmentInput, IMainActivityRouterInput>(view, router) {
 
     fun getAdapter(): TransactionRVAdapter = adapter!! as TransactionRVAdapter
 
     override fun onStart() {
         getDoneTransactionsInteractor.executeFlowable {
-            adapter?.setData(it.toTypedArray())
+            view?.showTransactions(it.reversed())
         }
     }
 

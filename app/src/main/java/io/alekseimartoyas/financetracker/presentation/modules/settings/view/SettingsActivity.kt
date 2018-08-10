@@ -11,6 +11,7 @@ import io.alekseimartoyas.financetracker.presentation.modules.settings.presenter
 import io.alekseimartoyas.financetracker.presentation.modules.settings.presenter.SettingsPresenter
 import io.alekseimartoyas.tradetracker.Foundation.BaseActivity
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class SettingsActivity :
         BaseActivity<SettingsPresenter>(),
@@ -22,6 +23,7 @@ class SettingsActivity :
 
         setTb()
         SettingsConfigurator().buildModule(this)
+        ic_add_templates.visibility = View.GONE
     }
 
     private fun setTb() {
@@ -31,12 +33,11 @@ class SettingsActivity :
         title = resources.getString(R.string.nav_settings)
     }
 
-    fun onClickAboutApp(view: View) {
-//        presenter?.showAboutApp(this)
+    fun onClickAboutApp() {
         startActivity(Intent(this, AboutAppActivity::class.java))  // to router
     }
 
-    fun onClickFeedback(view: View) {
+    fun onClickFeedback() {
         val emailIntent = Intent(Intent.ACTION_SEND)
         emailIntent.type = "text/plain"
         emailIntent.putExtra(Intent.EXTRA_EMAIL, "someAddress@gmail.com")

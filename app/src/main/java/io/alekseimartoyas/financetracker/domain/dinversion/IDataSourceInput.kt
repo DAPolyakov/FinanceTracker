@@ -11,8 +11,8 @@ interface IDataSourceInput {
 
     fun getTransactions(): Flowable<List<FinanceTransaction>>
     fun getDoneTransactions(): Flowable<List<FinanceTransaction>>
-
     fun getScheduledTransactions(): Flowable<List<FinanceTransaction>>
+    fun getTemplateTransactions(): Flowable<List<FinanceTransaction>>
 
     fun getTransactionsByAccountId(accountId: Long): Flowable<List<FinanceTransaction>>
 

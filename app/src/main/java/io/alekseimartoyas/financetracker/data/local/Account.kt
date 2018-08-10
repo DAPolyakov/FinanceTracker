@@ -12,7 +12,7 @@ import java.math.BigDecimal
 @Entity
 @TypeConverters(BigDecimalConverter::class, CurrencyConverter::class)
 data class Account(
-        val title: Int,
+        val title: String,
         val currency: Currency,
         val amount: BigDecimal,
         @PrimaryKey(autoGenerate = true) val id: Long? = null

@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import io.alekseimartoyas.financetracker.R
+import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.presentation.modules.history.configurator.HistoryConfigurator
 import io.alekseimartoyas.financetracker.presentation.modules.history.presenter.HistoryPresenter
 import io.alekseimartoyas.financetracker.presentation.modules.history.presenter.IHistoryFragmentInput
+import io.alekseimartoyas.financetracker.presentation.modules.history.view.RecyclerViewManager.TransactionRVAdapter
 import io.alekseimartoyas.tradetracker.Foundation.BaseFragment
 import kotlinx.android.synthetic.main.fragment_history.*
 
@@ -30,12 +32,9 @@ class HistoryFragment : BaseFragment<HistoryPresenter>(),
         transaction_rv.adapter = presenter!!.getAdapter()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        add_transaction_fab.setOnClickListener {
-            presenter?.showAddTransaction()
-        }
+    override fun showTransactions(data: List<FinanceTransaction>) {
+        empty_state?.visibility = if (data.isEmpty()) View.VISIBLE else View.GONE
+        (transaction_rv?.adapter as? TransactionRVAdapter)?.setData(data.toTypedArray())
     }
 
     override fun onStart() {

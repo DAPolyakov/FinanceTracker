@@ -5,9 +5,9 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -16,7 +16,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -28,7 +28,7 @@
             android:parentActivityName=".presentation.modules.settings.view.SettingsActivity" />
         <activity
             android:name=".presentation.modules.addtransaction.view.AddTransactionActivity"
-            android:parentActivityName=".presentation.modules.navigationdrawer.view.MainActivity"/>
+            android:parentActivityName=".presentation.modules.navigationdrawer.view.MainActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/yandex_white"
     tools:context=".presentation.modules.settings.view.SettingsActivity">
 
     <include
@@ -21,7 +22,6 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:padding="8dp"
-        android:onClick="onClickAboutApp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_settings_activity" />
@@ -49,7 +49,6 @@
         android:text="@string/feedback"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:onClick="onClickFeedback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />

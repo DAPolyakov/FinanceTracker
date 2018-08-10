@@ -1,5 +1,6 @@
 package io.alekseimartoyas.financetracker.data.local
 
+import android.annotation.SuppressLint
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import android.arch.persistence.room.TypeConverters
@@ -15,6 +16,7 @@ import io.alekseimartoyas.financetracker.domain.OperationType
 import kotlinx.android.parcel.Parcelize
 
 
+@SuppressLint("ParcelCreator")
 @Parcelize
 @Entity
 @TypeConverters(

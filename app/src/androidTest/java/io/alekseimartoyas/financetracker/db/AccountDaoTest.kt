@@ -7,6 +7,7 @@ import io.alekseimartoyas.financetracker.data.local.Account
 import io.alekseimartoyas.financetracker.data.local.AccountDao
 import io.alekseimartoyas.financetracker.data.local.AppDatabase
 import io.alekseimartoyas.financetracker.domain.Currency
+import io.reactivex.schedulers.Schedulers
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -18,7 +19,7 @@ import java.util.concurrent.TimeUnit
 class AccountDaoTest {
 
     private val mockAccount = Account(
-            123456,
+            "Кошелек",
             Currency.RUB,
             BigDecimal(1000)
     )

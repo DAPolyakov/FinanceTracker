@@ -3,15 +3,21 @@ package io.alekseimartoyas.financetracker.domain.interactors
 import io.alekseimartoyas.financetracker.data.local.Account
 import io.alekseimartoyas.financetracker.domain.dinversion.IDataSourceInput
 import io.reactivex.Flowable
+import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class GetAccountsInteractor(private val dataSource: IDataSourceInput) : BaseInteractor<List<Account>, Unit>(
-        Schedulers.io(),
-        AndroidSchedulers.mainThread()) {
+class GetAccountsInteractor(private val dataSource: IDataSourceInput,
+                            job: Scheduler = Schedulers.io(),
+                            ui: Scheduler = AndroidSchedulers.mainThread())
+    : BaseInteractor<List<Account>, Unit>(job, ui) {
 
-    override fun buildFlowable(parametr: Unit?): Flowable<List<Account>>? {
+    override fun buildFlowable(args: Unit?): Flowable<List<Account>>? {
+        return dataSource.getAccounts()
+    }
+
+    fun getTest(): Flowable<List<Account>>{
         return dataSource.getAccounts()
     }
 }

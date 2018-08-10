@@ -8,13 +8,11 @@ import android.support.test.espresso.intent.Intents
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
+import android.util.Log
 import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.view.MainActivity
 import org.hamcrest.CoreMatchers
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 
 
@@ -41,12 +39,12 @@ open class SwitchAccountTest {
     @Throws(Exception::class)
     fun switchAccountUiTest() {
 
-        Espresso.onView(ViewMatchers.withId(R.id.main_quant_text)).check(ViewAssertions.matches(ViewMatchers.withText("877.0")))
+        Espresso.onView(ViewMatchers.withId(R.id.main_quant_text)).check(ViewAssertions.matches(ViewMatchers.withText("1077,00")))
         Espresso.onView(ViewMatchers.withId(R.id.spinner_account)).perform(ViewActions.click())
         Espresso.onView(CoreMatchers
-                .allOf(ViewMatchers.withId(android.R.id.text1), ViewMatchers.withText(InstrumentationRegistry.getTargetContext().getString(R.string.maria))))
+                .allOf(ViewMatchers.withId(android.R.id.text1), ViewMatchers.withText("На карте")))
                 .perform(ViewActions.click());
-        Espresso.onView(ViewMatchers.withId(R.id.main_quant_text)).check(ViewAssertions.matches(ViewMatchers.withText("200")))
+        Espresso.onView(ViewMatchers.withId(R.id.main_quant_text)).check(ViewAssertions.matches(ViewMatchers.withText("50000,00")))
     }
 
 }

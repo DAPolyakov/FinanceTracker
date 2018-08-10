@@ -24,7 +24,7 @@ class FinanceTransactionDaoTest {
             OperationType.DEBIT,
             100f,
             Currency.RUB,
-            CategoryType.Category1,
+            CategoryType.Salary,
             "01.10.2010",
             1,
             12341254,
