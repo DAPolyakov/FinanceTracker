@@ -6,6 +6,5 @@ import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 interface IMainActivityRouterInput {
     fun showSettings()
     fun showAddTransaction(financeTransaction: FinanceTransaction? = null)
-    fun showAddAccount()
     fun returnFromAddAccount()
 }

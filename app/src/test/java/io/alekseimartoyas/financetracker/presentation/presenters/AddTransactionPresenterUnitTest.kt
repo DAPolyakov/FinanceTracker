@@ -1,4 +1,4 @@
-package io.alekseimartoyas.financetracker.presentation
+package io.alekseimartoyas.financetracker.presentation.presenters
 
 import io.alekseimartoyas.financetracker.base.BaseUnitTest
 import io.alekseimartoyas.financetracker.base.any
@@ -18,7 +18,6 @@ import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.pre
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.view.AddTransactionActivity
 import io.reactivex.Flowable
 import io.reactivex.Observable
-import io.reactivex.schedulers.TestScheduler
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock

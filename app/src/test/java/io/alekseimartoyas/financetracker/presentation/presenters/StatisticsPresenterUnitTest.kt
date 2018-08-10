@@ -1,4 +1,4 @@
-package io.alekseimartoyas.financetracker.presentation
+package io.alekseimartoyas.financetracker.presentation.presenters
 
 import android.content.res.Resources
 import io.alekseimartoyas.financetracker.R

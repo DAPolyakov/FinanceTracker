@@ -12,7 +12,6 @@ import android.view.MenuItem
 import android.view.View
 import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
-import io.alekseimartoyas.financetracker.presentation.modules.addaccount.view.AddAccountFragment
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.view.AddTransactionActivity
 import io.alekseimartoyas.financetracker.presentation.modules.history.view.HistoryFragment
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.MainScreenFragment
@@ -165,14 +164,6 @@ class MainActivity : BaseActivity<MainActivityPresenter>(),
                 replaceMainFragment(TemplatesFragment())
             }
         }
-    }
-
-    override fun showAddAccount() {
-        supportFragmentManager  //вынести
-                .beginTransaction()
-                .replace(R.id.main_frame, AddAccountFragment(), "visible_fragment")
-                .addToBackStack(null)
-                .commit()
     }
 
     override fun returnFromAddAccount() {

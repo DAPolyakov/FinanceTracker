@@ -1,4 +1,4 @@
-package io.alekseimartoyas.financetracker.presentation
+package io.alekseimartoyas.financetracker.presentation.presenters
 
 import io.alekseimartoyas.financetracker.base.BaseUnitTest
 import io.alekseimartoyas.financetracker.base.any
