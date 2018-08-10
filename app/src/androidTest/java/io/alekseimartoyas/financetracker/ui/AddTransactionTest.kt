@@ -1,5 +1,6 @@
 package io.alekseimartoyas.financetracker.ui
 
+import android.content.Context
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.*
@@ -11,8 +12,10 @@ import android.support.test.espresso.intent.Intents
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
+import android.util.Log
 import android.view.Gravity
 import io.alekseimartoyas.financetracker.R
+import io.alekseimartoyas.financetracker.domain.Currency
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.view.MainActivity
 import org.hamcrest.CoreMatchers.allOf
 import org.junit.*
@@ -34,10 +37,13 @@ open class AddTransactionTest {
     @JvmField
     val mainActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
 
+    private lateinit var context: Context
+
     @Before
     @Throws(Exception::class)
     fun intentInit() {
         Intents.init()
+        context = InstrumentationRegistry.getTargetContext()
     }
 
     @After
@@ -50,7 +56,15 @@ open class AddTransactionTest {
     @Throws(Exception::class)
     fun addTransactionUiTest() {
 
-        onView(withId(R.id.main_quant_text)).check(matches(withText("300")))
+        onView(withId(R.id.main_quant_text)).check(matches(withText("300,00")))
+
+        onView(withId(R.id.add_transaction_fab)).perform(click())
+
+        onView(withId(R.id.quantity_edit)).perform(typeText("777"), closeSoftKeyboard())
+
+        onView(withId(R.id.add_transaction_bt)).perform(click())
+
+        onView(withId(R.id.main_quant_text)).check(matches(withText("1077,00")))
 
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT)))
@@ -61,24 +75,10 @@ open class AddTransactionTest {
         onView(withId(R.id.drawer_layout))
                 .perform(DrawerActions.close())
 
-        onView(withId(R.id.add_transaction_fab)).perform(click())
-
-        onView(withId(R.id.quantity_edit)).perform(typeText("777"), closeSoftKeyboard())
-        onView(withId(R.id.add_transaction_bt)).perform(click())
 
         onView(allOf(withId(R.id.transaction_rv), isDisplayed()))
-        onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText("ENLISTMENT"))))
         onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText(InstrumentationRegistry.getTargetContext().getString(R.string.salary)))))
-        onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText("777.0"))))
-
-        onView(withId(R.id.drawer_layout))
-                .check(matches(isClosed(Gravity.LEFT)))
-                .perform(DrawerActions.open())
-
-        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_main))
-        onView(withId(R.id.drawer_layout)).perform(DrawerActions.close())
-
-        onView(withId(R.id.main_quant_text)).check(matches(withText("1077.0")))
+        onView(withId(R.id.transaction_rv)).check(matches(hasDescendant(withText("+ 777,00 ${context.getString(Currency.RUB.strId)}"))))
     }
 
 }

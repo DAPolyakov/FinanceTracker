@@ -6,7 +6,7 @@ import io.alekseimartoyas.financetracker.domain.FinanceTransactionState
 import io.alekseimartoyas.financetracker.domain.OperationType
 import io.alekseimartoyas.financetracker.domain.interactors.*
 import io.alekseimartoyas.financetracker.presentation.foundation.BasePresenter
-import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.router.IAddTransactionRouter
+import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
 import io.alekseimartoyas.financetracker.utils.toTargetCurrency
 import java.math.BigDecimal
 import java.text.SimpleDateFormat
@@ -18,8 +18,7 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
                               val addFinanceTransactionInteractor: AddFinanceTransactionInteractor,
                               val getAccountsInteractor: GetAccountsInteractor,
                               val getTemplateTransactionsInteractor: GetTemplateTransactionsInteractor) :
-        BasePresenter<IAddTransactionActivityInput,
-                IAddTransactionRouter>(view) {
+        BasePresenter<IAddTransactionActivityInput, IMainActivityRouterInput>(view) {
 
     private var id: Long? = null
     private var isTabletMode = false
@@ -98,7 +97,7 @@ class AddTransactionPresenter(view: IAddTransactionActivityInput,
     }
 
     fun cancelTransaction(transaction: FinanceTransaction?) {
-        transaction?.let {
+        transaction?.let { it ->
             if (transaction.state == FinanceTransactionState.Template) {
                 view?.back()
             } else {

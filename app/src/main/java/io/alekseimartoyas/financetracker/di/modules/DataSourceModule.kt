@@ -2,6 +2,7 @@ package io.alekseimartoyas.financetracker.di.modules
 
 import dagger.Module
 import dagger.Provides
+import io.alekseimartoyas.financetracker.App
 import io.alekseimartoyas.financetracker.data.services.DataSource
 import javax.inject.Singleton
 
@@ -11,7 +12,7 @@ object DataSourceModule {
     @JvmStatic
     @Singleton
     @Provides
-    fun dataSource(): DataSource = DataSource()
+    fun dataSource(): DataSource = DataSource(App.db)
 
 
 //    @Provides

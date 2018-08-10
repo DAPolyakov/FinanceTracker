@@ -115,7 +115,6 @@ class MainScreenFragment : BaseFragment<MainScreenPresenter>(),
     override fun onStart() {
         super.onStart()
         presenter?.onStart()
-        presenter?.getAccountsId()
     }
 
     override fun onDestroy() {

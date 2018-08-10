@@ -35,7 +35,13 @@ project.afterEvaluate {
                                    '**/*$ViewInjector*.*',
                                    '**/*$ViewBinder*.*',
                                    '**/BuildConfig.*',
-                                   '**/Manifest*.*']
+                                   '**/Manifest*.*',
+                                   '**/*Module.*', // Modules for Dagger.
+                                   '**/*Dagger*.*', // Dagger auto-generated code.
+                                   '**/*MembersInjector*.*', // Dagger auto-generated code.
+                                   '**/*_Provide*Factory*.*',
+                                   '**/*_Factory.*', //Dagger auto-generated code
+                        ]
                 )
 
                 def coverageSourceDirs = [

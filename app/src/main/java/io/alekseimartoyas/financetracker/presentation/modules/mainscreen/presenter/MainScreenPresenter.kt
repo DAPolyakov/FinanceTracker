@@ -22,6 +22,7 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
     private var course: Double = 1.0
 
     override fun onStart() {
+
         getAccounts.executeFlowable {
             view?.showAccountsList(it.toTypedArray())
             if (it.isNotEmpty()) {
@@ -37,12 +38,6 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
                 Currency.USD -> DecimalFormat("0.00").format(course)
                 else -> ""
             })
-
-            getAccounts.executeFlowable {
-                if (it.isNotEmpty()) {
-                    view?.showBalance(response.Valute.USD.Value, it[0])
-                }
-            }
         }
     }
 
@@ -68,10 +63,6 @@ class MainScreenPresenter(view: IMainScreenFragmentInput,
         view?.showBalance(account)
         view?.showBalance(course, account)
         changePieChart(account)
-    }
-
-    fun getAccountsId(): Array<Int> {
-        return arrayOf()
     }
 
     override fun onStop() {

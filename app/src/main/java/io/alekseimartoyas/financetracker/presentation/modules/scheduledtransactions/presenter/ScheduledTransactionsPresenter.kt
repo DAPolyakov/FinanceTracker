@@ -9,12 +9,11 @@ import io.alekseimartoyas.financetracker.presentation.modules.scheduledtransacti
 import java.math.BigDecimal
 
 class ScheduledTransactionsPresenter(view: IScheduledTransactionsInput,
-                                     val getScheduledTransactionsInteractor: GetScheduledTransactionsInteractor,
-                                     val updateFinanceTransactionInteractor: UpdateFinanceTransactionInteractor,
+                                     private val getScheduledTransactionsInteractor: GetScheduledTransactionsInteractor,
+                                     private val updateFinanceTransactionInteractor: UpdateFinanceTransactionInteractor,
                                      router: IMainActivityRouterInput,
-                                     var adapter: IScheduledTransactionsRVInput? = null) :
-        BasePresenter<IScheduledTransactionsInput,
-                IMainActivityRouterInput>(view, router) {
+                                     private var adapter: IScheduledTransactionsRVInput? = null) :
+        BasePresenter<IScheduledTransactionsInput, IMainActivityRouterInput>(view, router) {
 
     fun getAdapter(): ScheduledTransactionsRVAdapter = adapter!! as ScheduledTransactionsRVAdapter
 

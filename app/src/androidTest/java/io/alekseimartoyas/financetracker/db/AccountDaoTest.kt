@@ -7,6 +7,7 @@ import io.alekseimartoyas.financetracker.data.local.Account
 import io.alekseimartoyas.financetracker.data.local.AccountDao
 import io.alekseimartoyas.financetracker.data.local.AppDatabase
 import io.alekseimartoyas.financetracker.domain.Currency
+import io.reactivex.schedulers.Schedulers
 import org.junit.After
 import org.junit.Before
 import org.junit.Test

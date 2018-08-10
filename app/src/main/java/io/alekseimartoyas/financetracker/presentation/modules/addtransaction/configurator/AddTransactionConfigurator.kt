@@ -6,7 +6,7 @@ import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.pre
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.view.AddTransactionActivity
 
 
-class AddTransactionConfigurator {
+class AddTransactionConfigurator() {
 
     fun buildModule(view: AddTransactionActivity) {
         val presenter = AddTransactionPresenter(view,

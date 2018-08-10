@@ -2,12 +2,13 @@ package io.alekseimartoyas.financetracker.data.services
 
 import io.alekseimartoyas.financetracker.App
 import io.alekseimartoyas.financetracker.data.local.Account
+import io.alekseimartoyas.financetracker.data.local.AppDatabase
 import io.alekseimartoyas.financetracker.data.local.FinanceTransaction
 import io.alekseimartoyas.financetracker.domain.dinversion.IDataSourceInput
 import io.reactivex.Flowable
 import java.math.BigDecimal
 
-class DataSource : IDataSourceInput {
+class DataSource(val db: AppDatabase) : IDataSourceInput {
 
     override fun getScheduledTransactions(): Flowable<List<FinanceTransaction>> {
         return db.financeTransactionDao.getAllScheduled()
@@ -16,8 +17,6 @@ class DataSource : IDataSourceInput {
     override fun getTemplateTransactions(): Flowable<List<FinanceTransaction>> {
         return db.financeTransactionDao.getAllTemplate()
     }
-
-    private val db = App.db
 
     override fun addTransaction(transaction: FinanceTransaction, sum: BigDecimal): Flowable<Unit> {
         return Flowable.fromCallable {
