@@ -10,10 +10,12 @@ import io.alekseimartoyas.financetracker.domain.FinanceTransactionState
 import io.alekseimartoyas.financetracker.domain.OperationType
 import io.alekseimartoyas.financetracker.domain.interactors.GetTemplateTransactionsInteractor
 import io.alekseimartoyas.financetracker.domain.interactors.UpdateFinanceTransactionInteractor
+import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.configurator.MainScreenConfigurator
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
 import io.alekseimartoyas.financetracker.presentation.modules.templates.presenter.TemplatesPresenter
 import io.alekseimartoyas.financetracker.presentation.modules.templates.view.TemplatesFragment
 import io.alekseimartoyas.financetracker.presentation.modules.templates.view.TemplatesRvAdapter
+import io.alekseimartoyas.financetracker.presentation.modules.templates.view.TemplatesView
 import io.reactivex.Flowable
 import org.junit.Before
 import org.junit.Test
@@ -88,6 +90,5 @@ class TemplatesPresenterUnitTest : BaseUnitTest() {
     fun getAdapter() {
         presenter.adapter = TemplatesRvAdapter({}, {})
     }
-
 
 }

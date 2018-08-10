@@ -10,7 +10,10 @@ import io.alekseimartoyas.financetracker.domain.FinanceTransactionState
 import io.alekseimartoyas.financetracker.domain.OperationType
 import io.alekseimartoyas.financetracker.domain.interactors.GetScheduledTransactionsInteractor
 import io.alekseimartoyas.financetracker.domain.interactors.UpdateFinanceTransactionInteractor
+import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.configurator.MainScreenConfigurator
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
+import io.alekseimartoyas.financetracker.presentation.modules.scheduledtransactions.configurator.ScheduledTransactionsConfigurator
+import io.alekseimartoyas.financetracker.presentation.modules.scheduledtransactions.presenter.IScheduledTransactionsInput
 import io.alekseimartoyas.financetracker.presentation.modules.scheduledtransactions.presenter.ScheduledTransactionsPresenter
 import io.alekseimartoyas.financetracker.presentation.modules.scheduledtransactions.view.RecyclerViewManager.ScheduledTransactionsRVAdapter
 import io.alekseimartoyas.financetracker.presentation.modules.scheduledtransactions.view.ScheduledTransactionsFragment
@@ -91,6 +94,5 @@ class ScheduledTransactionsPresenterUnitTest : BaseUnitTest() {
     fun onStop() {
         presenter.onStop()
     }
-
 
 }

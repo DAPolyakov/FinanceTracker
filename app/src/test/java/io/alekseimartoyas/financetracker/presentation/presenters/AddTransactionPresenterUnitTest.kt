@@ -14,8 +14,11 @@ import io.alekseimartoyas.financetracker.domain.Currency
 import io.alekseimartoyas.financetracker.domain.FinanceTransactionState
 import io.alekseimartoyas.financetracker.domain.OperationType
 import io.alekseimartoyas.financetracker.domain.interactors.*
+import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.configurator.AddTransactionConfigurator
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.presenter.AddTransactionPresenter
+import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.presenter.IAddTransactionActivityInput
 import io.alekseimartoyas.financetracker.presentation.modules.addtransaction.view.AddTransactionActivity
+import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.configurator.MainScreenConfigurator
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import org.junit.Before
@@ -42,7 +45,7 @@ class AddTransactionPresenterUnitTest : BaseUnitTest() {
     @Mock
     lateinit var exchRateProvider: ExchRateProvider
 
-    private val listAccount = listOf(
+     private val listAccount = listOf(
             Account("Wallet_1", Currency.RUB, BigDecimal(15), 1),
             Account("Wallet_2", Currency.USD, BigDecimal(0), 2)
     )

@@ -9,10 +9,13 @@ import io.alekseimartoyas.financetracker.domain.Currency
 import io.alekseimartoyas.financetracker.domain.FinanceTransactionState
 import io.alekseimartoyas.financetracker.domain.OperationType
 import io.alekseimartoyas.financetracker.domain.interactors.GetDoneTransactionsInteractor
+import io.alekseimartoyas.financetracker.presentation.modules.history.configurator.HistoryConfigurator
 import io.alekseimartoyas.financetracker.presentation.modules.history.presenter.HistoryPresenter
+import io.alekseimartoyas.financetracker.presentation.modules.history.presenter.IHistoryFragmentInput
 import io.alekseimartoyas.financetracker.presentation.modules.history.presenter.ITransactionRVInput
 import io.alekseimartoyas.financetracker.presentation.modules.history.view.HistoryFragment
 import io.alekseimartoyas.financetracker.presentation.modules.history.view.RecyclerViewManager.TransactionRVAdapter
+import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.configurator.MainScreenConfigurator
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
 import io.reactivex.Flowable
 import org.junit.Before

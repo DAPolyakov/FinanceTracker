@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.View
+import io.alekseimartoyas.financetracker.App
 import io.alekseimartoyas.financetracker.BuildConfig
 import io.alekseimartoyas.financetracker.R
 import io.alekseimartoyas.financetracker.data.local.Account

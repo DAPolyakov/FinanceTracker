@@ -19,6 +19,7 @@ import io.alekseimartoyas.financetracker.domain.interactors.GetAccountsInteracto
 import io.alekseimartoyas.financetracker.domain.interactors.GetExchRateInteractor
 import io.alekseimartoyas.financetracker.domain.interactors.GetNewTransactionsFromScheduledInteractor
 import io.alekseimartoyas.financetracker.domain.interactors.GetTransactionsByAccountIdInteractor
+import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.configurator.MainScreenConfigurator
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.presenter.MainScreenPresenter
 import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.view.MainScreenFragment
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput

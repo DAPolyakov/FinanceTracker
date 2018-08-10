@@ -9,9 +9,12 @@ import io.alekseimartoyas.financetracker.data.services.DataSource
 import io.alekseimartoyas.financetracker.domain.*
 import io.alekseimartoyas.financetracker.domain.interactors.GetAccountsInteractor
 import io.alekseimartoyas.financetracker.domain.interactors.GetTransactionsInteractor
+import io.alekseimartoyas.financetracker.presentation.modules.mainscreen.configurator.MainScreenConfigurator
 import io.alekseimartoyas.financetracker.presentation.modules.navigationdrawer.router.IMainActivityRouterInput
+import io.alekseimartoyas.financetracker.presentation.modules.statistics.configurator.StatisticsConfigurator
 import io.alekseimartoyas.financetracker.presentation.modules.statistics.presenter.StatisticsPresenter
 import io.alekseimartoyas.financetracker.presentation.modules.statistics.view.StatisticsFragment
+import io.alekseimartoyas.financetracker.presentation.modules.statistics.view.StatisticsView
 import io.reactivex.Flowable
 import org.junit.Before
 import org.junit.Test
