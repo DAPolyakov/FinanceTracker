@@ -18,8 +18,7 @@ class StatisticsPresenter(view: StatisticsView,
                           val getTransactionsInteractor: GetTransactionsInteractor,
                           val getAccountsInteractor: GetAccountsInteractor,
                           router: IMainActivityRouterInput) :
-        BasePresenter<StatisticsView,
-                IMainActivityRouterInput>(view, router) {
+        BasePresenter<StatisticsView, IMainActivityRouterInput>(view, router) {
 
     var transactions: List<FinanceTransaction> = emptyList()
 
@@ -84,10 +83,6 @@ class StatisticsPresenter(view: StatisticsView,
         val m = date.substring(3, 5).toInt()
         val y = date.substring(6, 10).toInt()
         return y * 10000 + m * 100 + d
-
-//        Log.wtf("dima", (getDateHash("12.06.2018") > getDateHash("30.12.2017")).toString())
-        // 20011001
-        // 20031031
     }
 
     override fun onStop() {
